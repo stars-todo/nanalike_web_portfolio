@@ -1,11 +1,14 @@
 import React from 'react';
+import classNames from 'classnames/bind';
+import * as styles from './Main.module.scss';
+const c = classNames.bind(styles);
 
 const Main = () => {
   return (
-    <div>
-      <div>
+    <article className={c('main')}>
+      <div className={c('title')}>
         <strong>좋아하니까,나나답게</strong>
-        <div aria-label="나나라이크 로고"></div>
+        <div aria-label="나나라이크 로고">nanalike</div>
       </div>
       <p>
         탄탄한 코드 위에 감각적인 인터페이스를 그려내는 웹 퍼블리셔 나나입니다. 사용하기
@@ -15,7 +18,7 @@ const Main = () => {
       <div>
         <span>Let's Scroll Down</span>
       </div>
-    </div>
+    </article>
   );
 };
 

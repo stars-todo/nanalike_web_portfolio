@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div>
+    <>
       <div>티켓</div>
       <div>배경 K</div>
       <strong>i do what i like</strong>
@@ -30,7 +30,7 @@ const About = () => {
         </a>
       </div>
       <div>배경 L</div>
-    </div>
+    </>
   );
 };
 

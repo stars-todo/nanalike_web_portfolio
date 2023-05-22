@@ -1,0 +1,12 @@
+.btn {
+  position: fixed;
+  right: var(--d-padding);
+  bottom: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  border: 1px solid var(--color-black);
+}
