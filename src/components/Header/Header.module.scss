@@ -1,14 +1,17 @@
 @use './../../styles/helpers/mixins' as m;
 
 .header {
+  z-index: 9999; //TODO:
   position: fixed;
   top: 4rem;
   left: 0;
   width: 100%;
   font-size: 1.8rem;
-  color: var(--color-black);
+  color: var(--color-black-dark);
 
   .inner {
+    max-width: var(--d-max-width);
+    margin: 0 auto;
     padding: 0 var(--d-padding);
   }
 }

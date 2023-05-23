@@ -1,0 +1,10 @@
+@use './../../styles/helpers/mixins' as m;
+
+.article_title {
+  @include m.font-sub;
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 2.9rem;
+  text-transform: uppercase;
+  color: var(--color-gray-title);
+}

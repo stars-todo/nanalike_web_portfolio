@@ -1,10 +1,181 @@
+@use './../../styles/helpers/mixins' as m;
+
 .main {
   width: 100vw;
   height: 100vh;
-  background-color: lightblue;
+  min-height: 6rem; //TODO:
+  text-align: center;
 }
 
 .title {
   width: 100%;
   margin: 0 auto;
+  padding-top: 30vh;
+
+  &_inner {
+    display: inline-block;
+    text-align: left;
+  }
+
+  strong {
+    top: 0.7rem;
+    position: relative;
+    font-size: 3.2rem;
+    line-height: 100%;
+    font-weight: 700;
+  }
 }
+
+.desc {
+  margin-top: 5rem;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 3.6rem;
+  text-align: center;
+  color: var(--color-black-light);
+
+  span {
+    display: block;
+  }
+}
+
+.guide {
+  position: absolute;
+  bottom: 14vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+
+  .scroll {
+    @include m.font-sub;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 2rem;
+    letter-spacing: 0;
+    color: var(--color-gray-light);
+  }
+}
+.svg_na {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='479' height='225' fill='none'%3E%3Cg fill='%23C2C2C2' opacity='.1'%3E%3Cpath d='M140.756 3.463c19.137 0 35.034 5.71 47.69 17.131 12.964 11.421 19.601 25.93 19.909 43.524v151.404h-64.821V88.194c-.926-19.755-10.804-29.633-29.633-29.633-14.816 0-26.7 6.946-35.652 20.836-8.952 13.89-13.427 31.793-13.427 53.709v82.416H0V13.186h58.803l4.63 32.411C70.84 32.324 81.027 21.983 93.99 14.575c13.273-7.408 28.861-11.112 46.765-11.112ZM460.494 13.186v202.336h-64.822V190.52c-19.446 20.372-41.979 30.559-67.599 30.559-29.942 0-54.327-8.952-73.156-26.855-18.521-17.903-27.781-44.449-27.781-79.638 0-22.225 4.476-41.671 13.427-58.34 9.261-16.977 21.453-30.095 36.578-39.356C292.266 7.63 308.472 3 325.757 3c17.904 0 32.103 2.778 42.598 8.334 10.495 5.248 19.755 12.81 27.78 22.688l4.167-20.836h60.192ZM346.593 168.295c22.533 0 38.893-10.186 49.079-30.559V88.194c-3.704-9.877-10.186-17.749-19.446-23.613-8.952-5.865-19.601-8.798-31.948-8.798-14.199 0-26.392 5.248-36.578 15.743-9.878 10.495-14.816 23.768-14.816 39.819 0 10.495 2.469 20.218 7.408 29.17 4.939 8.642 11.421 15.433 19.446 20.372 8.335 4.939 17.286 7.408 26.855 7.408Z'/%3E%3Cpath d='M140.756 3.463c19.137 0 35.034 5.71 47.69 17.131 12.964 11.421 19.601 25.93 19.909 43.524v151.404h-64.821V88.194c-.926-19.755-10.804-29.633-29.633-29.633-14.816 0-26.7 6.946-35.652 20.836-8.952 13.89-13.427 31.793-13.427 53.709v82.416H0V13.186h58.803l4.63 32.411C70.84 32.324 81.027 21.983 93.99 14.575c13.273-7.408 28.861-11.112 46.765-11.112ZM460.494 13.186v202.336h-64.822V190.52c-19.446 20.372-41.979 30.559-67.599 30.559-29.942 0-54.327-8.952-73.156-26.855-18.521-17.903-27.781-44.449-27.781-79.638 0-22.225 4.476-41.671 13.427-58.34 9.261-16.977 21.453-30.095 36.578-39.356C292.266 7.63 308.472 3 325.757 3c17.904 0 32.103 2.778 42.598 8.334 10.495 5.248 19.755 12.81 27.78 22.688l4.167-20.836h60.192ZM346.593 168.295c22.533 0 38.893-10.186 49.079-30.559V88.194c-3.704-9.877-10.186-17.749-19.446-23.613-8.952-5.865-19.601-8.798-31.948-8.798-14.199 0-26.392 5.248-36.578 15.743-9.878 10.495-14.816 23.768-14.816 39.819 0 10.495 2.469 20.218 7.408 29.17 4.939 8.642 11.421 15.433 19.446 20.372 8.335 4.939 17.286 7.408 26.855 7.408Z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.svg_na {
+  z-index: -1;
+  position: absolute;
+  top: 23vh;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: 20% auto;
+  background-repeat: repeat-x;
+  animation: scroll 14s infinite linear;
+}
+
+@keyframes scroll {
+  to {
+    background-position: -100% 0;
+  }
+}
+
+// .svg_na {
+//   width: 500px;
+//   height: 300px;
+//   margin: 50px auto;
+//   background-size: 500px 300px;
+
+//   animation: scroll 4s linear infinite;
+// }
+
+// @keyframes scroll {
+//   to {
+//     background-position: -500px 0;
+//   }
+// }
+
+// .svg {
+//   width: 100vw;
+//   height: 100px;
+// }
+
+// .svg_na {
+//   width: 200vw;
+//   height: 219px;
+//   // background-size: 462px 219px;
+
+//   animation: scroll 3s linear infinite;
+// }
+
+// @keyframes scroll {
+//   to {
+//     background-position: -50% 0;
+//   }
+// }
+
+// .svg {
+//   position: relative;
+//   width: 100vw;
+//   height: 21.9rem;
+//   overflow-x: hidden;
+// }
+
+// .svg_na {
+//   width: inherit;
+//   height: inherit;
+//   position: absolute;
+//   left: 0%;
+//   top: 0%;
+//   background-size: 21.9rem auto;
+// }
+
+// .primary {
+//   animation: primary 3s linear infinite;
+
+//   outline: 3px solid red;
+// }
+
+// .secondary {
+//   // animation: secondary 3s linear infinite;
+
+//   animation: primary 3s linear infinite;
+
+//   outline: 3px solid blue;
+// }
+
+// @keyframes primary {
+//   from {
+//     transform: translateX(0);
+//   }
+//   to {
+//     transform: translateX(-100%);
+//   }
+// }
+
+// @keyframes secondary {
+//   from {
+//     transform: translateX(-100%);
+//   }
+//   to {
+//     transform: translateX(0);
+//   }
+// }
+
+// =-
+
+// .svg {
+//   overflow: hidden;
+//   // width: 100%;
+//   height: 219px;
+//   display: flex;
+//   align-items: center;
+//   flex-wrap: nowrap;
+// }
+
+// .svg_na {
+//   width: 200%;
+//   height: 219px;
+//   flex-shrink: 0;
+//   // background-size: 100% 10vh;
+// }

@@ -26,7 +26,7 @@ const Header = () => {
           <span>나나: 좋아해서 더 잘하는 웹 퍼블리셔</span>
           <ul className={c('langs')}>
             {langs.map((lang) => (
-              <li>
+              <li key={lang.name}>
                 <a
                   className={c(lang.name === '한국어' && 'active')}
                   href={lang.url}

@@ -1,4 +1,7 @@
+@use './../../styles/helpers/mixins' as m;
+
 .btn {
+  z-index: 999; //TODO:
   position: fixed;
   right: var(--d-padding);
   bottom: 4rem;
@@ -9,4 +12,26 @@
   height: 12rem;
   border-radius: 50%;
   border: 1px solid var(--color-black);
+}
+
+.number {
+  @include m.font-sub;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: center;
+
+  .number_user {
+    font-size: 3rem;
+
+    .unit {
+      display: inline-block;
+      font-size: 60%;
+    }
+  }
+
+  .number_total {
+    font-size: 1.8rem;
+    color: var(--color-black-light);
+  }
 }

@@ -1,0 +1,144 @@
+@use './../../styles/helpers/mixins' as m;
+
+.contact {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  max-width: var(--d-max-width);
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  outline: 5px solid palevioletred;
+
+  &_inner {
+    margin-top: -12vh;
+  }
+}
+
+.download {
+  background-color: #fff;
+}
+
+.title_sub {
+  margin-top: 5.6rem;
+  font-size: 2.4rem;
+  font-weight: 400;
+  line-height: 3.8rem;
+  letter-spacing: -0.01em;
+}
+
+.mail {
+  margin-bottom: 3rem;
+
+  &_button {
+    position: relative;
+    display: inline-block;
+    border: 0;
+  }
+
+  &_address {
+    z-index: 1;
+    position: relative;
+    @include m.font-sub;
+    font-size: 10rem;
+    font-weight: 500;
+    line-height: 12.2rem;
+    letter-spacing: -0.05em;
+  }
+}
+
+.contents {
+  display: flex;
+  gap: 6rem;
+  width: 100%;
+  max-width: 120rem;
+  margin-top: 5rem;
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 3.2rem;
+  color: var(--color-gray);
+
+  .desc {
+    flex-basis: 50%;
+    word-break: keep-all;
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 1.8rem;
+  }
+}
+
+.footer {
+  position: absolute;
+  bottom: 4rem;
+  left: 0;
+  width: 100vw;
+  max-width: 256rem;
+  margin: 0 auto;
+  padding-left: 6rem;
+
+  .thanks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.4rem;
+    font-size: 1.4rem;
+
+    .thanks_title {
+      margin-bottom: 0.2rem;
+    }
+
+    .thanks_name {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+
+      a {
+        display: block;
+        min-width: 7rem;
+        @include m.font-sub;
+        color: var(--color-gray-light);
+      }
+
+      span {
+        color: var(--color-gray-dim);
+        font-weight: 300;
+      }
+    }
+  }
+
+  .sealing {
+    @include m.font-sub;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    color: #a9a9a9;
+    text-align: center;
+    user-select: none;
+
+    .madeBy {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      line-height: 180%;
+      margin-bottom: 0.2rem;
+
+      .nana {
+        margin-top: 0.2rem;
+        height: 1.1rem;
+      }
+    }
+
+    .copyright {
+      color: var(--color-gray-dim);
+      letter-spacing: 0;
+    }
+  }
+}
