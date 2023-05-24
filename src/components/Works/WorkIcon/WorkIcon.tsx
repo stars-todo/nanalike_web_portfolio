@@ -15,10 +15,13 @@ const WorkIcon = ({ work, className, isOngoing, ...props }: WorkIconProps) => {
   return (
     <div
       className={c('work_icon', `${className}`, { isOngoing })}
-      style={{ background: `${workIcons[work].color}` }}
+      style={{
+        backgroundColor: `${workIcons[work].color}`,
+        backgroundImage: `url(https://source.unsplash.com/random/?${workIcons[work].icon})`
+      }}
       {...props}
     >
-      <h1>{workIcons[work].icon}</h1>
+      {/* <h1>{workIcons[work].icon}</h1> */}
       {isOngoing && <span className={c('onGoing')}>Ongoing</span>}
     </div>
   );

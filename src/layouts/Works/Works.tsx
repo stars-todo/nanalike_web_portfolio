@@ -87,13 +87,15 @@ const TextBig = ({ children }: { children: string }) => {
 const Works = () => {
   return (
     <article className={c('works')}>
-      <div className={c('inner')}>
-        <div className={c('background')}>
-          <ArticleTitle className={c('title')}>Work Experience</ArticleTitle>
-          <TextBig>I like What I do</TextBig>
-        </div>
+      <div className={c('background')}>
+        <ArticleTitle className={c('title')}>Work Experience</ArticleTitle>
+        <TextBig>I like What I do</TextBig>
+        <Alphabet type="i" className={c('i')} />
+      </div>
+      <div className={c('work_list')}>
         {myWorks.map((work) => (
           <WorkItem
+            className={c('work_item')}
             key={work.href}
             href={work.href as worksList}
             title={work.title}
@@ -103,7 +105,6 @@ const Works = () => {
             isOngoing={work.isOngoing}
           />
         ))}
-        <Alphabet type="i" />
       </div>
     </article>
   );

@@ -12,9 +12,10 @@
   align-items: center;
   justify-content: center;
   pointer-events: none;
+  height: 100%;
 
   svg {
-    // height: 100vh;
+    height: 100%;
     transform: scale(1.2);
   }
 }

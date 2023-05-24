@@ -33,12 +33,13 @@ const WorkItem = ({
 }: WorkItemProps) => {
   return (
     <a
-      href={`/${href}`}
+      className={c('work_item', `${className}`, { isOngoing })}
+      href={!isOngoing ? `/${href}` : undefined}
       target="_blank"
       rel="noopener noreferrer"
-      className={c('work_item', `${className}`, { isOngoing })}
+      aria-disabled={isOngoing}
     >
-      <div id="interaction">
+      <div className={c('work_contents')} id="interaction">
         <WorkIcon
           className={c('icon')}
           work={href}

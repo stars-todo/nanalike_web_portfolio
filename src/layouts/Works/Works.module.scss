@@ -1,19 +1,241 @@
+@use './../../styles/helpers/mixins' as *;
+
 .works {
+  z-index: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  max-width: var(--d-max-width); //TODO: 공통화?
+  min-height: rem(960); //TODO: 공통화?
+  margin: 0 auto;
+  padding: 0 $commonPadding;
+  padding-top: vh(180);
+  padding-bottom: vh(150);
+
+  @include mq_l {
+    flex-direction: column;
+    gap: vh(60);
+    height: auto;
+  }
+
+  @include mq_t {
+    padding-top: vh(140);
+    padding-bottom: vh(110);
+  }
+
   .inner {
-    position: relative;
+    // position: relative;
+    // width: 100%;
+    // max-width: var(--d-max-width);
+    // height: 100vh;
+    // outline: 5px solid green;
+    // margin: 0 auto;
+    // display: flex;
+  }
+}
+
+.work_list {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // background: rgba(123, 111, 932, 0.2);
+  max-width: rem(1200);
+
+  @include mq_l {
+    min-width: rem(840);
+    max-width: rem(960);
+    width: 90%;
+  }
+
+  @include mq_t {
+    min-width: 0;
+    max-width: 100%;
     width: 100%;
-    max-width: var(--d-max-width);
-    height: 100vh;
-    outline: 5px solid green;
-    margin: 0 auto;
+  }
+
+  // .work_item {
+  //   position: absolute;
+  //   grid-area: 1 / 1 / 2 / 2;
+
+  //   //TODO: 정리
+  //   &:nth-child(4n + 1) {
+  //     //1,5,9
+  //     left: rem(186);
+  //   }
+
+  //   &:nth-child(4n + 2) {
+  //     right: rem(25);
+  //   }
+
+  //   &:nth-child(4n + 3) {
+  //     left: rem(9);
+  //   }
+
+  //   &:nth-child(4n + 4) {
+  //     right: rem(118);
+  //   }
+
+  //   $pos: 160, 210, 284, 186, 384, 210;
+  //   $i: 1;
+  //   $sum: 0;
+
+  //   @while $i < length($pos) {
+  //     $i: $i + 1;
+  //     $value: nth($pos, $i);
+  //     $sum: $sum + $value;
+
+  //     &:nth-child(#{$i}) {
+  //       top: rem($sum);
+  //     }
+  //   }
+  // }
+
+  // .work_item {
+  //   position: relative;
+  //   display: inline-block;
+
+  //   //TODO: 정리
+  //   &:nth-child(4n + 1) {
+  //     //1,5,9
+  //     left: rem(-214);
+  //   }
+
+  //   &:nth-child(4n + 2) {
+  //     left: rem(360);
+  //   }
+
+  //   &:nth-child(4n + 3) {
+  //     left: rem(-378);
+  //   }
+
+  //   &:nth-child(4n + 4) {
+  //     left: rem(268);
+  //   }
+
+  //   $pos: 0, -164, -100, -194, 4, -160;
+  //   $i: 1;
+  //   $sum: 0;
+
+  //   @while $i < length($pos) {
+  //     $i: $i + 1;
+  //     $value: nth($pos, $i);
+  //     $sum: $sum + $value;
+
+  //     &:nth-child(#{$i}) {
+  //       top: rem($sum);
+  //     }
+  //   }
+  // }
+
+  .work_item {
+    position: relative;
+    float: left;
+
+    // &:nth-child(4n + 1) {
+    //   left: rem(-214);
+    // }
+
+    // &:nth-child(4n + 2) {
+    //   left: rem(360);
+    // }
+
+    // &:nth-child(4n + 3) {
+    //   left: rem(-378);
+    // }
+
+    // &:nth-child(4n + 4) {
+    //   left: rem(268);
+    // }
+
+    // @mixin getLeft($left) {
+    //   @each $value in $left {
+    //     $i: index($left, $value);
+    //     &:nth-child(4n + #{$i}) {
+    //       left: rem($value);
+    //     }
+    //   }
+    // }
+
+    $left: -214, 360, -378, 268;
+    @each $value in $left {
+      $i: index($left, $value);
+      &:nth-child(4n + #{$i}) {
+        left: rem($value);
+      }
+    }
+
+    $top: 0, -114, -50, -124, 30, -130;
+    @each $value in $top {
+      $i: index($top, $value);
+      &:nth-child(#{$i}) {
+        margin-top: #{$value}px;
+      }
+    }
+
+    @include mq_l {
+      // $left2: -240, 230, -240, 230;
+
+      // @each $value in $left2 {
+      //   $i: index($left2, $value);
+      //   &:nth-child(4n + #{$i}) {
+      //     left: rem($value);
+      //   }
+      // }
+      &:nth-child(odd) {
+        align-self: flex-start;
+      }
+      &:nth-child(even) {
+        align-self: flex-end;
+      }
+      &:first-child {
+        margin-top: 0;
+      }
+
+      & {
+        float: none !important;
+        left: 0 !important;
+        margin-top: 0 !important;
+      }
+    }
+
+    @include mq_t {
+      & {
+        margin-top: rem(80) !important;
+        align-self: auto !important;
+        width: auto !important;
+      }
+
+      &:nth-child(odd) {
+        margin-right: vw(300);
+      }
+
+      &:nth-child(even) {
+        margin-left: vw(300);
+      }
+    }
+
+    @include mq_m {
+      & {
+        width: 100% !important;
+        margin: rem(44) 0 0 !important;
+      }
+    }
   }
 }
 
 .background {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
+
+  display: none; //TODO:
 }
 
 .title {
@@ -21,4 +243,8 @@
   text-align: center;
   margin-bottom: 1.6rem;
   pointer-events: none;
+}
+
+.i {
+  height: 100vh;
 }

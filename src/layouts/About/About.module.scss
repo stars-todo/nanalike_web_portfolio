@@ -227,15 +227,3 @@ $_height: rem(1200);
   height: 240px;
   background-color: burlywood;
 }
-
-.l {
-  height: 100%;
-
-  svg {
-    height: 100%;
-
-    @include mq_l {
-      height: 100%;
-    }
-  }
-}
