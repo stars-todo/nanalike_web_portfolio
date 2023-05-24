@@ -5,7 +5,7 @@ import ArticleTitle from '@components/ArticleTitle/ArticleTitle';
 import Alphabet from '@components/Alphabet/Alphabet';
 import CustomButton from '@components/CustomButton/CustomButton';
 import CustomLink from '@components/CustomLink/CustomLink';
-import NanaText from '@components/NanaText/NanaText';
+import NanaText from '@components/Logo/NanaText';
 const c = classNames.bind(styles);
 
 const Footer = () => {

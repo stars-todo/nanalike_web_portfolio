@@ -1,0 +1,19 @@
+.langs {
+  display: flex;
+  gap: 10px;
+  color: var(--color-gray-light);
+
+  li:not(:first-child):before {
+    display: inline-block;
+    width: 1px;
+    height: 15px;
+    margin-right: 10px;
+    background-color: #d0d0d0;
+    transform: skew(-15deg, -15deg);
+    content: '';
+  }
+
+  .active {
+    color: var(--color-black);
+  }
+}

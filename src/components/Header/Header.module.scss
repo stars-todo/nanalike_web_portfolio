@@ -1,45 +1,77 @@
-@use './../../styles/helpers/mixins' as m;
+@use './../../styles/helpers/mixins' as *;
+
+.test {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  user-select: none;
+  outline-offset: -10px;
+  z-index: 99999;
+
+  @include mq_l {
+    outline: 10px solid red;
+  }
+  @include mq_m {
+    outline: 10px solid green;
+  }
+  @include mq_s {
+    outline: 10px solid blue;
+  }
+}
 
 .header {
-  z-index: 9999; //TODO:
+  z-index: var(--z-header);
   position: fixed;
-  top: 4rem;
+  top: var(--d-padding-v);
   left: 0;
   width: 100%;
-  font-size: 1.8rem;
+  min-width: var(--m-min-width);
+  font-size: clamp(rem(16), break(18), rem(18));
   color: var(--color-black-dark);
 
   .inner {
     max-width: var(--d-max-width);
     margin: 0 auto;
-    padding: 0 var(--d-padding);
+    padding: 0 var(--d-padding-h);
+    padding: 0 clamp(var(--m-padding-h), break(60), var(--d-padding-h));
   }
 }
 
 .top {
-  @include m.font-sub;
+  @include font-sub;
   display: flex;
   justify-content: space-between;
-  padding: 1.2rem 1rem;
+  padding: clamp(rem(10), break(12), rem(12));
   font-weight: 500;
 
-  .title {
-    font-size: 1.8rem;
+  @include mq_s {
+    justify-content: center;
   }
 
-  .info {
+  .title {
+    font-size: clamp(rem(16), break(18), rem(18));
+
+    @include mq_m {
+      @include screenOut;
+    }
+  }
+
+  .status {
     position: relative;
-    padding-left: 1.8rem;
+    padding-left: rem(18);
 
     &:before,
     &:after {
       position: absolute;
-      top: 0.65rem;
+      top: rem(6.5);
       left: 0;
       display: block;
       content: '';
-      width: 1rem;
-      height: 1rem;
+      width: rem(10);
+      height: rem(10);
       transform-origin: 50% 50%;
       border-radius: 50%;
     }
@@ -63,6 +95,10 @@
         transform: scale(2.5);
       }
     }
+
+    @include mq_s {
+      @include screenOut();
+    }
   }
 
   .circle {
@@ -76,25 +112,15 @@
   justify-content: space-between;
   padding: 1rem;
   font-weight: 400;
-}
 
-.langs {
-  display: flex;
-  gap: 10px;
-  color: var(--color-gray-light);
-
-  li:not(:first-child):before {
-    display: inline-block;
-    width: 1px;
-    height: 15px;
-    margin-right: 10px;
-    background-color: #d0d0d0;
-    transform: skew(-15deg, -15deg);
-    content: '';
+  @include mq_s {
+    justify-content: center;
   }
 
-  .active {
-    color: var(--color-black);
+  .langs {
+    @include mq_s {
+      display: none;
+    }
   }
 }
 

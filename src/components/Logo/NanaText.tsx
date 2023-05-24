@@ -1,12 +1,12 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import * as styles from './NanaText.module.scss';
+import * as styles from './Logo.module.scss';
 const c = classNames.bind(styles);
 
 const NanaText = ({ className }: { className?: string }) => {
   return (
     <svg
-      className={c('nana_text', className)}
+      className={c(className)}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 60 14"
       fill="none"

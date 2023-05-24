@@ -1,9 +1,9 @@
-@use './../../styles/helpers/mixins' as m;
+@use './../../styles/helpers/mixins' as *;
 
 .main {
   width: 100vw;
   height: 100vh;
-  min-height: 6rem; //TODO:
+  min-height: rem(70); //TODO:
   text-align: center;
 }
 
@@ -12,25 +12,31 @@
   margin: 0 auto;
   padding-top: 30vh;
 
-  &_inner {
+  .title_inner {
     display: inline-block;
     text-align: left;
   }
 
-  strong {
+  .title_sub {
     top: 0.7rem;
     position: relative;
-    font-size: 3.2rem;
+    font-size: clamp(rem(18), vw(32), rem(32));
     line-height: 100%;
     font-weight: 700;
+  }
+
+  .logo {
+    width: 43.75vw;
+    max-width: 84rem;
+    width: clamp(100px, vw(840), rem(840));
   }
 }
 
 .desc {
   margin-top: 5rem;
-  font-size: 2rem;
+  font-size: clamp(1.6rem, vw(20), 2rem);
   font-weight: 400;
-  line-height: 3.6rem;
+  line-height: 180%;
   text-align: center;
   color: var(--color-black-light);
 
@@ -40,8 +46,9 @@
 }
 
 .guide {
-  position: absolute;
-  bottom: 14vh;
+  // position: absolute;
+  // top: 79vh;
+  margin-top: vh(174);
   width: 100%;
   display: flex;
   align-items: center;
@@ -50,7 +57,7 @@
   gap: 1rem;
 
   .scroll {
-    @include m.font-sub;
+    @include font-sub;
     font-size: 1.4rem;
     font-weight: 500;
     line-height: 2rem;

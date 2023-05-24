@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import * as styles from './About.module.scss';
 import CustomButton from '@components/CustomButton/CustomButton';
-import NanaText from '@components/NanaText/NanaText';
+import NanaText from '@components/Logo/NanaText';
 import CustomLink from '@components/CustomLink/CustomLink';
 import Alphabet from '@components/Alphabet/Alphabet';
 import ArticleTitle from '@components/ArticleTitle/ArticleTitle';
