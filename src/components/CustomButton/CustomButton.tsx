@@ -13,7 +13,13 @@ const CustomButton = ({ className, children, icon }: CustomButtonProps) => {
   return (
     <button className={c('button_custom', `${className}`)}>
       {icon && (
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none">
+        <svg
+          aria-hidden="true"
+          className={c('icon')}
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="none"
+        >
           <path
             stroke="#202020"
             stroke-linecap="round"

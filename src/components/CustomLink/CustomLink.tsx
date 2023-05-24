@@ -18,7 +18,13 @@ const CustomLink = ({ className, children, href, ...props }: CustomLinkProps) =>
       rel="noopener noreferrer"
       {...props}
     >
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none">
+      <svg
+        className={c('icon')}
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 18 18"
+      >
         <circle cx="9" cy="9" r="9" fill="#202020" />
         <path
           stroke="#fff"
@@ -28,7 +34,7 @@ const CustomLink = ({ className, children, href, ...props }: CustomLinkProps) =>
           d="m8 6 3 3-3 3"
         />
       </svg>
-      {children}
+      <span>{children}</span>
     </a>
   );
 };

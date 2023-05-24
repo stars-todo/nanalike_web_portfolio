@@ -8,17 +8,19 @@
   height: 100vh;
   pointer-events: none;
   user-select: none;
-  outline-offset: -10px;
+  outline-offset: -5px;
   z-index: 99999;
 
   @include mq_l {
-    outline: 10px solid red;
+    outline: 5px solid rgba(255, 0, 0, 0.459);
   }
+
+  @include mq_t {
+    outline: 5px solid rgba(0, 128, 0, 0.493);
+  }
+
   @include mq_m {
-    outline: 10px solid green;
-  }
-  @include mq_s {
-    outline: 10px solid blue;
+    outline: 5px solid rgba(0, 0, 255, 0.514);
   }
 }
 
@@ -28,7 +30,7 @@
   top: var(--d-padding-v);
   left: 0;
   width: 100%;
-  min-width: var(--m-min-width);
+  // min-width: var(--m-min-width); //TODO: 공통화?
   font-size: clamp(rem(16), break(18), rem(18));
   color: var(--color-black-dark);
 
@@ -47,14 +49,14 @@
   padding: clamp(rem(10), break(12), rem(12));
   font-weight: 500;
 
-  @include mq_s {
+  @include mq_m {
     justify-content: center;
   }
 
   .title {
     font-size: clamp(rem(16), break(18), rem(18));
 
-    @include mq_m {
+    @include mq_t {
       @include screenOut;
     }
   }
@@ -96,7 +98,7 @@
       }
     }
 
-    @include mq_s {
+    @include mq_m {
       @include screenOut();
     }
   }
@@ -113,12 +115,12 @@
   padding: 1rem;
   font-weight: 400;
 
-  @include mq_s {
+  @include mq_m {
     justify-content: center;
   }
 
   .langs {
-    @include mq_s {
+    @include mq_m {
       display: none;
     }
   }
