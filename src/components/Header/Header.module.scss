@@ -12,20 +12,21 @@
   z-index: 99999;
 
   @include mq_l {
-    outline: 5px solid rgba(255, 0, 0, 0.459);
+    // outline: 5px solid rgba(255, 0, 0, 0.459);
   }
 
   @include mq_t {
-    outline: 5px solid rgba(0, 128, 0, 0.493);
+    // outline: 5px solid rgba(0, 128, 0, 0.493);
   }
 
   @include mq_m {
-    outline: 5px solid rgba(0, 0, 255, 0.514);
+    // outline: 5px solid rgba(0, 0, 255, 0.514);
   }
 }
 
 .header {
-  z-index: var(--z-header);
+  // z-index: var(--z-header);
+  z-index: 9999999;
   position: fixed;
   top: var(--d-padding-v);
   left: 0;

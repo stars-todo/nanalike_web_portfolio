@@ -1,33 +1,58 @@
-@use './../../styles/helpers/mixins' as m;
+@use './../../styles/helpers/mixins' as *;
 
 .contact {
-  overflow: hidden;
+  overflow-x: hidden;
   position: relative;
-  width: 100%;
-  max-width: var(--d-max-width);
-  height: 100vh;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  outline: 5px solid palevioletred;
+  width: 100%;
+  max-width: var(--d-max-width); //TODO: 공통화?
+  min-height: rem(960); //TODO: 공통화?
+  height: 100vh;
+  margin: 0 auto;
+  padding: 0 $commonPadding;
 
   &_inner {
+    position: relative;
     margin-top: -12vh;
+  }
+
+  @include mq_t {
+    height: auto;
+    padding-top: vh(140);
+    padding-bottom: vh(60);
+    min-height: auto;
+  }
+}
+
+.title {
+  font-size: clamp(rem(16), break(20), rem(20));
+
+  @include mq_t {
+    text-align: center;
+  }
+}
+.title_sub {
+  margin-top: rem(56);
+  font-size: rem(24);
+  font-weight: 400;
+  line-height: 3.8rem;
+  letter-spacing: -0.01em;
+
+  @include mq_t {
+    margin-top: clamp(rem(46), break(56, vw, $tablet), rem(56));
+    font-size: clamp(rem(18), break(24, vw, $tablet), rem(24));
+  }
+
+  @include mq_m {
+    font-size: clamp(rem(16), break(18, vw, $mobile), rem(18));
   }
 }
 
 .download {
   background-color: #fff;
-}
-
-.title_sub {
-  margin-top: 5.6rem;
-  font-size: 2.4rem;
-  font-weight: 400;
-  line-height: 3.8rem;
-  letter-spacing: -0.01em;
 }
 
 .mail {
@@ -37,16 +62,25 @@
     position: relative;
     display: inline-block;
     border: 0;
+    text-align: left;
   }
 
   &_address {
     z-index: 1;
     position: relative;
-    @include m.font-sub;
-    font-size: 10rem;
+    @include font-sub;
+    font-size: rem(100);
     font-weight: 500;
-    line-height: 12.2rem;
+    line-height: 120%;
     letter-spacing: -0.05em;
+
+    @include mq_t {
+      font-size: 10vw;
+    }
+
+    @include mq_m {
+      font-size: calc(rem(10) + 7vw);
+    }
   }
 }
 
@@ -56,10 +90,16 @@
   width: 100%;
   max-width: 120rem;
   margin-top: 5rem;
-  font-size: 1.8rem;
+  font-size: rem(18);
   font-weight: 400;
-  line-height: 3.2rem;
+  line-height: 180%;
   color: var(--color-gray);
+
+  @include mq_t {
+    flex-direction: column;
+    gap: rem(20);
+    font-size: clamp(rem(16), break(18, vw, $tablet), rem(18));
+  }
 
   .desc {
     flex-basis: 50%;
@@ -71,39 +111,89 @@
     align-items: center;
     gap: 3rem;
     margin-top: 1.8rem;
+
+    @include mq_t {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: rem(20);
+      margin-top: rem(30);
+    }
+  }
+
+  &:after {
+    display: none;
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-gray-dim);
+    margin: rem(82) auto rem(56);
+
+    @include mq_t {
+      display: block;
+    }
   }
 }
 
 .footer {
   position: absolute;
-  bottom: 4rem;
-  left: 0;
+  bottom: rem(40);
+  left: $commonPadding;
   width: 100vw;
   max-width: 256rem;
   margin: 0 auto;
-  padding-left: 6rem;
+  // padding-left: 6rem;
+
+  @include mq_t {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: auto;
+    padding-left: 0;
+    max-width: auto;
+  }
 
   .thanks {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 0.4rem;
-    font-size: 1.4rem;
+    gap: rem(6);
+    font-size: rem(14);
+
+    @include mq_t {
+      flex-direction: row;
+      gap: rem(18);
+    }
+
+    @include mq_m {
+      gap: rem(14);
+    }
 
     .thanks_title {
-      margin-bottom: 0.2rem;
+      margin-bottom: rem(2);
+
+      @include mq_t {
+        margin-top: rem(2);
+        margin-bottom: 0;
+      }
+    }
+
+    .names {
+      display: flex;
+      flex-direction: column;
+      gap: rem(6);
     }
 
     .thanks_name {
       display: flex;
-      gap: 0.6rem;
+      gap: rem(4);
       align-items: center;
 
       a {
         display: block;
         min-width: 7rem;
-        @include m.font-sub;
-        color: var(--color-gray-light);
+        @include font-sub;
+        color: var(--color-gray-title);
+        font-weight: 500;
       }
 
       span {
@@ -112,33 +202,33 @@
       }
     }
   }
+}
 
-  .sealing {
-    @include m.font-sub;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate3d(-50%, 0, 0);
-    color: #a9a9a9;
-    text-align: center;
-    user-select: none;
+.langs {
+  display: none;
 
-    .madeBy {
-      display: flex;
-      gap: 0.4rem;
-      align-items: center;
-      line-height: 180%;
-      margin-bottom: 0.2rem;
-
-      .nana {
-        margin-top: 0.2rem;
-        height: 1.1rem;
-      }
-    }
-
-    .copyright {
-      color: var(--color-gray-dim);
-      letter-spacing: 0;
-    }
+  @include mq_t {
+    display: flex;
+    margin-top: rem(24);
   }
+}
+
+.copy {
+  position: absolute;
+  bottom: rem(40);
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+
+  @include mq_t {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    transform: none;
+    margin-top: rem(80);
+  }
+}
+
+.e {
+  height: 85%;
+  padding-bottom: 15%;
 }

@@ -7,6 +7,7 @@ import Works from '@layouts/Works/Works';
 import Blog from '@layouts/Blog/Blog';
 import Contact from '@layouts/Contact/Contact';
 import ASScroll from '@ashthornton/asscroll';
+import Copyright from '@components/Copyright/Copyright';
 
 const IndexPage: React.FC<PageProps> = () => {
   // const initialFunction = () => {

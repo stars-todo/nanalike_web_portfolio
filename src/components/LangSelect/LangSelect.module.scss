@@ -1,5 +1,7 @@
 .langs {
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
   color: var(--color-gray-light);
 
@@ -10,6 +12,7 @@
     margin-right: 10px;
     background-color: #d0d0d0;
     transform: skew(-15deg, -15deg);
+    vertical-align: middle;
     content: '';
   }
 

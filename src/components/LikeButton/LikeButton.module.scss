@@ -1,4 +1,4 @@
-@use './../../styles/helpers/mixins' as m;
+@use './../../styles/helpers/mixins' as *;
 
 .btn {
   z-index: 999; //TODO:
@@ -8,14 +8,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 12rem;
-  height: 12rem;
+  width: rem(120);
+  height: rem(120);
   border-radius: 50%;
   border: 1px solid var(--color-black);
+  right: $commonPadding;
+
+  @include mq_l {
+    width: rem(100);
+    height: rem(100);
+  }
+
+  @include mq_t {
+    width: rem(84);
+    height: rem(84);
+  }
 }
 
 .number {
-  @include m.font-sub;
+  @include font-sub;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;

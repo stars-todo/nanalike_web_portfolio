@@ -11,7 +11,7 @@ const Alphabet = ({
   type: 'l' | 'i' | 'k' | 'e';
 }) => {
   return (
-    <div className={c('alphabet', `${className}`)} aria-hidden="true">
+    <div className={c('alphabet', className)} aria-hidden="true">
       {type === 'l' && (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 541 1245" fill="none">
           <path

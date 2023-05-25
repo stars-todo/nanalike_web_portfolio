@@ -5,7 +5,8 @@ import ArticleTitle from '@components/ArticleTitle/ArticleTitle';
 import Alphabet from '@components/Alphabet/Alphabet';
 import CustomButton from '@components/CustomButton/CustomButton';
 import CustomLink from '@components/CustomLink/CustomLink';
-import NanaText from '@components/Logo/NanaText';
+import Copyright from '@components/Copyright/Copyright';
+import LangSelect from '@components/LangSelect/LangSelect';
 const c = classNames.bind(styles);
 
 const Footer = () => {
@@ -21,23 +22,16 @@ const Footer = () => {
           </svg>
         </div>
         <span className="screenOut">Thanks to</span>
-        <div className={c('thanks_name')}>
-          <a href="">yeon.me</a>
-          <span>Sever Development</span>
+        <div className={c('names')}>
+          <div className={c('thanks_name')}>
+            <a href="">yeon.me</a>
+            <span>Sever Development</span>
+          </div>
+          <div className={c('thanks_name')}>
+            <a href="">vid3d.net</a>
+            <span>3D Icon Modeling</span>
+          </div>
         </div>
-        <div className={c('thanks_name')}>
-          <a href="">vid3d.net</a>
-          <span>3D Icon Modeling</span>
-        </div>
-      </div>
-      <div className={c('sealing')}>
-        <div className={c('madeBy')} aria-label="Made by Nana with love">
-          <span>Made by</span>
-          <NanaText className={c('nana')} />
-          <span>with</span>
-          <span>❤️</span>
-        </div>
-        <div className={c('copyright')}>(C) 2023 nykim.net</div>
       </div>
     </footer>
   );
@@ -78,9 +72,11 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <Alphabet type="e" />
       </div>
       <Footer />
+      <Alphabet type="e" className={c('e')} />
+      <LangSelect className={c('langs')} />
+      <Copyright className={c('copy')} />
     </article>
   );
 };

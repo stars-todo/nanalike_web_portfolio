@@ -10,12 +10,14 @@
     height: 100vh;
     margin: 0 auto;
     min-width: 0;
+    padding-left: $commonPadding;
 
     @include mq_t {
       flex-direction: column;
       height: auto;
       padding-top: vh(140);
       padding-bottom: vh(110);
+      padding-left: 0;
     }
   }
 }
@@ -28,7 +30,6 @@
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  padding-left: $commonPadding;
   // background-color: rgba(248, 243, 237, 0.502);
 
   @include mq_t {
@@ -42,7 +43,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: 100%;
   }
 
   .text_big {
@@ -114,8 +114,11 @@
   .post_inner {
     width: 100%;
     padding-top: vh(160);
-    padding-left: $commonPadding;
-    padding-right: $commonPadding;
+    padding: 0 calc($commonPadding + 1.5vw);
+
+    @include mq_l {
+      padding: 0 $commonPadding;
+    }
 
     @include mq_t {
       padding-top: clamp(rem(80), break(100, vw, $tablet), rem(100));
