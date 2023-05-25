@@ -1,12 +1,20 @@
 @use 'sass:string';
 
+$max: 1920;
 $desktop: 1600;
 $laptop: 1440;
-$tablet: 960;
+$laptop2: 1200;
+$tablet: 980;
 $mobile: 540;
 
 @mixin mq_l {
   @media (max-width: #{$laptop}px) {
+    @content;
+  }
+}
+
+@mixin mq_ls {
+  @media (max-width: #{$laptop2}px) {
     @content;
   }
 }
@@ -59,8 +67,8 @@ $mobile: 540;
   @return #{calc($px / 1080) * 100}vh;
 }
 
-@function vw($px) {
-  @return #{calc($px / 1920) * 100}vw;
+@function vw($px, $break: 1920) {
+  @return #{calc($px / $break) * 100}vw;
 }
 
 @function rem($px) {

@@ -171,9 +171,9 @@ $_height: rem(1200);
 
   .desc {
     margin: 2.6rem auto 3.6rem;
-    color: var(--color-black-light);
+    color: var(--color-gray-dark);
     font-size: clamp(rem(18), break(20, vw, $desktop), rem(20));
-    font-weight: 300;
+    font-weight: 400;
     line-height: 190%;
     word-break: keep-all;
 
@@ -210,7 +210,7 @@ $_height: rem(1200);
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   background-color: var(--color-beige-light);
 }
@@ -226,4 +226,6 @@ $_height: rem(1200);
   width: 558px;
   height: 240px;
   background-color: burlywood;
+
+  display: none; //TODO:
 }

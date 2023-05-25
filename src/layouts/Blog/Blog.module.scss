@@ -1,4 +1,4 @@
-@use './../../styles/helpers/mixins' as m;
+@use './../../styles/helpers/mixins' as *;
 
 .blog {
   .inner {
@@ -9,6 +9,14 @@
     max-width: var(--d-max-width);
     height: 100vh;
     margin: 0 auto;
+    min-width: 0;
+
+    @include mq_t {
+      flex-direction: column;
+      height: auto;
+      padding-top: vh(140);
+      padding-bottom: vh(110);
+    }
   }
 }
 
@@ -17,41 +25,101 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   justify-content: center;
+  align-items: center;
   flex-shrink: 0;
+  padding-left: $commonPadding;
+  // background-color: rgba(248, 243, 237, 0.502);
+
+  @include mq_t {
+    width: 100%;
+    height: auto;
+    padding-right: $commonPadding;
+  }
 
   .info_inner {
-    padding-right: 5.2vw;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
   }
 
   .text_big {
     display: inline-flex;
     flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
     gap: 1.4rem;
     margin-top: 0.8rem;
+    width: 100%;
 
     svg {
       display: block;
+      height: clamp(rem(60), break(72), rem(72));
+    }
+
+    @include mq_t {
+      flex-direction: row;
+      gap: rem(20);
+    }
+
+    @include mq_m {
+      gap: vw(60);
     }
   }
 
   .desc {
+    display: inline-block;
     margin-top: 8.3vh;
     margin-bottom: 3.3vh;
-    color: var(--color-black-light);
-    font-size: 2rem;
-    font-weight: 300;
-    line-height: 3.6rem;
+    color: var(--color-gray-dark);
+    font-size: clamp(rem(17), break(20), rem(20));
+    font-weight: 400;
+    line-height: 180%;
     word-break: keep-all;
+    padding-right: $commonPadding;
+
+    @include mq_ls {
+      br {
+        display: none;
+      }
+    }
+
+    @include mq_t {
+      margin-top: clamp(rem(36), break(40, vw, $mobile), rem(40));
+      margin-bottom: clamp(rem(24), break(32, vw, $mobile), rem(32));
+      font-size: clamp(rem(16), break(18, vw, $tablet), rem(18));
+      padding-right: 0;
+
+      br {
+        display: block;
+      }
+    }
+  }
+
+  .link_blog {
+    font-size: clamp(rem(17), break(20), rem(20));
+
+    @include mq_t {
+      font-size: clamp(rem(16), break(18, vw, $tablet), rem(18));
+    }
   }
 }
 
 .post {
-  width: 60vw;
+  width: 100%;
+  min-width: 0;
 
   .post_inner {
-    padding: 16vh 8vw 0;
+    width: 100%;
+    padding-top: vh(160);
+    padding-left: $commonPadding;
+    padding-right: $commonPadding;
+
+    @include mq_t {
+      padding-top: clamp(rem(80), break(100, vw, $tablet), rem(100));
+    }
   }
 }
 
@@ -59,61 +127,160 @@
   .link {
     display: flex;
     align-items: center;
-    gap: 4rem;
+    gap: clamp(rem(20), break(30), rem(30));
+
+    @include mq_ls {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: rem(32);
+    }
+
+    @include mq_t {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    @include mq_m {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: rem(12);
+    }
   }
 
   .thumbnail {
     flex-shrink: 0;
-    width: 34rem;
-    height: 22rem;
+    width: clamp(rem(180), break(340), rem(340));
+    height: clamp(rem(160), break(220), rem(220));
     border-radius: 2rem;
     border: 1px solid var(--color-gray-light);
     object-fit: cover;
+
+    @include mq_ls {
+      width: 100%;
+      height: vw(240, 1100);
+      min-height: rem(180);
+    }
+
+    @include mq_t {
+      width: clamp(rem(250), break(340, vw, $tablet), rem(340));
+      height: clamp(rem(161), break(220, vw, $tablet), rem(220));
+    }
+
+    @include mq_m {
+      width: 100%;
+      height: vw(220, 390);
+      min-height: rem(180);
+    }
   }
 
   .text {
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
   .date {
-    @include m.font-sub;
-    font-size: 1.6rem;
+    @include font-sub;
+    font-size: rem(16);
     line-height: 140%;
     color: var(--color-gray-light);
+
+    @include mq_t {
+      font-size: clamp(rem(15), break(16, vw, $tablet), rem(16));
+    }
+
+    @include mq_m {
+      font-size: clamp(rem(14), break(16, vw, $mobile), rem(16));
+      order: 1;
+    }
   }
 
   .title {
-    @include m.ellipsis();
-    margin: 0.4rem 0 2rem;
-    font-size: 2.6rem;
+    @include ellipsis();
+    margin: rem(4) 0 rem(20);
+    font-size: clamp(rem(20), break(26, vw, $laptop2), rem(26));
     font-weight: 400;
     line-height: 180%;
+
+    @include mq_ls {
+      margin: rem(2) 0 0;
+    }
+
+    @include mq_t {
+      margin: rem(3) 0 clamp(rem(14), break(18, vw, $tablet), rem(18));
+    }
+
+    @include mq_m {
+      margin: 0;
+    }
   }
 
   .desc {
-    @include m.ellipsis(3);
-    font-size: 1.4rem;
+    @include ellipsis(3);
+    font-size: rem(14);
     font-weight: 400;
-    line-height: 2.4rem;
+    line-height: 180%;
     color: var(--color-gray-dark);
+
+    @include mq_ls {
+      display: none;
+    }
+
+    @include mq_t {
+      @include ellipsis(3);
+      font-size: rem(15);
+    }
+
+    @include mq_m {
+      display: none;
+    }
   }
 
   .post_line {
     width: 100%;
     height: 1px;
-    margin-top: 4rem;
-    margin-bottom: 4rem;
+    margin: rem(44) 0;
     background-color: var(--color-gray-dim);
+
+    @include mq_l {
+      margin: clamp(rem(44), break(50), rem(50)) 0;
+    }
+
+    @include mq_m {
+      margin: rem(26) 0;
+      background-color: transparent;
+    }
   }
 
   &:nth-child(even) {
     .thumbnail {
       order: 1;
+
+      @include mq_ls {
+        order: 0;
+      }
+
+      @include mq_t {
+        order: 1;
+      }
+
+      @include mq_m {
+        order: 0;
+      }
     }
   }
 
   &:last-child {
     .post_line {
+      display: none;
+    }
+  }
+
+  &:nth-child(n + 6) {
+    @include mq_t {
       display: none;
     }
   }
@@ -123,9 +290,17 @@
   z-index: -1;
   position: absolute;
   top: 0;
-  left: 0;
-  width: 40vw;
+  // left: 40vw;
+  // width: 40vw;
+  width: 100%;
   height: 100vh;
   background-color: rgba(248, 243, 237, 0.502);
   pointer-events: none;
+  // transform: translateX(-100%);
+  // transform: scaleX(1.5);
+  transform: translateX(-60vw);
+
+  @include mq_t {
+    display: none;
+  }
 }
