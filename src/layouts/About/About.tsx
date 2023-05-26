@@ -8,16 +8,25 @@ import NanaText from '@components/Logo/NanaText';
 import CustomLink from '@components/CustomLink/CustomLink';
 import Alphabet from '@components/Alphabet/Alphabet';
 import ArticleTitle from '@components/ArticleTitle/ArticleTitle';
+import TicketImg from './ticket.png';
 const c = classNames.bind(styles);
 
 const Ticket = () => {
-  return <div data-ani="ticket" className={c('ticket')}></div>;
+  return (
+    <article className={c('ticket')}>
+      <div data-animate="ticket" className={c('ticket_img')}>
+        {/* <img src={TicketImg} alt="" /> */}
+        <span>May 25, 2023</span>
+        <p>May 25, 2023</p>
+      </div>
+    </article>
+  );
 };
 
 const Backgrounds = () => {
   return (
     <>
-      <div className={c('bg')}></div>
+      {/* <div className={c('bg')}></div> */}
       <Alphabet type="l" className={c('l')} />
     </>
   );
@@ -54,20 +63,6 @@ const TextBig = ({ children }: { children: string }) => {
 };
 
 const About = () => {
-  gsap.registerPlugin(ScrollTrigger);
-  const ref = useRef<any>(null);
-
-  // useLayoutEffect(() => {
-  //   let ctx = gsap.context(() => {
-  //     // use scoped selectors
-  //     gsap.to('.box', { rotation: 360 });
-  //     // or refs
-  //     gsap.to(circle.current, { rotation: 360 });
-  //   }, app);
-
-  //   return () => ctx.revert();
-  // }, []);
-
   // useLayoutEffect(() => {
   //   const element = ref.current;
 
@@ -90,50 +85,52 @@ const About = () => {
   // }, []);
 
   return (
-    <article className={c('about')} ref={ref}>
-      <div className={c('visual')}>
-        <div className={c('profile')}>
-          <TextBig>I do what i like</TextBig>
-          <img
-            className={c('photo')}
-            src="https://source.unsplash.com/random/?europe/460/440"
-            alt="프로필 사진"
-          />
-          <CustomButton className={c('download')} icon="download">
-            이력서 다운로드
-          </CustomButton>
+    <div>
+      {/* <Ticket /> */}
+      <article className={c('about')}>
+        <div className={c('visual')}>
+          <div className={c('profile')}>
+            <TextBig>I do what i like</TextBig>
+            <img
+              className={c('photo')}
+              src="https://source.unsplash.com/random/?europe/460/440"
+              alt="프로필 사진"
+            />
+            <CustomButton className={c('download')} icon="download">
+              이력서 다운로드
+            </CustomButton>
+          </div>
         </div>
-      </div>
-      <div className={c('text')}>
-        <ArticleTitle className={c('title')}>
-          About
-          <NanaText className={c('nana')} />
-        </ArticleTitle>
-        <div className={c('desc')}>
-          <p>
-            안녕하세요! 저는 다양한 회사와 도메인에서 일해본 경험이 있으며,&nbsp;
-            <br />
-            프리랜서로 개인/기업과 프로젝트를 수행한 경험이 있습니다.
-          </p>
-          <p>
-            웹 퍼블리싱을 빠삭하게 이해하며 잘 다룹니다. React/TypeScript 등 프레임워크
-            환경에서 컴포넌트 단위의 마크업 작업이 가능합니다. 어디에서도 잘 보이는
-            반응형, 검색엔진에 맞춘 SEO, 크로스 브라우징과 웹 접근성을 고려한 퍼블리싱
-            산출물을 만들어냅니다.
-          </p>
-          <p>
-            담당하는 프로젝트의 목적을 우선적으로 고려하며, 함께 할 동료들과 원활히
-            협업하는 것을 가장 중요하게 생각해요. 다양한 직군과 함께 멋지고 즐거운 UX를
-            만드는 데 관심이 많습니다.
-          </p>
+        <div className={c('text')}>
+          <ArticleTitle className={c('title')}>
+            About
+            <NanaText className={c('nana')} />
+          </ArticleTitle>
+          <div className={c('desc')}>
+            <p>
+              안녕하세요! 저는 다양한 회사와 도메인에서 일해본 경험이 있으며,&nbsp;
+              <br />
+              프리랜서로 개인/기업과 프로젝트를 수행한 경험이 있습니다.
+            </p>
+            <p>
+              웹 퍼블리싱을 빠삭하게 이해하며 잘 다룹니다. React/TypeScript 등 프레임워크
+              환경에서 컴포넌트 단위의 마크업 작업이 가능합니다. 어디에서도 잘 보이는
+              반응형, 검색엔진에 맞춘 SEO, 크로스 브라우징과 웹 접근성을 고려한 퍼블리싱
+              산출물을 만들어냅니다.
+            </p>
+            <p>
+              담당하는 프로젝트의 목적을 우선적으로 고려하며, 함께 할 동료들과 원활히
+              협업하는 것을 가장 중요하게 생각해요. 다양한 직군과 함께 멋지고 즐거운 UX를
+              만드는 데 관심이 많습니다.
+            </p>
+          </div>
+          <CustomLink className={c('link')} href="https://nykim.net/about">
+            자기소개 더보기
+          </CustomLink>
         </div>
-        <CustomLink className={c('link')} href="https://nykim.net/about">
-          자기소개 더보기
-        </CustomLink>
-      </div>
-      <Ticket />
-      <Backgrounds />
-    </article>
+        {/* <Backgrounds /> */}
+      </article>
+    </div>
   );
 };
 

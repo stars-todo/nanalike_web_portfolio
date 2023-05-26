@@ -119,8 +119,9 @@ const Blog = () => {
         </div>
         <div className={c('post')}>
           <div className={c('post_inner')}>
-            {tempPost.map((post) => (
+            {tempPost.map((post, idx) => (
               <PostItem
+                key={`${idx}`}
                 url={post.url}
                 src={post.src}
                 title={post.title}

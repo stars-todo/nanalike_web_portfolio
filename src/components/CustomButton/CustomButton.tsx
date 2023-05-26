@@ -22,9 +22,9 @@ const CustomButton = ({ className, children, icon }: CustomButtonProps) => {
         >
           <path
             stroke="#202020"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2.125"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2.125"
             d="m15.5 13.496-5.5 4.25-5.5-4.25M10 17.254v-15"
           />
         </svg>

@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import {
+  MotionValue,
+  motion,
+  useMotionValue,
+  useScroll,
+  useTransform,
+  useViewportScroll
+} from 'framer-motion';
 import classNames from 'classnames/bind';
 import * as styles from './Main.module.scss';
 import NanalikeLogo from '@components/Logo/NanalikeLogo';
+import ArticleTitle from '@components/ArticleTitle/ArticleTitle';
 const c = classNames.bind(styles);
 
 const Arrow = () => {
@@ -41,30 +52,130 @@ const BackgroundSvg = () => {
   );
 };
 
-const Main = () => {
+// const Ticket = ({ y }: any) => {
+//   return (
+//     <motion.div className={c('ticket')} style={{ y: y }} data-animate="main_ticket">
+//       <motion.div style={{ opacity: 0 }} className={c('guide')}>
+//         <span className={c('scroll')}>Let's Scroll Down</span>
+//         <Arrow />
+//       </motion.div>
+//       <ArticleTitle className={c('ticket_title')}>Nice to meet you !</ArticleTitle>
+//       <div data-animate="ticket" className={c('ticket_img')}>
+//         <span>May 26, 2023</span>
+//         <p>May 26, 2023</p>
+//       </div>
+//     </motion.div>
+//   );
+// };
+
+const Ticket = () => {
   return (
-    <article className={c('main')}>
-      <div className={c('inner')}>
-        <div className={c('title')}>
-          <div className={c('title_inner')}>
-            <strong className={c('title_sub')}>좋아하니까, 나나답게</strong>
-            <NanalikeLogo className={c('logo')} />
-          </div>
-        </div>
-        <p className={c('desc')}>
-          <span>
-            탄탄한 코드 위에 감각적인 인터페이스를 그려내는 웹 퍼블리셔 나나입니다.
-          </span>
-          <span>사용하기 쉬운 UI와 기억에 남는 UX를 개발하는 일을 해요.</span>
-          <span>좋아하면 더 잘한다는 마음으로, 오늘도 즐겁게 일하고 있어요!</span>
-        </p>
-        <div className={c('guide')}>
-          <Arrow />
-          <span className={c('scroll')}>Let's Scroll Down</span>
-        </div>
-        <div className={c('svg_na')}></div>
+    <>
+      {/* <ArticleTitle className={c('ticket_title')}>Nice to meet you !</ArticleTitle> */}
+      <div data-animate="ticket" className={c('ticket_img')}>
+        <span>May 26, 2023</span>
+        <p>May 26, 2023</p>
       </div>
-    </article>
+    </>
+  );
+};
+
+const tl_main = gsap.timeline({
+  ScrollTrigger: {
+    scrub: true,
+    markers: {
+      startColor: 'yellow',
+      endColor: 'black',
+      fontSize: '4rem',
+      indent: 200
+    }
+  }
+});
+
+const Main = () => {
+  // gsap.registerPlugin(ScrollTrigger);
+  // const ref = useRef<any>(null);
+  // const tl = useRef(tl_main);
+
+  // useLayoutEffect(() => {
+  //   const ctx = gsap.context(() => {
+  //     tl.current.to('.title', { rotate: 360 });
+  //     // gsap.to("[data-animate='main']", {
+  //     //   rotation: 360,
+  //     //   repeat: -1,
+  //     //   repeatDelay: 1,
+  //     //   yoyo: true
+  //     // });
+  //   }, ref.current);
+
+  //   return () => ctx.revert();
+  // }, []);
+
+  function useParallax(value: MotionValue<number>, distance: any) {
+    return useTransform(value, [0, 1], [distance, `-${distance}`]);
+  }
+
+  const mainRef = useRef(null);
+  const { scrollYProgress: mainScrollY } = useScroll({
+    target: mainRef,
+    offset: ['0', '0.4']
+  });
+
+  const { scrollYProgress } = useScroll({
+    target: mainRef,
+    offset: ['0', '1']
+  });
+  const titleAlpha = useTransform(mainScrollY, [0, 1], [1, 0]);
+
+  const backgroundY = useParallax(mainScrollY, 600);
+  const ticketY = useParallax(mainScrollY, '8vw');
+
+  const guideAlpha = useTransform(mainScrollY, [0, 0.2], [1, 0]);
+  const nananaAlpha = useTransform(scrollYProgress, [0.4, 0.8], [1, 0]);
+
+  return (
+    <div>
+      <article className={c('main')} ref={mainRef}>
+        <div className={c('inner')}>
+          <motion.div style={{ opacity: titleAlpha }} data-animate="main">
+            <div className={c('title')}>
+              <div className={c('title_inner')}>
+                <strong className={c('title_sub')}>좋아하니까, 나나답게</strong>
+                <NanalikeLogo className={c('logo')} />
+              </div>
+            </div>
+            <p className={c('desc')}>
+              <span>탄탄한 코드 위에 감각적인 UI를 그려내는 웹 퍼블리셔 나나입니다.</span>
+              <span>사용하기 쉬운 UI와 기억에 남는 UX를 개발하는 일을 해요.</span>
+              <span>좋아하면 더 잘한다는 마음으로, 오늘도 즐겁게 일하고 있어요!</span>
+            </p>
+          </motion.div>
+          <motion.div
+            style={{ opacity: nananaAlpha }}
+            className={c('svg_na')}
+          ></motion.div>
+        </div>
+        <motion.div
+          className={c('bg')}
+          style={{ y: backgroundY }}
+          data-animate="main_bg"
+        ></motion.div>
+      </article>
+      <motion.div
+        className={c('ticket')}
+        style={{ y: ticketY }}
+        data-animate="main_ticket"
+      >
+        <motion.div
+          style={{ opacity: guideAlpha }}
+          className={c('guide', { hidden: !!titleAlpha })}
+        >
+          <span className={c('scroll')}>Let's Scroll Down</span>
+          <Arrow />
+        </motion.div>
+        <Ticket />
+      </motion.div>
+    </div>
   );
 };
 
