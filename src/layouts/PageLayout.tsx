@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Header from '@components/Header/Header';
 import LikeButton from '@components/LikeButton/LikeButton';
 
@@ -7,10 +7,11 @@ interface PageLayoutProps {
 }
 
 const PageLayout = ({ children }: PageLayoutProps) => {
+  const scrollRef = useRef(null);
   return (
-    <div>
+    <div ref={scrollRef}>
       <Header />
-      <main>{children}</main>
+      <main ref={scrollRef}>{children}</main>
       <LikeButton />
     </div>
   );

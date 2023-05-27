@@ -3,7 +3,6 @@
 $_height: rem(1200);
 
 .about {
-  z-index: 1;
   position: relative;
   display: flex;
   align-items: center;
@@ -49,29 +48,31 @@ $_height: rem(1200);
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: rem(20);
+    // gap: rem(20);
 
-    @include mq_l {
-      gap: vw(50);
-    }
+    // @include mq_l {
+    //   gap: vw(50);
+    // }
 
-    @include mq_t {
-      order: 2;
-      gap: rem(22);
-    }
+    // @include mq_t {
+    //   order: 2;
+    //   gap: rem(22);
+    // }
 
-    @include mq_m {
-      width: 100%;
-      gap: rem(20);
-    }
+    // @include mq_m {
+    //   width: 100%;
+    //   gap: rem(20);
+    // }
 
     .photo {
       object-fit: cover;
+      overflow: hidden;
       width: clamp(rem(420), break(460, vw, $desktop), rem(460));
       height: clamp(rem(400), break(460, vw, $desktop), rem(460));
       border-radius: 4rem;
-      background-color: var(--color-black-light);
+      background-color: #fff;
       border: 1px solid var(--color-gray-dark);
+      margin-bottom: rem(20);
 
       @include mq_l {
         width: clamp(rem(400), break(420), rem(420));
@@ -105,7 +106,8 @@ $_height: rem(1200);
     display: inline-flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: break(38, vh, $desktop);
+    // gap: break(38, vh, $desktop);
+    gap: rem(10);
     width: 100%;
 
     @include mq_l {
@@ -125,21 +127,37 @@ $_height: rem(1200);
       gap: rem(12);
     }
 
-    svg {
-      display: block;
-      height: clamp(rem(40), break(57, vw, $desktop), rem(57));
+    .text_big_svg {
+      display: flex;
+      align-items: center;
+      overflow: hidden;
 
-      @include mq_l {
-        height: clamp(rem(54), break(57), rem(57));
+      svg {
+        height: 100%;
       }
+    }
 
-      @include mq_t {
-        height: clamp(rem(40), break(70), rem(70));
-      }
+    .svg_1 {
+      width: 305px;
+      height: 80px;
+    }
 
-      @include mq_m {
-        height: rem(32);
-      }
+    .svg_2 {
+      // height: clamp(rem(40), break(57, vw, $desktop), rem(57));
+      width: 155px;
+      height: 80px;
+
+      // @include mq_l {
+      //   height: clamp(rem(54), break(57), rem(57));
+      // }
+
+      // @include mq_t {
+      //   height: clamp(rem(40), break(70), rem(70));
+      // }
+
+      // @include mq_m {
+      //   height: rem(32);
+      // }
     }
   }
 }
@@ -155,7 +173,7 @@ $_height: rem(1200);
     margin: 0 auto;
 
     br {
-      display: none;
+      // display: none;
     }
   }
 
@@ -180,6 +198,10 @@ $_height: rem(1200);
     line-height: 190%;
     word-break: keep-all;
 
+    p {
+      overflow: hidden;
+    }
+
     @include mq_l {
       margin-top: clamp(rem(22), break(26), rem(26));
       margin-bottom: clamp(rem(30), break(36), rem(36));
@@ -193,6 +215,16 @@ $_height: rem(1200);
     p:not(:first-child) {
       margin-top: rem(20);
     }
+  }
+
+  .aka {
+    color: var(--color-gray);
+    border: 1px solid var(--color-gray-light);
+    padding: rem(3) rem(6);
+    margin-left: rem(5);
+    border-radius: rem(20);
+    font-size: 90%;
+    @include font-sub;
   }
 
   .link {

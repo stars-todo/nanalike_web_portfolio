@@ -52,3 +52,9 @@ strong {
 [data-animate] {
   // position: relative;
 }
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -84,3 +84,21 @@ $mobile: 540;
 }
 
 $commonPadding: clamp(var(--m-padding-h), break(60), var(--d-padding-h));
+
+$base-size: 16px;
+@function rem2($sizes...) {
+  $values: null;
+
+  @each $size in $sizes {
+    @if type-of($size) != 'number' {
+      @debug #{'Invalid value passed to getRem: "' $size '", which is of type'
+        type-of($size)};
+    } @else if unit($size) == '' {
+      $values: append($values, #{$size * 1px / $base-size}rem);
+    } @else if unit($size) == 'px' {
+      $values: append($values, #{$size / $base-size}rem);
+    }
+  }
+
+  @return $values;
+}

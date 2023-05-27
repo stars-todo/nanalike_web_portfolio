@@ -28,9 +28,9 @@ const CustomLink = ({ className, children, href, ...props }: CustomLinkProps) =>
         <circle cx="9" cy="9" r="9" fill="#202020" />
         <path
           stroke="#fff"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
           d="m8 6 3 3-3 3"
         />
       </svg>

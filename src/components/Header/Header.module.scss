@@ -33,7 +33,7 @@
   width: 100%;
   // min-width: var(--m-min-width); //TODO: 공통화?
   font-size: clamp(rem(16), break(18), rem(18));
-  color: var(--color-black-dark);
+  color: #000;
 
   .inner {
     max-width: var(--d-max-width);

@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import { Link, HeadFC, PageProps } from 'gatsby';
 import { motion, useScroll, useSpring, useTransform, MotionValue } from 'framer-motion';
 import classNames from 'classnames/bind';
-import * as styles from './scroll.module.scss';
 const c = classNames.bind(styles);
 
 function useParallax(value: MotionValue<number>, distance: number) {
