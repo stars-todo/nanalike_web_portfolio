@@ -1,6 +1,8 @@
 @use './../../styles/helpers/mixins' as *;
 
 .contact {
+  z-index: 1;
+  position: relative;
   overflow-x: hidden;
   position: relative;
   display: flex;
@@ -13,6 +15,7 @@
   height: 100vh;
   margin: 0 auto;
   padding: 0 $commonPadding;
+  background-color: #fff;
 
   &_inner {
     position: relative;

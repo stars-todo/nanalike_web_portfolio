@@ -1,36 +1,43 @@
 @use './../../styles/helpers/mixins' as *;
 
 .blog {
+  z-index: 1;
+  position: relative;
+  background-color: #fff;
+
   .inner {
-    overflow: hidden;
+    // overflow: hidden;
     position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
     display: flex;
     width: 100%;
     max-width: var(--d-max-width);
-    height: 100vh;
+    // height: 100vh;
     margin: 0 auto;
     min-width: 0;
-    padding-left: $commonPadding;
 
     @include mq_t {
       flex-direction: column;
       height: auto;
-      padding-top: vh(140);
-      padding-bottom: vh(110);
       padding-left: 0;
     }
   }
 }
 
 .info {
-  width: 40vw;
-  height: 100vh;
+  position: sticky;
+  top: 0;
+  width: 40%;
+  padding-left: $commonPadding;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  // background-color: rgba(248, 243, 237, 0.502);
+  // background-color: rgba(248, 243, 237, 0.6);
 
   @include mq_t {
     width: 100%;
@@ -74,7 +81,7 @@
     margin-top: 8.3vh;
     margin-bottom: 3.3vh;
     color: var(--color-gray-dark);
-    font-size: clamp(rem(17), break(20), rem(20));
+    font-size: rem(22);
     font-weight: 400;
     line-height: 180%;
     word-break: keep-all;
@@ -108,8 +115,16 @@
 }
 
 .post {
-  width: 100%;
-  min-width: 0;
+  // width: 100%;
+  // min-width: 0;
+
+  // flex: 1;
+  width: 60%;
+  overflow-x: hidden;
+  // height: 100vh; /* Adjust the height as needed */
+  // overflow-y: auto;
+  padding-top: vh(140);
+  padding-bottom: vh(110);
 
   .post_inner {
     width: 100%;
@@ -223,7 +238,7 @@
 
   .desc {
     @include ellipsis(3);
-    font-size: rem(14);
+    font-size: rem(16);
     font-weight: 400;
     line-height: 180%;
     color: var(--color-gray-dark);
@@ -245,7 +260,7 @@
   .post_line {
     width: 100%;
     height: 1px;
-    margin: rem(44) 0;
+    margin: rem(48) 0;
     background-color: var(--color-gray-dim);
 
     @include mq_l {
@@ -290,20 +305,17 @@
 }
 
 .background {
-  z-index: -1;
+  z-index: -999;
   position: absolute;
   top: 0;
-  // left: 40vw;
-  // width: 40vw;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  height: 100vh;
-  background-color: rgba(248, 243, 237, 0.502);
+  height: 100%;
+  background-color: rgba(248, 243, 237, 0.6);
   pointer-events: none;
-  // transform: translateX(-100%);
-  // transform: scaleX(1.5);
-  transform: translateX(-60vw);
+}
 
-  @include mq_t {
-    display: none;
-  }
+.isScrolling .background {
+  position: fixed;
 }

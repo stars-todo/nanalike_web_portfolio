@@ -218,13 +218,14 @@ $_height: rem(1200);
   }
 
   .aka {
+    @include font-sub;
     color: var(--color-gray);
     border: 1px solid var(--color-gray-light);
     padding: rem(3) rem(6);
     margin-left: rem(5);
     border-radius: rem(20);
-    font-size: 90%;
-    @include font-sub;
+    font-size: 80%;
+    letter-spacing: 0;
   }
 
   .link {
@@ -298,3 +299,12 @@ $_height: rem(1200);
 //     user-select: none;
 //   }
 // }
+
+em {
+  z-index: -99;
+  position: fixed;
+  font-size: 20vw;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+}

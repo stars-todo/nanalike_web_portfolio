@@ -1,4 +1,15 @@
 import React from 'react';
+import {
+  MotionValue,
+  Variants,
+  motion,
+  useMotionValue,
+  useInView,
+  useScroll,
+  useTransform,
+  useMotionValueEvent,
+  useAnimationControls
+} from 'framer-motion';
 import classNames from 'classnames/bind';
 import * as styles from './WorkItem.module.scss';
 import WorkIcon from '../WorkIcon/WorkIcon';
@@ -20,6 +31,8 @@ interface WorkItemProps {
   skills?: string[];
   place?: string;
   isOngoing?: boolean;
+  variants?: any;
+  style?: any;
 }
 
 const WorkItem = ({
@@ -29,53 +42,76 @@ const WorkItem = ({
   year,
   skills,
   place,
+  style,
+  variants,
   isOngoing = false
 }: WorkItemProps) => {
+  function fadeInUp(y = 30, x = 0, duration = 0.7) {
+    return {
+      hidden: {
+        opacity: 0,
+        y: y
+      },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          ease: 'easeInOut',
+          duration: duration
+        }
+      }
+    };
+  }
   return (
-    <a
+    <motion.div
       className={c('work_item', `${className}`, { isOngoing })}
-      href={!isOngoing ? `/${href}` : undefined}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-disabled={isOngoing}
+      style={style}
+      variants={variants}
     >
-      <div className={c('work_contents')} id="interaction">
-        <WorkIcon
-          className={c('icon')}
-          work={href}
-          aria-hidden="true"
-          isOngoing={isOngoing}
-        />
-        <div className={c('contents')}>
-          <div className={c('title')}>
-            <strong className={c('title_text')}>{title}</strong>
-            {year && (
-              <div className={c('year')}>
-                <span className="screenOut">작업한 연도</span>
-                {year}
-              </div>
-            )}
-          </div>
-          <div className={c('info')}>
-            <div className={c('skills')}>
-              <span className="screenOut">관련 기술</span>
-              {skills?.map((skill) => (
-                <span key={skill} className={c('skill')}>
-                  {skill}
-                </span>
-              ))}
+      <a
+        href={!isOngoing ? `/${href}` : undefined}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-disabled={isOngoing}
+      >
+        <div className={c('work_contents')} id="interaction">
+          <WorkIcon
+            className={c('icon')}
+            work={href}
+            aria-hidden="true"
+            isOngoing={isOngoing}
+          />
+          <div className={c('contents')}>
+            <div className={c('title')}>
+              <strong className={c('title_text')}>{title}</strong>
+              {year && (
+                <div className={c('year')}>
+                  <span className="screenOut">작업한 연도</span>
+                  {year}
+                </div>
+              )}
             </div>
-            {place && (
-              <div className={c('place')}>
-                <span className="screenOut">근무처</span>
-                {place}
+            <div className={c('info')}>
+              <div className={c('skills')}>
+                <span className="screenOut">관련 기술</span>
+                {skills?.map((skill) => (
+                  <span key={skill} className={c('skill')}>
+                    {skill}
+                  </span>
+                ))}
               </div>
-            )}
+              {place && (
+                <div className={c('place')}>
+                  <span className="screenOut">근무처</span>
+                  {place}
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-      <div className={c('bg')}></div>
-    </a>
+        <div className={c('bg')}></div>
+      </a>
+    </motion.div>
   );
 };
 

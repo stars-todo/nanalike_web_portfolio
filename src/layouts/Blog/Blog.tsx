@@ -1,9 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import * as styles from './Blog.module.scss';
 import ArticleTitle from '@components/ArticleTitle/ArticleTitle';
 import CustomLink from '@components/CustomLink/CustomLink';
 import Alphabet from '@components/Alphabet/Alphabet';
+import {
+  motion,
+  useMotionValue,
+  useMotionValueEvent,
+  useScroll,
+  useTransform
+} from 'framer-motion';
 const c = classNames.bind(styles);
 
 const TextBig = ({ children }: { children: string }) => {
@@ -92,18 +99,101 @@ const tempPost = [
     title: 'elit duis mollit elit esse fugiat occaecat reprehenderit.',
     date: 'May 22, 2023',
     desc: '프롤로그 저는 종종 로컬에서 시작해 로컬에서 끝나는 마크업 작업(aka 이메일 템플릿)을 진행하는데요, 나중에 파일을 찾으려면 하나씩 파일을 열고 닫아야 하는 수고스러움이 있었습니다. 로컬에 흩어진 파일을 한 화면에서 볼 수 있게 정리하고 싶어! 하지만 어떻게?!!!"하고 고민하던 중... 그레잇한 개츠비를 알게 되어 찍먹해봤습니다. 결론부터 말하자면 (삽질도 많았지만) 좋은 경험이었어요!'
+  },
+  {
+    url: 'https://nykim.work/117',
+    src: 'https://source.unsplash.com/random/?coffee',
+    title: '[8] elit duis mollit elit esse fugiat occaecat reprehenderit.',
+    date: 'May 22, 2023',
+    desc: '프롤로그 저는 종종 로컬에서 시작해 로컬에서 끝나는 마크업 작업(aka 이메일 템플릿)을 진행하는데요, 나중에 파일을 찾으려면 하나씩 파일을 열고 닫아야 하는 수고스러움이 있었습니다. 로컬에 흩어진 파일을 한 화면에서 볼 수 있게 정리하고 싶어! 하지만 어떻게?!!!"하고 고민하던 중... 그레잇한 개츠비를 알게 되어 찍먹해봤습니다. 결론부터 말하자면 (삽질도 많았지만) 좋은 경험이었어요!'
+  },
+  ,
+  {
+    url: 'https://nykim.work/117',
+    src: 'https://source.unsplash.com/random/?fish',
+    title: '[9] elit duis mollit elit esse fugiat occaecat reprehenderit.',
+    date: 'May 22, 2023',
+    desc: '프롤로그 저는 종종 로컬에서 시작해 로컬에서 끝나는 마크업 작업(aka 이메일 템플릿)을 진행하는데요, 나중에 파일을 찾으려면 하나씩 파일을 열고 닫아야 하는 수고스러움이 있었습니다. 로컬에 흩어진 파일을 한 화면에서 볼 수 있게 정리하고 싶어! 하지만 어떻게?!!!"하고 고민하던 중... 그레잇한 개츠비를 알게 되어 찍먹해봤습니다. 결론부터 말하자면 (삽질도 많았지만) 좋은 경험이었어요!'
+  },
+  {
+    url: 'https://nykim.work/117',
+    src: 'https://source.unsplash.com/random/?mountain',
+    title: '[10] elit duis mollit elit esse fugiat occaecat reprehenderit.',
+    date: 'May 22, 2023',
+    desc: '프롤로그 저는 종종 로컬에서 시작해 로컬에서 끝나는 마크업 작업(aka 이메일 템플릿)을 진행하는데요, 나중에 파일을 찾으려면 하나씩 파일을 열고 닫아야 하는 수고스러움이 있었습니다. 로컬에 흩어진 파일을 한 화면에서 볼 수 있게 정리하고 싶어! 하지만 어떻게?!!!"하고 고민하던 중... 그레잇한 개츠비를 알게 되어 찍먹해봤습니다. 결론부터 말하자면 (삽질도 많았지만) 좋은 경험이었어요!'
   }
 ];
 
 const Blog = () => {
+  const blogRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress, scrollY } = useScroll({
+    target: blogRef,
+    offset: ['0', '1']
+  });
+
+  const [isScrolling, setIsScrolling] = useState(false);
+  const [isScrollOver, setIsScrollOver] = useState(false);
+  const progress = useTransform(scrollY, (value) => {
+    const refRect = blogRef.current?.getBoundingClientRect();
+    const retOffset = blogRef?.current?.offsetTop || 0;
+    const refHeight = refRect?.height || 0;
+    const refTop = refRect?.top || 0;
+    const viewportHeight = window.innerHeight;
+    // const mappedValue = lerp(0, 1, (sectionTopOffset - minValue) / (maxValue - minValue));
+
+    const max = refHeight + (retOffset - viewportHeight);
+    // const isScrolling = value >= retOffset && value <= max;
+    console.log('scrollY', value);
+    console.log('비율', ((value - refHeight) / (max - refHeight)) * 1);
+
+    function mapRange(
+      value: any,
+      inputMin: any,
+      inputMax: any,
+      outputMin: any,
+      outputMax: any
+    ) {
+      return (
+        ((value - inputMin) / (inputMax - inputMin)) * (outputMax - outputMin) + outputMin
+      );
+    }
+
+    const mappedValue = mapRange(value, retOffset, max, -60, 0);
+    console.log(mappedValue); // Output: 0.5
+
+    if (isScrolling) {
+      return `${mappedValue}%`;
+    } else if (refTop > 0) {
+      return '-60%';
+    } else if (refTop < 0) {
+      return '0%';
+    }
+  });
+
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    const refRect = blogRef.current?.getBoundingClientRect();
+    const retOffset = blogRef?.current?.offsetTop || 0;
+    const refHeight = refRect?.height || 0;
+    const viewportHeight = window.innerHeight;
+
+    const max = refHeight + (retOffset - viewportHeight);
+    if (latest >= retOffset && latest <= max) {
+      setIsScrolling(true);
+    } else {
+      setIsScrolling(false);
+    }
+  });
+
   return (
-    <article className={c('blog')}>
+    <article className={c('blog', { isScrolling })} ref={blogRef}>
       <div className={c('inner')}>
         <div className={c('info')}>
           <div className={c('info_inner')}>
             <ArticleTitle className={c('title')}>Blog</ArticleTitle>
             <TextBig>articles you may like</TextBig>
             <div className={c('desc')}>
+              {isScrollOver && <h1>IsScrollOver</h1>}
               <p>
                 쉽고, 재밌고, 특별함을 담아 글쓰는 걸 좋아해요.&nbsp;
                 <br />
@@ -122,18 +212,26 @@ const Blog = () => {
             {tempPost.map((post, idx) => (
               <PostItem
                 key={`${idx}`}
-                url={post.url}
-                src={post.src}
-                title={post.title}
-                date={post.date}
-                desc={post.desc}
+                url={post?.url}
+                src={post?.src}
+                title={post?.title}
+                date={post?.date}
+                desc={post?.desc}
               />
             ))}
           </div>
         </div>
-        <div className={c('background')}></div>
-        <Alphabet type="k" />
       </div>
+      <motion.div
+        className={c('background')}
+        // initial={{ opacity: 0 }}
+        // whileInView={{ opacity: 1 }}
+        style={{
+          x: progress
+          // Apply other animations or styles based on the progress value
+        }}
+      ></motion.div>
+      <Alphabet type="k" />
     </article>
   );
 };

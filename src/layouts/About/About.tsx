@@ -133,94 +133,7 @@ const TextBig = ({ varaints, children }: { varaints?: Variants; children: string
 };
 
 const About = () => {
-  const photo = {
-    hidden: {
-      opacity: 0,
-      y: 40
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        ease: 'easeInOut',
-        duration: 0.7
-      }
-    }
-  };
-
-  const text = {
-    hidden: {
-      opacity: 0
-    },
-    visible: {
-      opacity: 1,
-      transition: {
-        when: 'beforeChildren',
-        staggerChildren: 0.15
-      }
-    }
-  };
-
-  const desc = {
-    hidden: {
-      opacity: 0
-    },
-    visible: {
-      opacity: 1,
-      transition: {
-        when: 'beforeChildren',
-        staggerChildren: 0.15
-      }
-    }
-  };
-
-  // const fadeInUp() = {
-  //   hidden: {
-  //     opacity: 0,
-  //     y: 30
-  //   },
-  //   visible: {
-  //     opacity: 1,
-  //     y: 0,
-  //     transition: {
-  //       ease: 'easeInOut',
-  //       duration: 0.7
-  //     }
-  //   }
-  // };
-
-  const motion_link = {
-    hidden: {
-      opacity: 0,
-      x: -30
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        ease: 'easeInOut',
-        duration: 0.5,
-        delay: 1
-      }
-    }
-  };
-
-  const timeline = {
-    2: {
-      hidden: {
-        opacity: 0
-      },
-      visible: {
-        opacity: 1,
-        transition: {
-          when: 'beforeChildren',
-          staggerChildren: 0.4
-        }
-      }
-    }
-  };
-
-  function fadeInUp(y = 30, duration = 0.7) {
+  function fadeInUp(y = 30, x = 0, duration = 0.7) {
     return {
       hidden: {
         opacity: 0,
@@ -271,66 +184,90 @@ const About = () => {
           staggerChildren: 0.12
         }
       }
+    },
+    link: {
+      hidden: {
+        opacity: 0,
+        x: -30
+      },
+      visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+          ease: 'easeInOut',
+          duration: 0.5,
+          delay: 0.8
+        }
+      }
     }
   };
 
+  const aboutRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: aboutRef,
+    offset: ['0', '1']
+  });
+
   return (
-    <motion.article
-      className={c('about')}
-      variants={animation.trigger}
-      initial="hidden"
-      whileInView="visible"
-    >
-      <div className={c('visual')}>
-        <div className={c('profile')}>
-          <TextBig>I do what i like</TextBig>
-          <motion.div>
-            <motion.img
-              className={c('photo')}
-              variants={fadeInUp()}
-              src="https://source.unsplash.com/random/?europe/460/440"
-              alt="프로필 사진"
-            />
-            <motion.div className="center" variants={fadeInUp(40)}>
-              <CustomButton className={c('download')} icon="download">
-                이력서 다운로드
-              </CustomButton>
+    <>
+      <motion.article
+        className={c('about')}
+        variants={animation.trigger}
+        initial="hidden"
+        whileInView="visible"
+        ref={aboutRef}
+      >
+        <div className={c('visual')}>
+          <div className={c('profile')}>
+            <TextBig>I do what i like</TextBig>
+            <motion.div>
+              <motion.img
+                className={c('photo')}
+                variants={fadeInUp()}
+                src="https://source.unsplash.com/random/?europe/460/440"
+                alt="프로필 사진"
+              />
+              <motion.div className="center" variants={fadeInUp(40)}>
+                <CustomButton className={c('download')} icon="download">
+                  이력서 다운로드
+                </CustomButton>
+              </motion.div>
             </motion.div>
+          </div>
+        </div>
+        <motion.div className={c('text')} variants={animation.desc}>
+          <ArticleTitle className={c('title')}>
+            About
+            <NanaText className={c('nana')} />
+          </ArticleTitle>
+          <div className={c('desc')}>
+            <motion.p variants={fadeInUp()}>
+              안녕하세요! 웹 퍼블리셔 김나영입니다.
+              <span className={c('aka')}>a.k.a, Nana</span>&nbsp;
+              <br />
+              저는 다양한 회사와 도메인에서 일을 해왔으며, 프리랜서로 프로젝트를 수행한
+              경험이 있습니다.
+            </motion.p>
+            <motion.p variants={fadeInUp()}>
+              웹 퍼블리싱을 빠삭하게 이해하며 잘 다룹니다. React/TypeScript 등 프레임워크
+              환경에서 컴포넌트 단위의 마크업 작업이 가능합니다. 어디에서도 잘 보이는
+              반응형, 검색엔진에 맞춘 SEO, 크로스 브라우징과 웹 접근성을 고려한 퍼블리싱
+              산출물을 만들어냅니다.
+            </motion.p>
+            <motion.p variants={fadeInUp()}>
+              담당하는 프로젝트의 목적을 우선적으로 고려하며, 원활한 협업을 가장 중요하게
+              생각해요. 다양한 직군과 함께 멋지고 즐거운 UX를 만드는 데 관심이 많습니다.
+            </motion.p>
+          </div>
+          <motion.div variants={animation.link}>
+            <CustomLink className={c('link')} href="https://nykim.net/about">
+              자기소개 더보기
+            </CustomLink>
           </motion.div>
-        </div>
-      </div>
-      <motion.div className={c('text')} variants={animation.desc}>
-        <ArticleTitle className={c('title')}>
-          About
-          <NanaText className={c('nana')} />
-        </ArticleTitle>
-        <div className={c('desc')}>
-          <motion.p variants={fadeInUp()}>
-            안녕하세요! 웹 퍼블리셔 김나영입니다.
-            <span className={c('aka')}>a.k.a, Nana</span>&nbsp;
-            <br />
-            저는 다양한 회사와 도메인에서 일을 했고, 프리랜서로 프로젝트를 수행한 경험이
-            있습니다.
-          </motion.p>
-          <motion.p variants={fadeInUp()}>
-            웹 퍼블리싱을 빠삭하게 이해하며 잘 다룹니다. React/TypeScript 등 프레임워크
-            환경에서 컴포넌트 단위의 마크업 작업이 가능합니다. 어디에서도 잘 보이는
-            반응형, 검색엔진에 맞춘 SEO, 크로스 브라우징과 웹 접근성을 고려한 퍼블리싱
-            산출물을 만들어냅니다.
-          </motion.p>
-          <motion.p variants={fadeInUp()}>
-            담당하는 프로젝트의 목적을 우선적으로 고려하며, 함께 할 동료들과 원활히
-            협업하는 것을 가장 중요하게 생각해요. 다양한 직군과 함께 멋지고 즐거운 UX를
-            만드는 데 관심이 많습니다.
-          </motion.p>
-        </div>
-        <motion.div variants={motion_link}>
-          <CustomLink className={c('link')} href="https://nykim.net/about">
-            자기소개 더보기
-          </CustomLink>
         </motion.div>
-      </motion.div>
-    </motion.article>
+      </motion.article>
+      {/* <motion.em style={{ opacity: scrollYProgress }}>HELLO</motion.em> */}
+    </>
   );
 };
 

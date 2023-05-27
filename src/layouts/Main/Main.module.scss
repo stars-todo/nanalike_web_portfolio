@@ -181,6 +181,8 @@
 }
 
 .nananana {
+  pointer-events: none;
+  user-select: none;
   z-index: 1;
   position: fixed;
   top: 0%;
