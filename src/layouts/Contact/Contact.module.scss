@@ -85,6 +85,11 @@
       font-size: calc(rem(10) + 7vw);
     }
   }
+
+  .mail_animation {
+    display: flex;
+    overflow: hidden;
+  }
 }
 
 .contents {
@@ -144,7 +149,6 @@
   width: 100vw;
   max-width: 256rem;
   margin: 0 auto;
-  // padding-left: 6rem;
 
   @include mq_t {
     position: relative;
@@ -232,6 +236,8 @@
 }
 
 .e {
-  height: 85%;
-  padding-bottom: 15%;
+  @include mq_t {
+    height: 85%;
+    padding-bottom: 15%;
+  }
 }

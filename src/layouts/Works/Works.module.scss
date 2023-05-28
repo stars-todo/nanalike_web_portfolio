@@ -220,19 +220,25 @@
 }
 
 .background {
+  visibility: hidden;
   z-index: -99;
   position: fixed;
-  top: 50%;
-  // left: 50%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
+  height: 100vh;
   text-align: center;
-  // transform: translate3d(-50%, -50%, 0);
 }
 
 .isShow {
   // z-index: 1;
   // opacity: 1;
-  // outline: 30px solid red;
+  outline: 30px solid red;
+  visibility: visible;
 }
 
 .title {

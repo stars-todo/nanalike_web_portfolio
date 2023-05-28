@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import classNames from 'classnames/bind';
 import * as styles from './Contact.module.scss';
 import ArticleTitle from '@components/ArticleTitle/ArticleTitle';
@@ -7,11 +7,16 @@ import CustomButton from '@components/CustomButton/CustomButton';
 import CustomLink from '@components/CustomLink/CustomLink';
 import Copyright from '@components/Copyright/Copyright';
 import LangSelect from '@components/LangSelect/LangSelect';
+import { motion, useScroll, useTransform } from 'framer-motion';
 const c = classNames.bind(styles);
 
-const Footer = () => {
+const Footer = ({ scrollYProgress }: any) => {
   return (
-    <footer className={c('footer')}>
+    <motion.footer
+      // initial={{ opacity: 0 }}
+      // whileInView={{ opacity: 1, transition: { duration: 0.5, delay: 0.2 } }}
+      className={c('footer')}
+    >
       <div className={c('thanks')}>
         <div className={c('thanks_title')}>
           <svg xmlns="http://www.w3.org/2000/svg" width="64" height="13" fill="none">
@@ -33,51 +38,192 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 
 const Contact = () => {
+  const articleRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: articleRef,
+    offset: ['0', '1']
+  });
+  // const footerOpacity = useTransform(scrollYProgress, [0.5, 1], [0, 0]);
+
+  function fadeInUp(y = 30, duration = 0.7) {
+    return {
+      hidden: {
+        opacity: 0,
+        y: y
+      },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          ease: 'easeInOut',
+          duration: duration
+        }
+      }
+    };
+  }
+
+  const animation = {
+    trigger: {
+      hidden: {
+        opacity: 0
+      },
+      visible: {
+        opacity: 1,
+        transition: {
+          when: 'beforeChildren',
+          staggerChildren: 0.1
+        }
+      }
+    },
+    contents: {
+      hidden: {
+        opacity: 0
+      },
+      visible: {
+        opacity: 1,
+        transition: {
+          delay: 0.4,
+          when: 'beforeChildren',
+          staggerChildren: 0.1
+        }
+      }
+    },
+    links: {
+      hidden: {
+        opacity: 0
+      },
+      visible: {
+        opacity: 1,
+        transition: {
+          when: 'beforeChildren',
+          staggerChildren: 0.05
+        }
+      }
+    },
+    link: {
+      hidden: {
+        opacity: 0,
+        x: -20
+      },
+      visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+          ease: 'easeInOut',
+          duration: 0.6
+        }
+      }
+    },
+    mailReveal: {
+      hidden: {
+        opacity: 0
+      },
+      visible: (i: number = 1) => ({
+        opacity: 1,
+        transition: { staggerChildren: 0.025, delayChildren: i * 0 }
+      })
+    },
+    mailText: {
+      hidden: {
+        y: 50,
+        skewY: 10,
+        transition: {
+          type: 'spring',
+          damping: 10,
+          stiffness: 100
+        }
+      },
+      visible: {
+        y: 0,
+        skewY: 0,
+        transition: {
+          type: 'spring',
+          damping: 10,
+          stiffness: 100
+        }
+      }
+    }
+  };
+
   return (
-    <article className={c('contact')}>
+    <motion.article
+      className={c('contact')}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ amount: 0.25 }}
+      variants={animation.trigger}
+      ref={articleRef}
+    >
       <div className={c('contact_inner')}>
-        <ArticleTitle className={c('title')}>Contact</ArticleTitle>
-        <div className={c('title_sub')}>웹 퍼블리싱이 필요한 프로젝트가 있나요?</div>
-        <div className={c('mail')}>
-          <button className={c('mail_button')} onClick={() => alert('복사!')}>
-            <span className="screenOut">클릭하여 메일 주소 복사</span>
-            <strong className={c('mail_address')}>nykim@nykim.net</strong>
-          </button>
-        </div>
-        <CustomButton icon="download" className={c('download')}>
-          이력서 다운로드
-        </CustomButton>
-        <div className={c('contents')}>
-          <div className={c('desc')}>
+        <motion.div>
+          <motion.div variants={fadeInUp()}>
+            <ArticleTitle className={c('title')}>Contact</ArticleTitle>
+          </motion.div>
+          <motion.div variants={fadeInUp()} className={c('title_sub')}>
+            웹 퍼블리싱이 필요한 프로젝트가 있나요?
+          </motion.div>
+          <div className={c('mail')}>
+            <button className={c('mail_button')} onClick={() => alert('복사!')}>
+              <span className="screenOut">클릭하여 메일 주소 복사</span>
+              <strong className="screenOut">nykim@nykim.net</strong>
+              <motion.div
+                className={c('mail_animation')}
+                variants={animation.mailReveal}
+                aria-hidden="true"
+              >
+                {Array.from('nykim@nykim.net').map((letter, index) => (
+                  <motion.div
+                    key={index}
+                    className={c('mail_address')}
+                    variants={animation.mailText}
+                  >
+                    {letter === ' ' ? '\u00A0' : letter}
+                  </motion.div>
+                ))}
+              </motion.div>
+            </button>
+          </div>
+          <motion.div variants={fadeInUp()}>
+            <CustomButton icon="download" className={c('download')}>
+              이력서 다운로드
+            </CustomButton>
+          </motion.div>
+        </motion.div>
+        <motion.div className={c('contents')} variants={animation.contents}>
+          <motion.div className={c('desc')} variants={fadeInUp(40)}>
             <p>
               함께 할 프로젝트가 있다면 메일을 보내주세요! 1~2일 내로 회신을 드릴게요.
               <br />
               저와 나누고 싶은 얘기가 있으신가요? 포트폴리오나 웹 퍼블리싱과 관련이 없는
               내용이여도 좋아요. 궁금한 내용이 있다면 편하게 연락해 주세요 :)
             </p>
-          </div>
-          <div className={c('desc')}>
+          </motion.div>
+          <motion.div className={c('desc')} variants={fadeInUp(40)}>
             <p>
               외주 요청 시, 간단한 프로젝트 소개와 희망 착수일/완료일 등을 함께 보내주시면
               더 빠르고 편하게 협업을 시작하실 수 있습니다!
             </p>
-            <div className={c('links')}>
-              <CustomLink href="mailto:nykim@nykim.net">메일 보내기</CustomLink>
-              <CustomLink href="">크몽으로 의뢰하기</CustomLink>
-            </div>
-          </div>
-        </div>
+            <motion.div className={c('links')} variants={animation.links}>
+              <motion.div variants={animation.link}>
+                <CustomLink href="mailto:nykim@nykim.net">메일 보내기</CustomLink>
+              </motion.div>
+              <motion.div variants={animation.link}>
+                <CustomLink href="">크몽으로 의뢰하기</CustomLink>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
       </div>
-      <Footer />
-      <Alphabet type="e" className={c('e')} />
+      <Footer scrollYProgress={scrollYProgress} />
       <LangSelect className={c('langs')} />
       <Copyright className={c('copy')} />
-    </article>
+      <Alphabet type="e" className={c('e')} />
+    </motion.article>
   );
 };
 

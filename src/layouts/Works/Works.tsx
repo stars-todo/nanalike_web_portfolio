@@ -175,49 +175,13 @@ const TextBig = ({ children }: { children: string }) => {
 };
 
 const Works = () => {
-  let sectionTop = 0;
-  const worksRef = useRef<HTMLDivElement>(null);
-  const testRef = useRef<HTMLDivElement>(null);
+  const articleRef = useRef<HTMLDivElement>(null);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   const { scrollYProgress, scrollY } = useScroll({
-    target: worksRef,
+    target: articleRef,
     offset: ['0', '1']
   });
-
-  const calculateDistance = () => {
-    sectionTop = worksRef.current?.getBoundingClientRect().top ?? 0;
-    // const scrollTop = scrollY.get();
-    // const distance = sectionTop - scrollTop;
-
-    // Use the distance value as needed
-    console.log('sectionTop:', sectionTop);
-  };
-
-  // useEffect(() => {
-  //   console.log(worksRef.current?.getBoundingClientRect().top);
-  //   const ref = worksRef.current;
-  //   if (ref && ref.getBoundingClientRect().top < 0) {
-  //     console.log('YYYEEESS');
-  //   } else {
-  //     console.log('no.');
-  //   }
-  // }, [scrollY, worksRef]);
-
-  const [isInArticle, setIsInArticle] = useState<boolean>(false);
-
-  // useMotionValueEvent(scrollY, 'change', (latest) => {
-  //   const refRect = worksRef.current?.getBoundingClientRect();
-  //   const value = (refRect?.height ?? 0) - -(refRect?.top ?? 0);
-  //   // console.log(worksRef.current?.getBoundingClientRect().top);
-  //   console.log(scrollYProgress);
-  //   if (refRect!.top < 0 && value > 0) {
-  //     setIsInArticle(true);
-  //     console.log('YYYEEESS');
-  //   } else {
-  //     setIsInArticle(false);
-  //     console.log('no.');
-  //   }
-  // });
 
   const animation = {
     items: {
@@ -264,10 +228,11 @@ const Works = () => {
       }
     };
   }
+
   function useParallax(value: MotionValue<number>, distance: any) {
     return useTransform(value, [0, 1], [distance, `-${distance}`]);
   }
-  const controls = useAnimationControls();
+
   const y = [
     useParallax(scrollYProgress, 200),
     useParallax(scrollYProgress, 300),
@@ -278,20 +243,31 @@ const Works = () => {
   ];
   const itemY = useParallax(scrollYProgress, (Math.random() * (6 - 1) + 1) * 100);
 
-  useEffect(() => {
-    if (sectionTop <= 0) {
-      controls.start({
-        x: '100%',
-        backgroundColor: '#f00',
-        transition: { duration: 3 }
-      });
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    const refRect = articleRef.current?.getBoundingClientRect();
+    const retOffset = articleRef?.current?.offsetTop || 0;
+    const refHeight = refRect?.height || 0;
+    const viewportHeight = window.innerHeight;
+
+    // const max = refHeight + (retOffset - viewportHeight);
+    // if (latest >= retOffset && latest <= max) {
+    //   setIsScrolling(true);
+    // } else {
+    //   setIsScrolling(false);
+    // }
+    console.log(latest >= viewportHeight && latest <= retOffset + refHeight);
+    if (latest >= viewportHeight && latest <= retOffset + refHeight) {
+      setIsScrolling(true);
+    } else {
+      setIsScrolling(false);
     }
-  }, [controls, sectionTop]);
+  });
+
   const op = useTransform(scrollYProgress, [0.2, 0.9], [1, 0]);
 
   return (
     <motion.article
-      ref={worksRef}
+      ref={articleRef}
       className={c('works')}
       // variants={animation.trigger}
       initial="hidden"
@@ -321,11 +297,11 @@ const Works = () => {
         ))}
       </motion.div>
       <motion.div
-        className={c('background', { isShow: isInArticle })}
+        className={c('background', { isShow: isScrolling })}
         variants={animation.background}
         style={{ opacity: op }}
         initial={{ opacity: 0 }}
-        // whileInView="visible"
+        whileInView={{ opacity: 1 }}
         // viewport={{ root: worksRef }}
       >
         <ArticleTitle className={c('title')}>Work Experience</ArticleTitle>
