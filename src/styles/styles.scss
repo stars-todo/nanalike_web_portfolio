@@ -23,8 +23,16 @@ html {
   font-size: 62.5%;
 
   @include mq_l {
-    // font-size: clamp(58%, 0.714285vw, 62.5%);
     font-size: 58%;
+  }
+
+  @include mq_t {
+    // font-size: clamp(55%, 0.714285vw, 58%);
+    font-size: clamp(54%, 1vw, 58%);
+  }
+
+  @include mq_m {
+    font-size: 52%;
   }
 }
 

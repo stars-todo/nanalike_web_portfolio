@@ -9,7 +9,6 @@
   color: var(--color-black);
 
   .icon {
-    // width: 1em;
     width: rem(18);
   }
 
@@ -17,8 +16,8 @@
     line-height: 100%;
     font-size: rem(20);
 
-    @include mq_t {
-      font-size: clamp(rem(16), break(18, vw, $tablet), rem(18));
+    @include mq_m {
+      font-size: mobile(18, 20);
     }
   }
 }

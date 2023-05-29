@@ -14,6 +14,11 @@
   .work_contents {
     width: 100%;
   }
+
+  a {
+    display: block;
+    width: 100%;
+  }
 }
 
 .contents {
@@ -25,17 +30,17 @@
   width: 100%;
   margin-top: rem(26);
 
-  // @include mq_t {
-  //   gap: rem(8);
-  // }
-
   .title {
     display: flex;
-    flex-wrap: wrap;
     gap: rem(10);
     max-width: rem(380);
     width: 100%;
-    word-break: keep-all;
+    word-break: break-all;
+
+    @include mq_m {
+      justify-content: space-between;
+      max-width: 100%;
+    }
 
     &_text {
       display: block;
@@ -43,9 +48,9 @@
       font-weight: 700;
       line-height: 100%;
 
-      // @include mq_t {
-      //   font-size: clamp(rem(28), break(28, vw, $tablet), rem(32));
-      // }
+      @include mq_m {
+        font-size: mobile(28, 32);
+      }
     }
 
     .year {
@@ -69,10 +74,9 @@
     line-height: 160%;
     color: var(--color-gray);
 
-    // @include mq_t {
-    //   flex-direction: column;
-    //   font-size: clamp(rem(16), break(18, vw, $tablet), rem(18));
-    // }
+    @include mq_m {
+      flex-direction: column;
+    }
 
     .skills {
       display: flex;

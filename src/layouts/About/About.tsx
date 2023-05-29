@@ -49,7 +49,12 @@ const TextBig = ({ varaints, children }: { varaints?: Variants; children: string
     }
   };
   return (
-    <motion.strong className={c('text_big')} variants={textReveal}>
+    <motion.strong
+      className={c('text_big')}
+      variants={textReveal}
+      initial="hidden"
+      whileInView="visible"
+    >
       <span className="screenOut">{children}</span>
       <div className={c('text_big_svg', 'svg_1')}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 305 57" fill="currentColor">
@@ -190,7 +195,6 @@ const About = () => {
   return (
     <article className={c('about')} ref={aboutRef}>
       <motion.div className={c('visual')} initial="hidden" whileInView="visible">
-        <TextBig>I do what i like</TextBig>
         <div className={c('profile')}>
           <motion.img
             className={c('photo')}
@@ -198,12 +202,18 @@ const About = () => {
             src="https://source.unsplash.com/random/?europe/460/440"
             alt="프로필 사진"
           />
-          <motion.div className="center" variants={fadeInUp(40)}>
-            <CustomButton className={c('download')} icon="download">
-              이력서 다운로드
-            </CustomButton>
-          </motion.div>
         </div>
+        <TextBig>I do what i like</TextBig>
+        <motion.div
+          className="center"
+          variants={fadeInUp(40)}
+          initial="hidden"
+          whileInView="visible"
+        >
+          <CustomButton className={c('download')} icon="download">
+            이력서 다운로드
+          </CustomButton>
+        </motion.div>
       </motion.div>
       <motion.div
         className={c('text')}
@@ -219,7 +229,7 @@ const About = () => {
           <motion.p variants={fadeInUp()}>
             안녕하세요! 웹 퍼블리셔 김나영입니다.
             <span className={c('aka')}>a.k.a, Nana</span>&nbsp;
-            <br />
+            <br className={c('br_keep')} />
             저는 다양한 회사와 도메인에서 일을 해왔으며, 프리랜서로 프로젝트를 수행한
             경험이 있습니다.
           </motion.p>

@@ -3,33 +3,20 @@
 .work_icon {
   overflow: hidden;
   position: relative;
-  width: 38rem;
-  height: 26rem;
-
-  border-radius: 2rem;
+  width: rem(380);
+  aspect-ratio: 38 / 26;
+  border-radius: rem(20);
   color: #fff;
   text-align: center;
   border: 1px solid var(--color-gray-title);
-  box-shadow: 1.5rem 1.5rem 2.5rem 0px rgba(56, 56, 56, 0.028);
+  box-shadow: rem(15) rem(15) rem(25) 0px rgba(56, 56, 56, 0.028);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
 
-  @include mq_l {
-    // width: 34rem;
-    // height: 23rem;
-  }
-
-  @include mq_t {
-    // width: 38rem;
-    // height: 26rem;
-  }
-
   @include mq_m {
+    aspect-ratio: 34 / 22;
     width: 100%;
-    height: auto;
-    padding-top: 60%;
-    min-height: rem(180);
   }
 }
 

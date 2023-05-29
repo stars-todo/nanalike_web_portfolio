@@ -18,22 +18,8 @@
     width: 1em;
   }
 
-  @include mq_t {
-    height: 3.6rem;
-    font-size: 1.8rem;
+  @include mq_m {
+    // height: rem(36);
+    // font-size: rem(18);
   }
 }
-
-// .button_custom {
-//   display: inline-flex;
-//   align-items: center;
-//   justify-content: center;
-//   gap: 0.3em;
-//   padding: 0.1em 1em;
-//   color: var(--color-black);
-//   font-size: 2rem;
-//   font-weight: 700;
-//   line-height: 180%;
-//   border-radius: 3rem;
-//   border: 1px solid var(--color-black);
-// }

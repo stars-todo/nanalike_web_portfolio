@@ -5,7 +5,7 @@
   color: #a9a9a9;
   text-align: center;
   user-select: none;
-  font-size: rem(14);
+  font-size: 15px;
 
   @include mq_t {
     position: relative;
@@ -14,16 +14,25 @@
     transform: none;
   }
 
+  @include mq_m {
+    font-size: 14px;
+  }
+
   .madeBy {
     display: flex;
-    gap: 0.4rem;
+    gap: 4px;
     align-items: center;
     line-height: 180%;
     margin-bottom: 0.2rem;
 
     .nana {
-      margin-top: rem(2);
-      height: rem(9);
+      margin-top: 3px;
+      height: 10px;
+
+      @include mq_m {
+        margin-top: 2.5px;
+        height: 9px;
+      }
     }
   }
 

@@ -3,7 +3,6 @@ $_parallex_height: rem(60);
 
 .main {
   position: relative;
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -11,6 +10,10 @@ $_parallex_height: rem(60);
   min-width: var(--m-min-width);
   text-align: center;
   padding: calc(vh(40) + vw(15) + rem(210)) $commonPadding calc(vh(40) + vw(15) + rem(90));
+
+  @include mq_m {
+    padding-top: calc(vh(70) + vw(40) + rem(150));
+  }
 }
 
 .inner {
@@ -31,10 +34,15 @@ $_parallex_height: rem(60);
 
     .title_sub {
       position: relative;
-      top: rem(18);
+      top: 2vw;
       font-size: rem(36);
-      line-height: 110%;
+      line-height: 130%;
       font-weight: 700;
+
+      @include mq_m {
+        top: mobile(0, 8);
+        font-size: mobile(24, 30);
+      }
     }
 
     .logo {
@@ -60,7 +68,13 @@ $_parallex_height: rem(60);
       display: block;
     }
 
+    br {
+      display: none;
+    }
+
     @include mq_t {
+      margin-top: calc(vh(20) + vw(10) + rem(15));
+      margin-bottom: calc(vh(50) + vw(20) + rem(90));
       text-align: left;
 
       span {
@@ -69,6 +83,15 @@ $_parallex_height: rem(60);
         & + span {
           margin-left: rem(4);
         }
+      }
+    }
+
+    @include mq_m {
+      font-size: mobile(20, 22);
+      font-weight: 400;
+
+      br {
+        display: block;
       }
     }
   }
@@ -92,11 +115,15 @@ $_parallex_height: rem(60);
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    font-size: 1.4rem;
+    font-size: 14px;
     font-weight: 500;
     line-height: 2rem;
     letter-spacing: 0;
     color: var(--color-gray-light);
+
+    @include mq_m {
+      font-size: 13px;
+    }
   }
 }
 

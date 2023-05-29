@@ -34,6 +34,7 @@ const Main = () => {
             <p className={c('desc')}>
               <span>탄탄한 코드 위에 감각적인 UI를 그려내는 웹 퍼블리셔 나나입니다.</span>
               <span>사용하기 쉬운 UI와 기억에 남는 UX를 개발하는 일을 해요.</span>
+              <br className={c('mobile')} />
               <span>좋아하면 더 잘한다는 마음으로, 오늘도 즐겁게 일하고 있어요!</span>
             </p>
           </motion.div>

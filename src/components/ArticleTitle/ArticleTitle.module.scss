@@ -1,10 +1,14 @@
-@use './../../styles/helpers/mixins' as m;
+@use './../../styles/helpers/mixins' as *;
 
 .article_title {
-  @include m.font-sub;
-  font-size: 1.8rem;
+  @include font-sub;
+  font-size: rem(18);
   font-weight: 400;
-  line-height: 2.9rem;
+  line-height: 160%;
   text-transform: uppercase;
   color: var(--color-gray-title);
+
+  @include mq_m {
+    font-size: mobile(16, 18);
+  }
 }

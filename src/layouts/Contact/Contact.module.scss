@@ -1,3 +1,4 @@
+@use 'sass:math';
 @use './../../styles/helpers/mixins' as *;
 
 .contact {
@@ -26,6 +27,12 @@
     }
   }
 
+  @include mq_t {
+    height: auto;
+    padding-top: $padding_tablet;
+    padding-bottom: calc(vh(30) + vw(70) + rem(10));
+  }
+
   // @include mq_t {
   //   height: auto;
   //   padding-top: vh(140);
@@ -40,23 +47,23 @@
   @include mq_t {
     text-align: center;
   }
+
+  @include mq_m {
+    font-size: mobile(16, 18);
+  }
 }
 
 .title_sub {
   margin-top: rem(56);
-  font-size: rem(26);
-  font-weight: 300;
+  font-size: rem(24);
+  font-weight: 400;
   line-height: 150%;
   letter-spacing: -0.01em;
 
-  // @include mq_t {
-  //   margin-top: clamp(rem(46), break(56, vw, $tablet), rem(56));
-  //   font-size: clamp(rem(18), break(24, vw, $tablet), rem(24));
-  // }
-
-  // @include mq_m {
-  //   font-size: clamp(rem(16), break(18, vw, $mobile), rem(18));
-  // }
+  @include mq_m {
+    font-size: mobile(20, 24);
+    line-height: 200%;
+  }
 }
 
 .mail {
@@ -84,7 +91,7 @@
     }
 
     @include mq_m {
-      font-size: calc(rem(10) + 7vw);
+      font-size: calc(rem(10) + 7.5vw);
     }
   }
 
@@ -119,7 +126,11 @@
   @include mq_t {
     flex-direction: column;
     gap: rem(20);
-    font-size: clamp(rem(16), break(18, vw, $tablet), rem(18));
+    margin-top: rem(70);
+  }
+
+  @include mq_m {
+    font-size: mobile(18, 20);
   }
 
   .desc {
@@ -140,8 +151,8 @@
     @include mq_t {
       flex-direction: column;
       align-items: flex-start;
-      gap: rem(20);
-      margin-top: rem(30);
+      gap: rem(15);
+      margin-top: rem(40);
     }
   }
 
@@ -151,7 +162,7 @@
     width: 100%;
     height: 1px;
     background-color: var(--color-gray-dim);
-    margin: rem(82) auto rem(56);
+    margin: calc(vh(30) + vw(70) + rem(10)) auto;
 
     @include mq_t {
       display: block;
@@ -180,16 +191,16 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: rem(6);
-    font-size: rem(14);
+    gap: 6px;
+    font-size: 14px;
 
     @include mq_t {
       flex-direction: row;
-      gap: rem(18);
+      gap: 16px;
     }
 
     @include mq_m {
-      gap: rem(14);
+      font-size: 13px;
     }
 
     .thanks_title {
@@ -204,12 +215,12 @@
     .names {
       display: flex;
       flex-direction: column;
-      gap: rem(6);
+      gap: 8px;
     }
 
     .thanks_name {
       display: flex;
-      gap: rem(4);
+      gap: 8px;
       align-items: center;
 
       a {
@@ -230,10 +241,11 @@
 
 .langs {
   display: none;
+  font-size: 16px;
+  margin-top: rem(40);
 
   @include mq_t {
     display: flex;
-    margin-top: rem(24);
   }
 }
 

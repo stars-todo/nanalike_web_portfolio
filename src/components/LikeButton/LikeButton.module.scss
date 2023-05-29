@@ -11,8 +11,17 @@
   width: rem(120);
   height: rem(120);
   border-radius: 50%;
-  border: 1px solid var(--color-black);
+  color: #111;
+  border: 1px solid #111;
   right: $commonPadding;
+
+  svg {
+    height: 22px;
+
+    @include mq_m {
+      height: 18px;
+    }
+  }
 
   @include mq_l {
     width: rem(110);
@@ -20,8 +29,13 @@
   }
 
   @include mq_t {
-    width: rem(84);
-    height: rem(84);
+    width: rem(100);
+    height: rem(100);
+  }
+
+  @include mq_m {
+    width: mobile(80, 90);
+    height: mobile(80, 90);
   }
 }
 

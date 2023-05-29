@@ -4,7 +4,7 @@ $max: 1920;
 $desktop: 1600;
 $laptop: 1300;
 $tablet: 900;
-$mobile: 540;
+$mobile: 600;
 
 $laptop2: 1400; //DELETE
 // $tablet: 768;
@@ -85,8 +85,6 @@ $laptop2: 1400; //DELETE
   @return max(#{$min}, #{calc(50vh - $contentsSize)});
 }
 
-$commonPadding: clamp(var(--m-padding-h), break(60), var(--d-padding-h));
-
 $base-size: 16px;
 @function rem2($sizes...) {
   $values: null;
@@ -103,4 +101,15 @@ $base-size: 16px;
   }
 
   @return $values;
+}
+
+$commonPadding: clamp(var(--m-padding-h), break(60), var(--d-padding-h));
+$padding_tablet: calc(vh(30) + vw(80) + rem(90));
+
+@function mobileVw($px, $unit: vw, $break: $mobile) {
+  @return #{calc($px * 100 / $break)}#{$unit};
+}
+
+@function mobile($min, $max) {
+  @return clamp(rem($min), mobileVw($max), rem($max));
 }
