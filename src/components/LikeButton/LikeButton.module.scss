@@ -4,7 +4,7 @@
   z-index: 999; //TODO:
   position: fixed;
   right: var(--d-padding-h);
-  bottom: 4rem;
+  bottom: rem(40);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,8 +15,8 @@
   right: $commonPadding;
 
   @include mq_l {
-    width: rem(100);
-    height: rem(100);
+    width: rem(110);
+    height: rem(110);
   }
 
   @include mq_t {

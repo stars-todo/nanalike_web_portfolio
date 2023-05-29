@@ -12,11 +12,7 @@ const c = classNames.bind(styles);
 
 const Footer = ({ scrollYProgress }: any) => {
   return (
-    <motion.footer
-      // initial={{ opacity: 0 }}
-      // whileInView={{ opacity: 1, transition: { duration: 0.5, delay: 0.2 } }}
-      className={c('footer')}
-    >
+    <motion.footer className={c('footer')}>
       <div className={c('thanks')}>
         <div className={c('thanks_title')}>
           <svg xmlns="http://www.w3.org/2000/svg" width="64" height="13" fill="none">
@@ -130,7 +126,7 @@ const Contact = () => {
     },
     mailText: {
       hidden: {
-        y: 50,
+        y: 100,
         skewY: 10,
         transition: {
           type: 'spring',

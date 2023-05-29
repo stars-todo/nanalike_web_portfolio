@@ -30,7 +30,7 @@ const TextBig = ({ varaints, children }: { varaints?: Variants; children: string
   };
   const svg = {
     hidden: {
-      y: 50,
+      y: 80,
       skewY: 20,
       transition: {
         type: 'spring',

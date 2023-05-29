@@ -1,14 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   MotionValue,
   Variants,
   motion,
-  useMotionValue,
-  useInView,
   useScroll,
   useTransform,
-  useMotionValueEvent,
-  useAnimationControls
+  useMotionValueEvent
 } from 'framer-motion';
 import classNames from 'classnames/bind';
 import * as styles from './Works.module.scss';
@@ -73,8 +70,8 @@ const TextBig = ({ children }: { children: string }) => {
   };
   const svg = {
     hidden: {
-      y: 80,
-      skewY: 30,
+      y: 300,
+      skewY: 10,
       transition: {
         type: 'spring',
         damping: 10,
@@ -192,7 +189,7 @@ const Works = () => {
         opacity: 1,
         transition: {
           when: 'beforeChildren',
-          staggerChildren: 0.12
+          staggerChildren: 0.1
         }
       }
     },
@@ -249,13 +246,6 @@ const Works = () => {
     const refHeight = refRect?.height || 0;
     const viewportHeight = window.innerHeight;
 
-    // const max = refHeight + (retOffset - viewportHeight);
-    // if (latest >= retOffset && latest <= max) {
-    //   setIsScrolling(true);
-    // } else {
-    //   setIsScrolling(false);
-    // }
-    console.log(latest >= viewportHeight && latest <= retOffset + refHeight);
     if (latest >= viewportHeight && latest <= retOffset + refHeight) {
       setIsScrolling(true);
     } else {
@@ -269,18 +259,16 @@ const Works = () => {
     <motion.article
       ref={articleRef}
       className={c('works')}
-      // variants={animation.trigger}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
-      // viewport={{ margin: '300px 0px -300px 0px' }}
+      viewport={{ once: false, amount: 0.3 }}
     >
       <motion.div
         className={c('work_list')}
         variants={animation.items}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.15 }}
+        viewport={{ once: false }}
       >
         {myWorks.map((work, index) => (
           <WorkItem

@@ -5,7 +5,6 @@
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  // width: rem(38);
   min-width: 0;
 
   @include mq_t {
@@ -22,18 +21,18 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  gap: rem(6);
+  gap: rem(8);
   width: 100%;
-  margin-top: 2.4rem;
+  margin-top: rem(26);
 
-  @include mq_t {
-    gap: rem(8);
-  }
+  // @include mq_t {
+  //   gap: rem(8);
+  // }
 
   .title {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.9rem;
+    gap: rem(10);
     max-width: rem(380);
     width: 100%;
     word-break: keep-all;
@@ -44,9 +43,9 @@
       font-weight: 700;
       line-height: 100%;
 
-      @include mq_t {
-        font-size: clamp(rem(28), break(28, vw, $tablet), rem(32));
-      }
+      // @include mq_t {
+      //   font-size: clamp(rem(28), break(28, vw, $tablet), rem(32));
+      // }
     }
 
     .year {
@@ -66,14 +65,14 @@
     justify-content: space-between;
     width: 100%;
     font-size: rem(18);
-    font-weight: 400;
+    font-weight: 300;
     line-height: 160%;
     color: var(--color-gray);
 
-    @include mq_t {
-      flex-direction: column;
-      font-size: clamp(rem(16), break(18, vw, $tablet), rem(18));
-    }
+    // @include mq_t {
+    //   flex-direction: column;
+    //   font-size: clamp(rem(16), break(18, vw, $tablet), rem(18));
+    // }
 
     .skills {
       display: flex;
@@ -82,8 +81,8 @@
 
       .skill:not(:last-child):after {
         display: inline-block;
-        width: 0.1rem;
-        height: 1.5rem;
+        width: 1px;
+        height: rem(15);
         margin-left: 1rem;
         background-color: #ccc;
         transform: skew(-15deg, -15deg);
@@ -101,12 +100,12 @@
 .bg {
   z-index: -1;
   position: absolute;
-  top: 5.1rem;
-  left: 2.4rem;
-  width: 38rem;
-  height: 33rem;
+  top: rem(51);
+  left: rem(24);
+  width: rem(380);
+  height: rem(330);
   background-color: rgba(234, 234, 234, 0.502);
-  border-radius: 2rem;
+  border-radius: rem(20);
   pointer-events: none;
 
   @include mq_t {

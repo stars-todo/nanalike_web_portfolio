@@ -151,7 +151,7 @@ $_height: rem(1200);
 
   @include mq_l {
     width: 100%;
-    max-width: rem(900);
+    max-width: var(--l-max-width);
     margin-left: 0;
   }
 
@@ -184,16 +184,6 @@ $_height: rem(1200);
       overflow: hidden;
     }
 
-    // @include mq_l {
-    //   margin-top: clamp(rem(22), break(26), rem(26));
-    //   margin-bottom: clamp(rem(30), break(36), rem(36));
-    //   font-size: clamp(rem(18), break(20), rem(20));
-    // }
-
-    // @include mq_t {
-    //   font-size: clamp(rem(16), break(18, vw, $tablet), rem(18));
-    // }
-
     p:not(:first-child) {
       margin-top: rem(20);
     }
@@ -209,18 +199,6 @@ $_height: rem(1200);
     font-size: 80%;
     letter-spacing: 0;
   }
-
-  // .link {
-  //   font-size: clamp(rem(16), break(20, vw, $desktop), rem(20));
-
-  //   @include mq_l {
-  //     font-size: clamp(rem(18), break(20), rem(20));
-  //   }
-
-  //   @include mq_t {
-  //     font-size: clamp(rem(16), break(18, vw, $tablet), rem(18));
-  //   }
-  // }
 }
 
 .bg {
@@ -231,62 +209,4 @@ $_height: rem(1200);
   width: 100%;
   height: 100%;
   background-color: var(--color-beige-light);
-}
-
-// .ticket {
-//   // position: relative;
-//   // width: 100%;
-//   // background: pink;
-//   // height: 100vh;
-// }
-// .ticket_img {
-//   position: absolute;
-//   @include font-sub;
-//   font-weight: 500;
-//   // top: -9vh;
-//   left: 0;
-//   right: 0;
-//   margin-left: auto;
-//   margin-right: auto;
-//   width: 700px;
-//   height: 300px;
-//   transform-origin: center;
-//   transform: perspective(1200px) rotateX(14deg) rotateY(9.3deg);
-//   background-image: url(./ticket.png);
-//   background-size: 100%;
-//   overflow: hidden;
-//   border-radius: 30px;
-//   border: 1px solid #aaa;
-//   background-color: transparent;
-//   box-shadow: 0 0 3px -1px transparent, -8px -1px 2px 1px transparent,
-//     0 0 5px 0px transparent, -2px 4px 20px 3px rgba(173, 173, 173, 0.08),
-//     0 2px 15px -5px rgba(193, 193, 193, 0.1), 0 0 25px 0px transparent;
-
-//   span {
-//     width: 108px;
-//     position: absolute;
-//     bottom: 37.5px;
-//     left: 43.75px;
-//     font-size: 28.75px;
-//     color: #cbb9a7;
-//     user-select: none;
-//   }
-
-//   p {
-//     position: absolute;
-//     top: 140px;
-//     right: 29px;
-//     font-size: 21px;
-//     color: #e3e1df;
-//     user-select: none;
-//   }
-// }
-
-em {
-  z-index: -99;
-  position: fixed;
-  font-size: 20vw;
-  top: 50%;
-  width: 100%;
-  text-align: center;
 }

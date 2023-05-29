@@ -5,7 +5,7 @@
   color: #a9a9a9;
   text-align: center;
   user-select: none;
-  font-size: clamp(rem(14), break(16, vw, $mobile), rem(14));
+  font-size: rem(14);
 
   @include mq_t {
     position: relative;
@@ -22,11 +22,8 @@
     margin-bottom: 0.2rem;
 
     .nana {
-      margin-top: rem(3);
-      height: rem(8);
-    }
-
-    .heart {
+      margin-top: rem(2);
+      height: rem(9);
     }
   }
 

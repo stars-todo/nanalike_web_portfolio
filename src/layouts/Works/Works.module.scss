@@ -1,8 +1,6 @@
 @use './../../styles/helpers/mixins' as *;
 
 .works {
-  z-index: 1;
-  // position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,9 +9,7 @@
   max-width: var(--d-max-width); //TODO: 공통화?
   min-height: rem(1080); //TODO: 공통화?
   margin: 0 auto;
-  padding: 0 $commonPadding;
-  padding-top: vh(220);
-  padding-bottom: vh(240);
+  padding: calc(vh(30) + vw(65) + rem(180)) $commonPadding;
 
   // @include mq_l {
   //   flex-direction: column;
@@ -34,12 +30,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  // background: rgba(123, 111, 932, 0.2);
   max-width: rem(1200);
 
   @include mq_l {
     min-width: rem(840);
-    max-width: rem(960);
+    max-width: var(--l-max-width);
     width: 90%;
   }
 
@@ -49,171 +44,67 @@
     width: 100%;
   }
 
-  // .work_item {
-  //   position: absolute;
-  //   grid-area: 1 / 1 / 2 / 2;
-
-  //   //TODO: 정리
-  //   &:nth-child(4n + 1) {
-  //     //1,5,9
-  //     left: rem(186);
-  //   }
-
-  //   &:nth-child(4n + 2) {
-  //     right: rem(25);
-  //   }
-
-  //   &:nth-child(4n + 3) {
-  //     left: rem(9);
-  //   }
-
-  //   &:nth-child(4n + 4) {
-  //     right: rem(118);
-  //   }
-
-  //   $pos: 160, 210, 284, 186, 384, 210;
-  //   $i: 1;
-  //   $sum: 0;
-
-  //   @while $i < length($pos) {
-  //     $i: $i + 1;
-  //     $value: nth($pos, $i);
-  //     $sum: $sum + $value;
-
-  //     &:nth-child(#{$i}) {
-  //       top: rem($sum);
-  //     }
-  //   }
-  // }
-
-  // .work_item {
-  //   position: relative;
-  //   display: inline-block;
-
-  //   //TODO: 정리
-  //   &:nth-child(4n + 1) {
-  //     //1,5,9
-  //     left: rem(-214);
-  //   }
-
-  //   &:nth-child(4n + 2) {
-  //     left: rem(360);
-  //   }
-
-  //   &:nth-child(4n + 3) {
-  //     left: rem(-378);
-  //   }
-
-  //   &:nth-child(4n + 4) {
-  //     left: rem(268);
-  //   }
-
-  //   $pos: 0, -164, -100, -194, 4, -160;
-  //   $i: 1;
-  //   $sum: 0;
-
-  //   @while $i < length($pos) {
-  //     $i: $i + 1;
-  //     $value: nth($pos, $i);
-  //     $sum: $sum + $value;
-
-  //     &:nth-child(#{$i}) {
-  //       top: rem($sum);
-  //     }
-  //   }
-  // }
-
   .work_item {
     position: relative;
     float: left;
 
-    // &:nth-child(4n + 1) {
-    //   left: rem(-214);
-    // }
-
-    // &:nth-child(4n + 2) {
-    //   left: rem(360);
-    // }
-
-    // &:nth-child(4n + 3) {
-    //   left: rem(-378);
-    // }
-
-    // &:nth-child(4n + 4) {
-    //   left: rem(268);
-    // }
-
-    // @mixin getLeft($left) {
-    //   @each $value in $left {
-    //     $i: index($left, $value);
-    //     &:nth-child(4n + #{$i}) {
-    //       left: rem($value);
-    //     }
-    //   }
-    // }
-
-    $left: -214, 360, -378, 268;
+    $left: -214, 370, -378, 288;
     @each $value in $left {
       $i: index($left, $value);
       &:nth-child(4n + #{$i}) {
         left: rem($value);
+
+        @include mq_l {
+          left: 0;
+        }
       }
     }
 
-    $top: 0, -114, -50, -124, 30, -130;
+    $top: 0, -80, -40, -110;
     @each $value in $top {
       $i: index($top, $value);
-      &:nth-child(#{$i}) {
-        margin-top: #{$value}px;
+      &:nth-child(4n + #{$i}) {
+        margin-top: #{rem($value)};
+
+        @include mq_l {
+          margin-top: 0;
+        }
       }
     }
 
-    @include mq_l {
-      // $left2: -240, 230, -240, 230;
+    // @include mq_t {
+    //   & {
+    //     margin-top: rem(80) !important;
+    //     align-self: auto !important;
+    //     width: auto !important;
+    //   }
 
-      // @each $value in $left2 {
-      //   $i: index($left2, $value);
-      //   &:nth-child(4n + #{$i}) {
-      //     left: rem($value);
-      //   }
-      // }
+    //   &:nth-child(odd) {
+    //     margin-right: vw(300);
+    //   }
+
+    //   &:nth-child(even) {
+    //     margin-left: vw(300);
+    //   }
+    // }
+
+    // @include mq_m {
+    //   & {
+    //     width: 100% !important;
+    //     margin: rem(44) 0 0 !important;
+    //   }
+    // }
+  }
+
+  @include mq_l {
+    .work_item {
+      float: none;
+
       &:nth-child(odd) {
         align-self: flex-start;
       }
       &:nth-child(even) {
         align-self: flex-end;
-      }
-      &:first-child {
-        margin-top: 0;
-      }
-
-      & {
-        float: none !important;
-        left: 0 !important;
-        margin-top: 0 !important;
-      }
-    }
-
-    @include mq_t {
-      & {
-        margin-top: rem(80) !important;
-        align-self: auto !important;
-        width: auto !important;
-      }
-
-      &:nth-child(odd) {
-        margin-right: vw(300);
-      }
-
-      &:nth-child(even) {
-        margin-left: vw(300);
-      }
-    }
-
-    @include mq_m {
-      & {
-        width: 100% !important;
-        margin: rem(44) 0 0 !important;
       }
     }
   }
@@ -221,7 +112,7 @@
 
 .background {
   visibility: hidden;
-  z-index: -99;
+  z-index: -10;
   position: fixed;
   top: 0;
   left: 0;
@@ -232,13 +123,10 @@
   width: 100%;
   height: 100vh;
   text-align: center;
-}
 
-.isShow {
-  // z-index: 1;
-  // opacity: 1;
-  outline: 30px solid red;
-  visibility: visible;
+  &.isShow {
+    visibility: visible;
+  }
 }
 
 .title {
@@ -249,30 +137,35 @@
   pointer-events: none;
 }
 
-.i {
-  height: 100vh;
-}
+.text_big {
+  width: 100%;
 
-.text_big_svg {
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-self: center;
-  margin: 0 auto;
-  height: 300px;
-  width: 80%;
-  max-width: 1600px;
-  margin: 0 auto;
+  .text_big_svg {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    margin: 0 auto;
+    height: rem(300);
+    width: 90%;
+    max-width: rem(1600);
+    margin: 0 auto;
 
-  svg {
-    height: 100%;
-  }
+    svg {
+      height: 100%;
+    }
 
-  path {
-    stroke-width: 2 !important;
+    path {
+      stroke-width: 2;
 
-    @include mq_t {
-      stroke-width: 3 !important;
+      @include mq_l {
+        stroke-width: calc(6px - 0.3vw);
+      }
     }
   }
 }
+
+//TODO: 알파벳
+// .i {
+//   height: 100vh;
+// }

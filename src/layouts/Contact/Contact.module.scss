@@ -11,73 +11,75 @@
   justify-content: center;
   width: 100%;
   max-width: var(--d-max-width); //TODO: 공통화?
-  min-height: rem(960); //TODO: 공통화?
   height: 100vh;
+  max-height: rem(1400);
   margin: 0 auto;
   padding: 0 $commonPadding;
   background-color: #fff;
 
   &_inner {
     position: relative;
-    margin-top: -12vh;
+    margin-top: -5vw;
+
+    @include mq_l {
+      width: 100%;
+    }
   }
 
-  @include mq_t {
-    height: auto;
-    padding-top: vh(140);
-    padding-bottom: vh(60);
-    min-height: auto;
-  }
+  // @include mq_t {
+  //   height: auto;
+  //   padding-top: vh(140);
+  //   padding-bottom: vh(60);
+  //   min-height: auto;
+  // }
 }
 
 .title {
-  font-size: clamp(rem(16), break(20), rem(20));
+  font-size: rem(20);
 
   @include mq_t {
     text-align: center;
   }
 }
+
 .title_sub {
   margin-top: rem(56);
-  font-size: rem(24);
-  font-weight: 400;
-  line-height: 3.8rem;
+  font-size: rem(26);
+  font-weight: 300;
+  line-height: 150%;
   letter-spacing: -0.01em;
 
-  @include mq_t {
-    margin-top: clamp(rem(46), break(56, vw, $tablet), rem(56));
-    font-size: clamp(rem(18), break(24, vw, $tablet), rem(24));
-  }
+  // @include mq_t {
+  //   margin-top: clamp(rem(46), break(56, vw, $tablet), rem(56));
+  //   font-size: clamp(rem(18), break(24, vw, $tablet), rem(24));
+  // }
 
-  @include mq_m {
-    font-size: clamp(rem(16), break(18, vw, $mobile), rem(18));
-  }
-}
-
-.download {
-  background-color: #fff;
+  // @include mq_m {
+  //   font-size: clamp(rem(16), break(18, vw, $mobile), rem(18));
+  // }
 }
 
 .mail {
-  margin-bottom: 3rem;
+  margin-bottom: rem(36);
 
   &_button {
     position: relative;
     display: inline-block;
     border: 0;
     text-align: left;
+    max-width: 100%;
   }
 
   &_address {
     z-index: 1;
     position: relative;
     @include font-sub;
-    font-size: rem(100);
+    font-size: rem(110);
     font-weight: 500;
     line-height: 120%;
     letter-spacing: -0.05em;
 
-    @include mq_t {
+    @include mq_l {
       font-size: 10vw;
     }
 
@@ -92,16 +94,27 @@
   }
 }
 
+.download {
+  background-color: #fff;
+}
+
 .contents {
   display: flex;
-  gap: 6rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: rem(40);
   width: 100%;
-  max-width: 120rem;
-  margin-top: 5rem;
-  font-size: rem(18);
+  max-width: rem(1400);
+  margin-top: rem(50);
+  font-size: rem(20);
   font-weight: 400;
   line-height: 180%;
   color: var(--color-gray);
+
+  @include mq_l {
+    flex-wrap: wrap;
+    max-width: var(--l-max-width);
+  }
 
   @include mq_t {
     flex-direction: column;
@@ -112,13 +125,17 @@
   .desc {
     flex-basis: 50%;
     word-break: keep-all;
+
+    @include mq_l {
+      flex-basis: 100%;
+    }
   }
 
   .links {
     display: flex;
     align-items: center;
     gap: 3rem;
-    margin-top: 1.8rem;
+    margin-top: rem(18);
 
     @include mq_t {
       flex-direction: column;
@@ -147,7 +164,7 @@
   bottom: rem(40);
   left: $commonPadding;
   width: 100vw;
-  max-width: 256rem;
+  max-width: rem(2560);
   margin: 0 auto;
 
   @include mq_t {

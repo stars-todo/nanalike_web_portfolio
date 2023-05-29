@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import * as styles from './Blog.module.scss';
 import ArticleTitle from '@components/ArticleTitle/ArticleTitle';
@@ -7,7 +7,6 @@ import Alphabet from '@components/Alphabet/Alphabet';
 import {
   Variants,
   motion,
-  useMotionValue,
   useMotionValueEvent,
   useScroll,
   useTransform
@@ -241,11 +240,33 @@ const tempPost = [
 
 const Blog = () => {
   const blogRef = useRef<HTMLDivElement>(null);
+  const postRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress, scrollY } = useScroll({
     target: blogRef,
     offset: ['0', '1']
   });
+
+  function mapRange(
+    value: any,
+    inputMin: any,
+    inputMax: any,
+    outputMin: any,
+    outputMax: any
+  ) {
+    return (
+      ((value - inputMin) / (inputMax - inputMin)) * (outputMax - outputMin) + outputMin
+    );
+  }
+
+  const isLaptop = () => {
+    const viewportWidth = window.innerWidth;
+    if (viewportWidth <= 1300) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   const [isScrolling, setIsScrolling] = useState(false);
   const [isScrollOver, setIsScrollOver] = useState(false);
@@ -255,29 +276,38 @@ const Blog = () => {
     const refHeight = refRect?.height || 0;
     const refTop = refRect?.top || 0;
     const viewportHeight = window.innerHeight;
-    // const mappedValue = lerp(0, 1, (sectionTopOffset - minValue) / (maxValue - minValue));
+    const viewportWidth = window.innerWidth;
 
     const max = refHeight + (retOffset - viewportHeight);
-    // console.log('비율', ((value - refHeight) / (max - refHeight)) * 1);
 
-    function mapRange(
-      value: any,
-      inputMin: any,
-      inputMax: any,
-      outputMin: any,
-      outputMax: any
-    ) {
-      return (
-        ((value - inputMin) / (inputMax - inputMin)) * (outputMax - outputMin) + outputMin
-      );
-    }
-
-    const mappedValue = mapRange(value, retOffset, max, -60, 0);
+    const min = viewportWidth <= 1300 ? -100 : -60;
+    const mappedValue = mapRange(value, retOffset, max, min, 0);
 
     if (isScrolling) {
       return `${mappedValue}%`;
     } else if (refTop > 0) {
-      return '-60%';
+      return viewportWidth <= 1300 ? '-100%' : '-60%';
+    } else if (refTop < 0) {
+      return '0%';
+    }
+  });
+  const progress_y = useTransform(scrollY, (value) => {
+    const refRect = blogRef.current?.getBoundingClientRect();
+    const retOffset = blogRef?.current?.offsetTop || 0;
+    const refHeight = refRect?.height || 0;
+    const refTop = refRect?.top || 0;
+    const viewportHeight = window.innerHeight;
+    const viewportWidth = window.innerWidth;
+
+    const max = refHeight + (retOffset - viewportHeight);
+
+    const min = viewportWidth <= 1300 ? -100 : -60;
+    const mappedValue = mapRange(value, retOffset, max, min, 0);
+
+    if (isScrolling) {
+      return `${mappedValue}%`;
+    } else if (refTop > 0) {
+      return viewportWidth <= 1300 ? '-100%' : '-60%';
     } else if (refTop < 0) {
       return '0%';
     }
@@ -289,11 +319,19 @@ const Blog = () => {
     const refHeight = refRect?.height || 0;
     const viewportHeight = window.innerHeight;
 
+    const min = isLaptop() ? retOffset + (postRef.current?.offsetHeight || 0) : retOffset;
+
     const max = refHeight + (retOffset - viewportHeight);
     if (latest >= retOffset && latest <= max) {
       setIsScrolling(true);
     } else {
       setIsScrolling(false);
+    }
+
+    if (refRect && refRect?.top <= 0) {
+      setIsScrollOver(true);
+    } else {
+      setIsScrollOver(false);
     }
   });
   function fadeInUp(y = 30, x = 0, duration = 0.7) {
@@ -333,7 +371,7 @@ const Blog = () => {
 
   return (
     <motion.article
-      className={c('blog', { isScrolling })}
+      className={c('blog', { isScrollOver, isScrolling })}
       ref={blogRef}
       initial="hidden"
       whileInView="visible"
@@ -342,26 +380,27 @@ const Blog = () => {
       <div className={c('inner')}>
         <div className={c('info')}>
           <motion.div variants={fadeInUp()} className={c('info_inner')}>
-            <ArticleTitle className={c('title')}>Blog</ArticleTitle>
-            <TextBig>articles you may like</TextBig>
-            <div className={c('desc')}>
-              {isScrollOver && <h1>IsScrollOver</h1>}
-              <p>
+            <div>
+              <ArticleTitle className={c('title')}>Blog</ArticleTitle>
+              <TextBig>articles you may like</TextBig>
+            </div>
+            <div>
+              <p className={c('desc')}>
                 쉽고, 재밌고, 특별함을 담아 글쓰는 걸 좋아해요.&nbsp;
                 <br />
                 새로 배운 지식부터 공유하고 싶은 경험까지 글로 차곡차곡 담았습니다.&nbsp;
                 <br />
                 지금까지 110만 명 이상이 블로그에 방문해서 글을 읽었어요.
               </p>
+              <motion.div variants={animation.link}>
+                <CustomLink className={c('link_blog')} href="https://nykim.work">
+                  블로그 바로가기
+                </CustomLink>
+              </motion.div>
             </div>
-            <motion.div variants={animation.link}>
-              <CustomLink className={c('link_blog')} href="https://nykim.work">
-                블로그 바로가기
-              </CustomLink>
-            </motion.div>
           </motion.div>
         </div>
-        <div className={c('post')}>
+        <div className={c('post')} ref={postRef}>
           <div className={c('post_inner')}>
             {tempPost.map((post, idx) => (
               <PostItem
@@ -385,7 +424,16 @@ const Blog = () => {
           // Apply other animations or styles based on the progress value
         }}
       ></motion.div>
-      <Alphabet type="k" />
+      <motion.div
+        className={c('background_y')}
+        // initial={{ opacity: 0 }}
+        // whileInView={{ opacity: 1 }}
+        style={{
+          y: progress_y
+          // Apply other animations or styles based on the progress value
+        }}
+      ></motion.div>
+      <Alphabet type="k" className={c('k')} />
     </motion.article>
   );
 };

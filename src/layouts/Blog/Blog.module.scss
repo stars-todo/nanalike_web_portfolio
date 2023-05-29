@@ -16,10 +16,8 @@
     max-width: var(--d-max-width);
     margin: 0 auto;
 
-    @include mq_t {
+    @include mq_l {
       flex-direction: column;
-      height: auto;
-      padding-left: 0;
     }
   }
 }
@@ -36,6 +34,17 @@
   max-height: 100vh;
   min-height: rem(960);
   padding-left: $commonPadding;
+  background-color: var(--color-beige-light);
+
+  @include mq_l {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    margin: 0 auto;
+    padding: calc(vh(30) + vw(65) + rem(100)) $commonPadding
+      calc(vh(30) + vw(65) + rem(50));
+  }
 
   // @include mq_t {
   //   width: 100%;
@@ -48,6 +57,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+
+    @include mq_l {
+      width: 100%;
+      max-width: var(--l-max-width); //TODO: 공통화?
+    }
   }
 
   .text_big {
@@ -68,13 +82,16 @@
         height: 100%;
         margin-right: auto;
       }
+
+      @include mq_l {
+        height: rem(78);
+      }
     }
   }
 
   .desc {
     display: inline-block;
-    margin-top: rem(90);
-    margin-bottom: rem(36);
+    margin: rem(90) 0 rem(36);
     color: var(--color-gray-dark);
     font-size: rem(22);
     font-weight: 300;
@@ -82,56 +99,52 @@
     word-break: keep-all;
     padding-right: $commonPadding;
 
-    @include mq_ls {
+    @include mq_t {
       br {
         display: none;
       }
     }
 
-    @include mq_t {
-      margin-top: clamp(rem(36), break(40, vw, $mobile), rem(40));
-      margin-bottom: clamp(rem(24), break(32, vw, $mobile), rem(32));
-      font-size: clamp(rem(16), break(18, vw, $tablet), rem(18));
-      padding-right: 0;
+    // @include mq_ls {
+    //   margin-top: rem(68);
 
-      br {
-        display: block;
-      }
-    }
-  }
+    //   br {
+    //     display: none;
+    //   }
+    // }
 
-  .link_blog {
-    font-size: clamp(rem(17), break(20), rem(20));
+    // @include mq_t {
+    //   margin-top: clamp(rem(36), break(40, vw, $mobile), rem(40));
+    //   margin-bottom: clamp(rem(24), break(32, vw, $mobile), rem(32));
+    //   font-size: clamp(rem(16), break(18, vw, $tablet), rem(18));
+    //   padding-right: 0;
 
-    @include mq_t {
-      font-size: clamp(rem(16), break(18, vw, $tablet), rem(18));
-    }
+    //   br {
+    //     display: block;
+    //   }
+    // }
   }
 }
 
 .post {
-  // width: 100%;
-  // min-width: 0;
-
-  // flex: 1;
-  width: 60%;
   overflow-x: hidden;
-  // height: 100vh; /* Adjust the height as needed */
-  // overflow-y: auto;
-  padding-top: vh(140);
-  padding-bottom: vh(110);
+  width: 60%;
+  padding: calc(vh(30) + vw(65) + rem(50)) 0;
+
+  @include mq_l {
+    width: 100%;
+    padding-left: $commonPadding;
+    padding-right: $commonPadding;
+  }
 
   .post_inner {
     width: 100%;
-    padding-top: vh(160);
     padding: 0 calc($commonPadding + 1.5vw);
 
     @include mq_l {
-      padding: 0 $commonPadding;
-    }
-
-    @include mq_t {
-      padding-top: clamp(rem(80), break(100, vw, $tablet), rem(100));
+      max-width: var(--l-max-width);
+      margin: 0 auto;
+      padding: 0;
     }
   }
 }
@@ -140,51 +153,39 @@
   .link {
     display: flex;
     align-items: center;
-    gap: clamp(rem(20), break(30), rem(30));
+    gap: rem(30);
 
-    @include mq_ls {
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      gap: rem(32);
-    }
+    // @include mq_ls {
+    //   flex-direction: column;
+    //   align-items: flex-start;
+    //   justify-content: flex-start;
+    //   gap: rem(32);
+    // }
 
-    @include mq_t {
-      flex-direction: row;
-      align-items: center;
-    }
+    // @include mq_t {
+    //   flex-direction: row;
+    //   align-items: center;
+    // }
 
-    @include mq_m {
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      gap: rem(12);
-    }
+    // @include mq_m {
+    //   flex-direction: column;
+    //   align-items: flex-start;
+    //   justify-content: flex-start;
+    //   gap: rem(12);
+    // }
   }
 
   .thumbnail {
     flex-shrink: 0;
-    width: clamp(rem(180), break(340), rem(340));
-    height: clamp(rem(160), break(220), rem(220));
-    border-radius: 2rem;
-    border: 1px solid var(--color-gray-light);
+    width: rem(340);
+    height: auto;
+    aspect-ratio: 34 / 22;
     object-fit: cover;
+    border-radius: rem(20);
+    border: 1px solid var(--color-gray-light);
 
-    @include mq_ls {
-      width: 100%;
-      height: vw(240, 1100);
-      min-height: rem(180);
-    }
-
-    @include mq_t {
-      width: clamp(rem(250), break(340, vw, $tablet), rem(340));
-      height: clamp(rem(161), break(220, vw, $tablet), rem(220));
-    }
-
-    @include mq_m {
-      width: 100%;
-      height: vw(220, 390);
-      min-height: rem(180);
+    @include mq_l {
+      width: rem(360);
     }
   }
 
@@ -201,55 +202,55 @@
     line-height: 140%;
     color: var(--color-gray-light);
 
-    @include mq_t {
-      font-size: clamp(rem(15), break(16, vw, $tablet), rem(16));
-    }
+    // @include mq_t {
+    //   font-size: clamp(rem(15), break(16, vw, $tablet), rem(16));
+    // }
 
-    @include mq_m {
-      font-size: clamp(rem(14), break(16, vw, $mobile), rem(16));
-      order: 1;
-    }
+    // @include mq_m {
+    //   font-size: clamp(rem(14), break(16, vw, $mobile), rem(16));
+    //   order: 1;
+    // }
   }
 
   .title {
     @include ellipsis();
     margin: rem(4) 0 rem(20);
-    font-size: clamp(rem(20), break(26, vw, $laptop2), rem(26));
+    font-size: rem(26);
     font-weight: 400;
     line-height: 180%;
 
-    @include mq_ls {
-      margin: rem(2) 0 0;
-    }
+    // @include mq_ls {
+    //   margin: rem(2) 0 0;
+    // }
 
-    @include mq_t {
-      margin: rem(3) 0 clamp(rem(14), break(18, vw, $tablet), rem(18));
-    }
+    // @include mq_t {
+    //   margin: rem(3) 0 clamp(rem(14), break(18, vw, $tablet), rem(18));
+    // }
 
-    @include mq_m {
-      margin: 0;
-    }
+    // @include mq_m {
+    //   margin: 0;
+    // }
   }
 
   .desc {
     @include ellipsis(3);
-    font-size: rem(16);
-    font-weight: 400;
+    font-size: rem(18);
+    font-weight: 300;
     line-height: 180%;
     color: var(--color-gray-dark);
 
-    @include mq_ls {
-      display: none;
-    }
+    // @include mq_ls {
+    //   display: none;
+    // }
 
-    @include mq_t {
-      @include ellipsis(3);
-      font-size: rem(15);
-    }
+    // @include mq_t {
+    //   @include ellipsis(3);
+    //   font-size: rem(15);
+    // }
 
-    @include mq_m {
-      display: none;
-    }
+    // @include mq_m {
+    //   display: none;
+    // }
   }
 
   .post_line {
@@ -259,30 +260,30 @@
     background-color: var(--color-gray-dim);
 
     @include mq_l {
-      margin: clamp(rem(44), break(50), rem(50)) 0;
+      margin: rem(50) 0;
     }
 
-    @include mq_m {
-      margin: rem(26) 0;
-      background-color: transparent;
-    }
+    // @include mq_m {
+    //   margin: rem(26) 0;
+    //   background-color: transparent;
+    // }
   }
 
   &:nth-child(even) {
     .thumbnail {
       order: 1;
 
-      @include mq_ls {
-        order: 0;
-      }
+      // @include mq_ls {
+      //   order: 0;
+      // }
 
-      @include mq_t {
-        order: 1;
-      }
+      // @include mq_t {
+      //   order: 1;
+      // }
 
-      @include mq_m {
-        order: 0;
-      }
+      // @include mq_m {
+      //   order: 0;
+      // }
     }
   }
 
@@ -292,8 +293,8 @@
     }
   }
 
-  &:nth-child(n + 6) {
-    @include mq_t {
+  &:nth-child(n + 8) {
+    @include mq_l {
       display: none;
     }
   }
@@ -307,10 +308,35 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(248, 243, 237, 0.6);
+  // background-color: rgba(248, 243, 237, 0.6);
+  background-color: var(--color-beige-light);
   pointer-events: none;
+  transform: translateX(-60%) translateZ(0);
+  visibility: hidden;
+
+  @include mq_l {
+    display: none;
+    transform: translateX(0) translateY(-100%) translateZ(0);
+  }
 }
 
-.isScrolling .background {
-  position: fixed;
+.background_y {
+  @extend .background;
+  transform: none;
+  // background: purple;
+
+  @include mq_l {
+    display: block;
+  }
+}
+
+.isScrolling,
+.isScrollOver {
+  .background {
+    visibility: visible;
+  }
+}
+
+.k {
+  display: none;
 }
