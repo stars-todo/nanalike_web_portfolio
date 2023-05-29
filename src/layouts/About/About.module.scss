@@ -9,38 +9,92 @@ $_height: rem(1200);
   justify-content: center;
   width: 100%;
   max-width: var(--d-max-width); //TODO: 공통화?
-  // height: 100vh;
-  // min-height: rem(960); //TODO: 공통화?
+  min-height: rem(1080); //TODO: 공통화?
   margin: 0 auto;
   padding: 0 $commonPadding;
   background-color: var(--color-beige-light);
 
-  // padding-top: vh(180);
-  // padding-bottom: vh(150);
-  height: 1080px;
-
   @include mq_l {
     flex-direction: column;
-    gap: vh(60);
-    height: auto;
+    margin-top: calc(vh(30) + vw(60) + rem(80));
+    padding-bottom: calc(vh(30) + vw(60) + rem(80));
+    gap: rem(80);
   }
 
   @include mq_m {
-    padding-top: vh(140);
-    padding-bottom: vh(110);
   }
 }
 
 .visual {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-top: vw(66);
-  padding-right: vw(93);
-  min-width: 0;
+  $_mq_l_width: 50%;
+  $_mq_l_max_width: rem(560);
+  $_mq_l_min_width: rem(460);
+  position: relative;
+  margin-top: rem(60);
 
   @include mq_l {
-    padding-right: 0;
+    margin-top: 0;
+    width: 100%;
+  }
+
+  .text_big {
+    z-index: 1;
+    position: absolute;
+    bottom: calc(100% - rem(85));
+    left: rem(100);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: rem(10);
+    width: 100%;
+
+    @include mq_l {
+      width: $_mq_l_width;
+      max-width: $_mq_l_max_width;
+      min-width: $_mq_l_min_width;
+      left: calc(50% + rem(100));
+      transform: translate3d(-50%, 0, 0);
+    }
+
+    // @include mq_t {
+    //   left: 0;
+    //   position: relative;
+    //   flex-direction: row;
+    //   justify-content: center;
+    //   gap: vw(33);
+    //   margin-top: rem(20);
+    // }
+
+    // @include mq_m {
+    //   gap: rem(12);
+    // }
+
+    .text_big_svg {
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      height: rem(80);
+
+      svg {
+        height: 100%;
+      }
+
+      &.svg_1 {
+        width: 70%;
+
+        @include mq_l {
+          width: 56%;
+        }
+      }
+
+      &.svg_2 {
+        width: 34%;
+
+        @include mq_l {
+          width: 29%;
+        }
+      }
+    }
   }
 
   .profile {
@@ -48,152 +102,80 @@ $_height: rem(1200);
     display: flex;
     align-items: center;
     flex-direction: column;
-    // gap: rem(20);
+    gap: rem(20);
 
-    // @include mq_l {
-    //   gap: vw(50);
-    // }
-
-    // @include mq_t {
-    //   order: 2;
-    //   gap: rem(22);
-    // }
-
-    // @include mq_m {
-    //   width: 100%;
-    //   gap: rem(20);
-    // }
+    @include mq_l {
+      gap: rem(15);
+    }
 
     .photo {
-      object-fit: cover;
       overflow: hidden;
-      width: clamp(rem(420), break(460, vw, $desktop), rem(460));
-      height: clamp(rem(400), break(460, vw, $desktop), rem(460));
-      border-radius: 4rem;
+      width: rem(460);
+      aspect-ratio: 46 / 46;
+      object-fit: cover;
       background-color: #fff;
-      border: 1px solid var(--color-gray-dark);
       margin-bottom: rem(20);
+      border: 1px solid var(--color-gray-dark);
+      border-radius: 4rem;
 
       @include mq_l {
-        width: clamp(rem(400), break(420), rem(420));
-        height: clamp(rem(382), break(400), break(400));
+        max-width: auto;
+        width: $_mq_l_width;
+        max-width: $_mq_l_max_width;
+        min-width: $_mq_l_min_width;
       }
 
-      @include mq_t {
-        order: -1;
-        width: clamp(rem(360), break(400), rem(400));
-        height: clamp(rem(344), break(400), break(400));
-      }
+      // @include mq_t {
+      //   order: -1;
+      //   width: clamp(rem(360), break(400), rem(400));
+      //   height: clamp(rem(344), break(400), break(400));
+      // }
 
-      @include mq_m {
-        width: 62.5%;
-        min-width: rem(214);
-        height: auto;
-        border-radius: rem(20);
-      }
+      // @include mq_m {
+      //   width: 62.5%;
+      //   min-width: rem(214);
+      //   height: auto;
+      //   border-radius: rem(20);
+      // }
     }
 
     .download {
       background-color: var(--color-beige-light);
     }
   }
-
-  .text_big {
-    z-index: 1;
-    position: absolute;
-    bottom: calc(100% - rem(70));
-    left: clamp(rem(90), break(100, vw, $desktop), rem(100));
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-end;
-    // gap: break(38, vh, $desktop);
-    gap: rem(10);
-    width: 100%;
-
-    @include mq_l {
-      right: rem(-94);
-    }
-
-    @include mq_t {
-      left: 0;
-      position: relative;
-      flex-direction: row;
-      justify-content: center;
-      gap: vw(33);
-      margin-top: rem(20);
-    }
-
-    @include mq_m {
-      gap: rem(12);
-    }
-
-    .text_big_svg {
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-
-      svg {
-        height: 100%;
-      }
-    }
-
-    .svg_1 {
-      width: 305px;
-      height: 80px;
-    }
-
-    .svg_2 {
-      // height: clamp(rem(40), break(57, vw, $desktop), rem(57));
-      width: 155px;
-      height: 80px;
-
-      // @include mq_l {
-      //   height: clamp(rem(54), break(57), rem(57));
-      // }
-
-      // @include mq_t {
-      //   height: clamp(rem(40), break(70), rem(70));
-      // }
-
-      // @include mq_m {
-      //   height: rem(32);
-      // }
-    }
-  }
 }
 
 .text {
-  width: calc(100% - 45%);
-  max-width: 73rem;
-  margin-left: clamp(rem(50), break(82), rem(82));
+  max-width: rem(730);
+  margin-left: rem(174);
 
   @include mq_l {
     width: 100%;
-    max-width: clamp(var(--m-min-width), 90%, rem(1000));
-    margin: 0 auto;
-
-    br {
-      // display: none;
-    }
+    max-width: rem(900);
+    margin-left: 0;
   }
 
   @include mq_t {
     max-width: 100%;
+
+    br {
+      display: none;
+    }
   }
 
   .title {
-    font-size: clamp(rem(16), break(20), rem(20));
+    font-size: rem(20);
 
     .nana {
-      margin-left: 0.6rem;
-      height: clamp(rem(12), break(14), rem(14));
+      margin-left: rem(6);
+      height: rem(14);
     }
   }
 
   .desc {
-    margin: 2.6rem auto 3.6rem;
+    margin: rem(26) auto rem(36);
     color: var(--color-gray-dark);
-    font-size: clamp(rem(18), break(20, vw, $desktop), rem(20));
+    font-size: rem(20);
     font-weight: 400;
     line-height: 190%;
     word-break: keep-all;
@@ -202,15 +184,15 @@ $_height: rem(1200);
       overflow: hidden;
     }
 
-    @include mq_l {
-      margin-top: clamp(rem(22), break(26), rem(26));
-      margin-bottom: clamp(rem(30), break(36), rem(36));
-      font-size: clamp(rem(18), break(20), rem(20));
-    }
+    // @include mq_l {
+    //   margin-top: clamp(rem(22), break(26), rem(26));
+    //   margin-bottom: clamp(rem(30), break(36), rem(36));
+    //   font-size: clamp(rem(18), break(20), rem(20));
+    // }
 
-    @include mq_t {
-      font-size: clamp(rem(16), break(18, vw, $tablet), rem(18));
-    }
+    // @include mq_t {
+    //   font-size: clamp(rem(16), break(18, vw, $tablet), rem(18));
+    // }
 
     p:not(:first-child) {
       margin-top: rem(20);
@@ -228,17 +210,17 @@ $_height: rem(1200);
     letter-spacing: 0;
   }
 
-  .link {
-    font-size: clamp(rem(16), break(20, vw, $desktop), rem(20));
+  // .link {
+  //   font-size: clamp(rem(16), break(20, vw, $desktop), rem(20));
 
-    @include mq_l {
-      font-size: clamp(rem(18), break(20), rem(20));
-    }
+  //   @include mq_l {
+  //     font-size: clamp(rem(18), break(20), rem(20));
+  //   }
 
-    @include mq_t {
-      font-size: clamp(rem(16), break(18, vw, $tablet), rem(18));
-    }
-  }
+  //   @include mq_t {
+  //     font-size: clamp(rem(16), break(18, vw, $tablet), rem(18));
+  //   }
+  // }
 }
 
 .bg {

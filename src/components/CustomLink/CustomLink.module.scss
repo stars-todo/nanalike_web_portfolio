@@ -4,12 +4,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4em;
+  gap: 0.5em;
   font-weight: 400;
   color: var(--color-black);
 
   .icon {
-    width: 0.9em;
+    // width: 1em;
+    width: rem(18);
   }
 
   span {

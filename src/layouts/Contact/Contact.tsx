@@ -155,7 +155,7 @@ const Contact = () => {
       className={c('contact')}
       initial="hidden"
       whileInView="visible"
-      viewport={{ amount: 0.25 }}
+      // viewport={{ amount: 0.25 }}
       variants={animation.trigger}
       ref={articleRef}
     >

@@ -12,7 +12,7 @@
   z-index: 99999;
 
   @include mq_l {
-    outline: 5px solid rgba(255, 0, 0, 0.459);
+    outline: 5px solid rgba(255, 0, 0, 0.659);
   }
 
   @include mq_t {
@@ -25,21 +25,18 @@
 }
 
 .header {
-  // z-index: var(--z-header);
-  z-index: 9999999;
+  z-index: var(--z-header);
   position: fixed;
   top: var(--d-padding-v);
   left: 0;
   width: 100%;
-  // min-width: var(--m-min-width); //TODO: 공통화?
-  font-size: clamp(rem(16), break(18), rem(18));
+  font-size: rem(18);
   color: #000;
 
   .inner {
     max-width: var(--d-max-width);
     margin: 0 auto;
-    padding: 0 var(--d-padding-h);
-    padding: 0 clamp(var(--m-padding-h), break(60), var(--d-padding-h));
+    padding: 0 $commonPadding;
   }
 }
 
@@ -47,7 +44,7 @@
   @include font-sub;
   display: flex;
   justify-content: space-between;
-  padding: clamp(rem(10), break(12), rem(12));
+  padding: rem(12);
   font-weight: 500;
 
   @include mq_m {
@@ -55,7 +52,7 @@
   }
 
   .title {
-    font-size: clamp(rem(16), break(18), rem(18));
+    font-size: rem(18);
 
     @include mq_t {
       @include screenOut;

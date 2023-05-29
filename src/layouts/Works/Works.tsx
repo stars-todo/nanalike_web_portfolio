@@ -307,7 +307,7 @@ const Works = () => {
         <ArticleTitle className={c('title')}>Work Experience</ArticleTitle>
         <TextBig>I like What I do</TextBig>
       </motion.div>
-      <Alphabet type="i" className={c('i')} />
+      {/* <Alphabet type="i" className={c('i')} /> */}
     </motion.article>
   );
 };

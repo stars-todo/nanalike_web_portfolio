@@ -2,10 +2,12 @@
 
 $max: 1920;
 $desktop: 1600;
-$laptop: 1440;
-$laptop2: 1200;
-$tablet: 980;
+$laptop: 1300;
+$tablet: 900;
 $mobile: 540;
+
+$laptop2: 1400; //DELETE
+// $tablet: 768;
 
 @mixin mq_l {
   @media (max-width: #{$laptop}px) {

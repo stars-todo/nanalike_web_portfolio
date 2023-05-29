@@ -1,13 +1,5 @@
-import React, { useLayoutEffect, useRef } from 'react';
-import {
-  MotionValue,
-  Variants,
-  motion,
-  useMotionValue,
-  useScroll,
-  useTransform
-} from 'framer-motion';
-import { cubicBezier } from 'framer-motion';
+import React, { useRef } from 'react';
+import { Variants, motion, useScroll } from 'framer-motion';
 import classNames from 'classnames/bind';
 import * as styles from './About.module.scss';
 import CustomButton from '@components/CustomButton/CustomButton';
@@ -15,20 +7,7 @@ import NanaText from '@components/Logo/NanaText';
 import CustomLink from '@components/CustomLink/CustomLink';
 import Alphabet from '@components/Alphabet/Alphabet';
 import ArticleTitle from '@components/ArticleTitle/ArticleTitle';
-import TicketImg from './ticket.png';
 const c = classNames.bind(styles);
-
-const Ticket = () => {
-  return (
-    <article className={c('ticket')}>
-      <div data-animate="ticket" className={c('ticket_img')}>
-        {/* <img src={TicketImg} alt="" /> */}
-        <span>May 25, 2023</span>
-        <p>May 25, 2023</p>
-      </div>
-    </article>
-  );
-};
 
 const Backgrounds = () => {
   return (
@@ -179,7 +158,7 @@ const About = () => {
       visible: {
         opacity: 1,
         transition: {
-          delay: 0.4,
+          delay: 0.2,
           when: 'beforeChildren',
           staggerChildren: 0.12
         }
@@ -209,65 +188,59 @@ const About = () => {
   });
 
   return (
-    <>
-      <motion.article
-        className={c('about')}
-        variants={animation.trigger}
+    <article className={c('about')} ref={aboutRef}>
+      <motion.div className={c('visual')} initial="hidden" whileInView="visible">
+        <TextBig>I do what i like</TextBig>
+        <div className={c('profile')}>
+          <motion.img
+            className={c('photo')}
+            variants={fadeInUp()}
+            src="https://source.unsplash.com/random/?europe/460/440"
+            alt="프로필 사진"
+          />
+          <motion.div className="center" variants={fadeInUp(40)}>
+            <CustomButton className={c('download')} icon="download">
+              이력서 다운로드
+            </CustomButton>
+          </motion.div>
+        </div>
+      </motion.div>
+      <motion.div
+        className={c('text')}
         initial="hidden"
         whileInView="visible"
-        ref={aboutRef}
+        variants={animation.desc}
       >
-        <div className={c('visual')}>
-          <div className={c('profile')}>
-            <TextBig>I do what i like</TextBig>
-            <motion.div>
-              <motion.img
-                className={c('photo')}
-                variants={fadeInUp()}
-                src="https://source.unsplash.com/random/?europe/460/440"
-                alt="프로필 사진"
-              />
-              <motion.div className="center" variants={fadeInUp(40)}>
-                <CustomButton className={c('download')} icon="download">
-                  이력서 다운로드
-                </CustomButton>
-              </motion.div>
-            </motion.div>
-          </div>
+        <ArticleTitle className={c('title')}>
+          About
+          <NanaText className={c('nana')} />
+        </ArticleTitle>
+        <div className={c('desc')}>
+          <motion.p variants={fadeInUp()}>
+            안녕하세요! 웹 퍼블리셔 김나영입니다.
+            <span className={c('aka')}>a.k.a, Nana</span>&nbsp;
+            <br />
+            저는 다양한 회사와 도메인에서 일을 해왔으며, 프리랜서로 프로젝트를 수행한
+            경험이 있습니다.
+          </motion.p>
+          <motion.p variants={fadeInUp()}>
+            웹 퍼블리싱을 빠삭하게 이해하며 잘 다룹니다. React/TypeScript 등 프레임워크
+            환경에서 컴포넌트 단위의 마크업 작업이 가능합니다. 어디에서도 잘 보이는
+            반응형, 검색엔진에 맞춘 SEO, 크로스 브라우징과 웹 접근성을 고려한 퍼블리싱
+            산출물을 만들어냅니다.
+          </motion.p>
+          <motion.p variants={fadeInUp()}>
+            담당하는 프로젝트의 목적을 우선적으로 고려하며, 원활한 협업을 가장 중요하게
+            생각해요. 다양한 직군과 함께 멋지고 즐거운 UX를 만드는 데 관심이 많습니다.
+          </motion.p>
         </div>
-        <motion.div className={c('text')} variants={animation.desc}>
-          <ArticleTitle className={c('title')}>
-            About
-            <NanaText className={c('nana')} />
-          </ArticleTitle>
-          <div className={c('desc')}>
-            <motion.p variants={fadeInUp()}>
-              안녕하세요! 웹 퍼블리셔 김나영입니다.
-              <span className={c('aka')}>a.k.a, Nana</span>&nbsp;
-              <br />
-              저는 다양한 회사와 도메인에서 일을 해왔으며, 프리랜서로 프로젝트를 수행한
-              경험이 있습니다.
-            </motion.p>
-            <motion.p variants={fadeInUp()}>
-              웹 퍼블리싱을 빠삭하게 이해하며 잘 다룹니다. React/TypeScript 등 프레임워크
-              환경에서 컴포넌트 단위의 마크업 작업이 가능합니다. 어디에서도 잘 보이는
-              반응형, 검색엔진에 맞춘 SEO, 크로스 브라우징과 웹 접근성을 고려한 퍼블리싱
-              산출물을 만들어냅니다.
-            </motion.p>
-            <motion.p variants={fadeInUp()}>
-              담당하는 프로젝트의 목적을 우선적으로 고려하며, 원활한 협업을 가장 중요하게
-              생각해요. 다양한 직군과 함께 멋지고 즐거운 UX를 만드는 데 관심이 많습니다.
-            </motion.p>
-          </div>
-          <motion.div variants={animation.link}>
-            <CustomLink className={c('link')} href="https://nykim.net/about">
-              자기소개 더보기
-            </CustomLink>
-          </motion.div>
+        <motion.div variants={animation.link}>
+          <CustomLink className={c('link')} href="https://nykim.net/about">
+            자기소개 더보기
+          </CustomLink>
         </motion.div>
-      </motion.article>
-      {/* <motion.em style={{ opacity: scrollYProgress }}>HELLO</motion.em> */}
-    </>
+      </motion.div>
+    </article>
   );
 };
 
