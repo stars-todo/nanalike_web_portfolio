@@ -72,7 +72,7 @@ const TextBig = ({ children }: { children: string }) => {
   };
   const svg = {
     hidden: {
-      y: !isDesktop ? 200 : 300,
+      y: 220,
       skewY: 10,
       transition: {
         type: 'spring',
@@ -250,7 +250,7 @@ const Works = () => {
     const refRect = articleRef.current?.getBoundingClientRect();
     const retOffset = articleRef?.current?.offsetTop || 0;
     const refHeight = refRect?.height || 0;
-    const viewportHeight = window.innerHeight;
+    const viewportHeight = typeof window !== `undefined` ? window.innerHeight : 0;
 
     if (latest >= viewportHeight && latest <= retOffset + refHeight) {
       setIsScrolling(true);

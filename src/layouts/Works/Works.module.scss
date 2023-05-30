@@ -50,7 +50,7 @@
     $left: -214, 370, -378, 288;
     @each $value in $left {
       $i: index($left, $value);
-      &:nth-child(4n + #{$i}) {
+      &:nth-of-type(4n + #{$i}) {
         left: rem($value);
 
         @include mq_l {
@@ -62,7 +62,7 @@
     $top: 0, -80, -40, -110;
     @each $value in $top {
       $i: index($top, $value);
-      &:nth-child(4n + #{$i}) {
+      &:nth-of-type(4n + #{$i}) {
         margin-top: #{rem($value)};
 
         @include mq_l {
@@ -76,11 +76,11 @@
     .work_item {
       float: none;
 
-      &:nth-child(odd) {
+      &:nth-of-type(odd) {
         align-self: flex-start;
       }
 
-      &:nth-child(even) {
+      &:nth-of-type(even) {
         align-self: flex-end;
       }
     }
@@ -88,7 +88,7 @@
 
   @include mq_t {
     .work_item {
-      &:nth-child(odd) {
+      &:nth-of-type(odd) {
         margin-left: #{(((100vw - 600) / (900 - 600)) * (100 - 0) + 0) / -25};
 
         @include mq_m {
@@ -96,7 +96,7 @@
         }
       }
 
-      &:nth-child(even) {
+      &:nth-of-type(even) {
         margin-right: #{(((100vw - 600) / (900 - 600)) * (100 - 0) + 0) / -25};
 
         @include mq_m {
@@ -170,7 +170,7 @@
     justify-self: center;
     width: 90%;
     max-width: rem(1600);
-    height: rem(300);
+    height: rem(220);
     margin: rem(34) auto 0;
 
     @include mq_t {

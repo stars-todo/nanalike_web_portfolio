@@ -13,6 +13,7 @@
   width: 100%;
   max-width: var(--d-max-width); //TODO: 공통화?
   height: 100vh;
+  min-height: rem(1080);
   max-height: rem(1400);
   margin: 0 auto;
   padding: 0 $commonPadding;

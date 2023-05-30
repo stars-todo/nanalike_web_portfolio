@@ -25,6 +25,10 @@ $_height: rem(1200);
     margin-top: $padding_tablet;
     padding-bottom: $padding_tablet;
   }
+
+  @include mq_m {
+    margin-top: calc(vh(30) + vw(80) + rem(5));
+  }
 }
 
 .visual {

@@ -21,7 +21,6 @@ const WorkIcon = ({ work, className, isOngoing, ...props }: WorkIconProps) => {
       }}
       {...props}
     >
-      {/* <h1>{workIcons[work].icon}</h1> */}
       {isOngoing && <span className={c('onGoing')}>Ongoing</span>}
     </div>
   );

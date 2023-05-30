@@ -32,7 +32,7 @@
   flex-shrink: 0;
   width: 40%;
   max-height: 100vh;
-  min-height: rem(960);
+  min-height: rem(820);
   padding-left: $commonPadding;
   background-color: var(--color-beige);
 
@@ -206,7 +206,7 @@
 
     @include mq_m {
       margin: 0;
-      font-size: mobile(22, 26);
+      font-size: mobile(20, 26);
     }
   }
 
@@ -233,7 +233,7 @@
     }
 
     @include mq_m {
-      margin: mobile(32, 40) 0;
+      margin: mobile(28, 40) 0;
       background-color: transparent;
     }
   }
@@ -274,6 +274,7 @@
   // background-color: rgba(248, 243, 237, 0.6);
   background-color: var(--color-beige);
   pointer-events: none;
+  will-change: transform;
 
   &.x {
     transform: translateX(-60%) translateZ(0);

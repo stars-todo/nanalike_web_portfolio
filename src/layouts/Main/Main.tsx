@@ -3,6 +3,8 @@ import { MotionValue, motion, useScroll, useTransform } from 'framer-motion';
 import classNames from 'classnames/bind';
 import * as styles from './Main.module.scss';
 import NanalikeLogo from '@components/Logo/NanalikeLogo';
+import Ticket from '@components/Ticket/Ticket';
+import ticketImage from './ticket_no_border.png';
 const c = classNames.bind(styles);
 
 const Main = () => {
@@ -67,11 +69,11 @@ const Main = () => {
       <div className={c('decoration')}>
         <motion.div className={c('bg')} style={{ y: backgroundY }}></motion.div>
         <motion.div className={c('ticket')}>
-          {/* TODO: Canvas로 대체 */}
-          <div data-animate="ticket" className={c('ticket_img')}>
+          {/* <div className={c('ticket_img')}>
             <span>May 26, 2023</span>
             <p>May 26, 2023</p>
-          </div>
+          </div> */}
+          <Ticket src={ticketImage} />
         </motion.div>
       </div>
     </>

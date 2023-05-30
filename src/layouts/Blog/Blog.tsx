@@ -367,13 +367,6 @@ const Blog = () => {
   const infoRef = useRef<HTMLDivElement>(null);
   const postRef = useRef<HTMLDivElement>(null);
 
-  const [isDesktop, setIsDesktop] = useState(true);
-
-  useEffect(() => {
-    const { isDesktop } = useViewport();
-    setIsDesktop(isDesktop || false);
-  }, [window.innerWidth]);
-
   const { scrollY } = useScroll({
     target: blogRef,
     offset: ['0', '1']
@@ -392,7 +385,7 @@ const Blog = () => {
   }
 
   const isLaptop = () => {
-    const viewportWidth = window.innerWidth;
+    const viewportWidth = typeof window !== `undefined` ? window.innerWidth : 0;
     if (viewportWidth <= 1300) {
       return true;
     } else {
@@ -408,7 +401,7 @@ const Blog = () => {
     const retOffset = blogRef?.current?.offsetTop || 0;
     const refHeight = refRect?.height || 0;
     const refTop = refRect?.top || 0;
-    const viewportHeight = window.innerHeight;
+    const viewportHeight = typeof window !== `undefined` ? window.innerHeight : 0;
 
     const max = refHeight + (retOffset - viewportHeight);
     // 800 + (900 - 500)
@@ -430,7 +423,7 @@ const Blog = () => {
     const refHeight = refRect?.height || 0;
     const refTop = refRect?.top || 0;
     const marginTop = infoRef.current?.getBoundingClientRect().height || 0;
-    const viewportHeight = window.innerHeight;
+    const viewportHeight = typeof window !== `undefined` ? window.innerHeight : 0;
 
     const max = refHeight + (retOffset - viewportHeight);
     // const max = retOffset + refHeight - marginTop;
@@ -451,7 +444,7 @@ const Blog = () => {
     const refRect = blogRef.current?.getBoundingClientRect();
     const retOffset = blogRef?.current?.offsetTop || 0;
     const refHeight = refRect?.height || 0;
-    const viewportHeight = window.innerHeight;
+    const viewportHeight = typeof window !== `undefined` ? window.innerHeight : 0;
 
     const min = isLaptop() ? retOffset + (postRef.current?.offsetHeight || 0) : retOffset;
 
@@ -509,7 +502,7 @@ const Blog = () => {
       ref={blogRef}
       initial="hidden"
       whileInView="visible"
-      viewport={{ amount: 0.1 }}
+      // viewport={{ amount: 0.1 }}
     >
       <div className={c('inner')}>
         <div className={c('info')} ref={infoRef}>
@@ -540,21 +533,14 @@ const Blog = () => {
       </div>
       <motion.div
         className={c('background', 'x')}
-        // initial={{ opacity: 0 }}
-        // whileInView={{ opacity: 1 }}
         style={{
           x: progress
-          // Apply other animations or styles based on the progress value
         }}
       ></motion.div>
       <motion.div
         className={c('background', 'y')}
-        // initial={{ opacity: 0 }}
-        // whileInView={{ opacity: 1 }}
         style={{
-          // top: !isScrolling ? infoRef.current?.getBoundingClientRect().height : 0,
           y: progress_y
-          // Apply other animations or styles based on the progress value
         }}
       ></motion.div>
       <Alphabet type="k" className={c('k')} />

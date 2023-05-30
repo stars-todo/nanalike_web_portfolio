@@ -1,18 +1,22 @@
+const isBrowser = typeof window !== 'undefined';
 const useViewport = () => {
-  const w = window.innerWidth;
   let isDesktop;
   let isLaptop;
   let isTablet;
   let isMobile;
 
-  if (w >= 1600) {
-    isDesktop = true;
-  } else if (w >= 1300) {
-    isLaptop = true;
-  } else if (w >= 900) {
-    isTablet = true;
-  } else {
-    isMobile = true;
+  if (isBrowser) {
+    const w = window.innerWidth;
+
+    if (w >= 1600) {
+      isDesktop = true;
+    } else if (w >= 1300) {
+      isLaptop = true;
+    } else if (w >= 900) {
+      isTablet = true;
+    } else {
+      isMobile = true;
+    }
   }
 
   console.log('isLaptop', isLaptop);

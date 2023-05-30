@@ -28,7 +28,7 @@
   flex-wrap: nowrap;
   gap: rem(8);
   width: 100%;
-  margin-top: rem(26);
+  margin-top: rem(20);
 
   .title {
     display: flex;
@@ -46,7 +46,8 @@
       display: block;
       font-size: rem(32);
       font-weight: 700;
-      line-height: 100%;
+      line-height: 140%;
+      word-break: keep-all;
 
       @include mq_m {
         font-size: mobile(28, 32);
@@ -56,6 +57,7 @@
     .year {
       flex-shrink: 0;
       font-size: rem(18);
+      line-height: 200%;
 
       &:before {
         display: inline-block;

@@ -59,6 +59,7 @@
 
   .title {
     font-size: rem(18);
+    letter-spacing: -0.02em;
 
     @include mq_t {
       @include screenOut;
