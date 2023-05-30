@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import useBlogData from '@hooks/useBlogData';
 import classNames from 'classnames/bind';
 import * as styles from './Blog.module.scss';
 import ArticleTitle from '@components/ArticleTitle/ArticleTitle';
@@ -11,6 +12,7 @@ import {
   useScroll,
   useTransform
 } from 'framer-motion';
+import Skeleton from '@components/Skeleton/Skeleton';
 const c = classNames.bind(styles);
 
 const TextBig = ({ varaints, children }: { varaints?: Variants; children: string }) => {
@@ -148,15 +150,25 @@ const TextBig = ({ varaints, children }: { varaints?: Variants; children: string
   );
 };
 
-const PostItem = ({ url, src, title, date, desc }: any) => {
+const PostItem = ({ isLoading, className, url, src, title, date, desc }: any) => {
   return (
-    <div className={c('post_item')}>
+    <div className={c('post_item', className)}>
       <a href={url} className={c('link')} target="_blank" rel="noopener noreferrer">
-        <img className={c('thumbnail')} src={src} alt="" onError={() => {}} />
+        {isLoading ? (
+          <Skeleton className={c('thumbnail_mock')} width="100%" height="220" />
+        ) : (
+          <img className={c('thumbnail')} src={src} alt="" onError={() => {}} />
+        )}
         <div className={c('text')}>
-          <span className={c('date')}>{date}</span>
-          <strong className={c('title')}>{title}</strong>
-          <p className={c('desc')}>{desc}</p>
+          <span className={c('date')}>
+            {isLoading ? <Skeleton width="100%" height="20" /> : date}
+          </span>
+          <strong className={c('title')}>
+            {isLoading ? <Skeleton width="100%" height="30" /> : title}
+          </strong>
+          <p className={c('desc')}>
+            {isLoading ? <Skeleton width="100%" height="80" /> : desc}
+          </p>
         </div>
       </a>
       <div className={c('post_line')}></div>
@@ -237,6 +249,116 @@ const tempPost = [
     desc: '프롤로그 저는 종종 로컬에서 시작해 로컬에서 끝나는 마크업 작업(aka 이메일 템플릿)을 진행하는데요, 나중에 파일을 찾으려면 하나씩 파일을 열고 닫아야 하는 수고스러움이 있었습니다. 로컬에 흩어진 파일을 한 화면에서 볼 수 있게 정리하고 싶어! 하지만 어떻게?!!!"하고 고민하던 중... 그레잇한 개츠비를 알게 되어 찍먹해봤습니다. 결론부터 말하자면 (삽질도 많았지만) 좋은 경험이었어요!'
   }
 ];
+
+function removeTags(str: any) {
+  return str.replace(/<[^>]*>/g, '');
+}
+
+function removeTag(contents: any) {
+  const sentencesToRemove = [
+    '<div class="revenue_unit_info">반응형</div>',
+    /<figcaption[^>]*>.*?<\/figcaption>/gi,
+    /<script[^>]*>.*?<\/script>/gi,
+    /<blockquote[^>]*>.*?<\/blockquote>/gi,
+    '&nbsp;',
+    '프롤로그'
+  ];
+
+  const result = sentencesToRemove.reduce((acc, sentence) => {
+    const regex = new RegExp(sentence, 'g');
+    return acc.replace(regex, '');
+  }, contents);
+
+  const final = result
+    .replace(/<[^>]*>/g, '')
+    .replace('&lt;', '<')
+    .replace('&gt;', '>');
+
+  const regex = /data-url='([^']*)'/;
+  const match = contents.match(regex);
+  console.log(match);
+  return final;
+}
+
+function getImg(contents: any) {
+  const regex = /srcset='([^']*)'/;
+  const match = contents.match(regex);
+
+  return match ? match[1] : null;
+}
+
+function getDate(date: any) {
+  const getEnMonth = (monthNumber: number) => {
+    const Month = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
+    ];
+    return Month[monthNumber];
+  };
+
+  const pubDate = new Date(date);
+  const dateString = `${getEnMonth(
+    pubDate.getMonth()
+  )} ${pubDate.getDate()}, ${pubDate.getFullYear()}`;
+  return dateString;
+}
+
+const Post = () => {
+  const { data, loading } = useBlogData();
+  const getParser = (desc: any) => {
+    return new DOMParser().parseFromString(desc, 'text/html');
+  };
+
+  return (
+    <>
+      <div className={c('post_inner')}>
+        <div>
+          {data ? (
+            <>
+              {data.map((item) => (
+                <PostItem
+                  key={item.title[0]}
+                  url={item.link[0]}
+                  src={getImg(item.description[0])}
+                  title={item.title[0]}
+                  date={getDate(item.pubDate[0])}
+                  desc={removeTag(item.description[0])}
+                />
+              ))}
+            </>
+          ) : (
+            <>
+              {Array.from({ length: 10 }, (_, index) => {
+                return <PostItem isLoading key={`${index}`} />;
+              })}
+            </>
+          )}
+        </div>
+        {/* {tempPost.map((post, idx) => (
+          <PostItem
+            key={`${idx}`}
+            url={post?.url}
+            src={post?.src}
+            title={post?.title}
+            date={post?.date}
+            desc={post?.desc}
+          />
+        ))} */}
+        {/* {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>Loading data...</p>} */}
+      </div>
+    </>
+  );
+};
 
 const Blog = () => {
   const blogRef = useRef<HTMLDivElement>(null);
@@ -401,18 +523,7 @@ const Blog = () => {
           </motion.div>
         </div>
         <div className={c('post')} ref={postRef}>
-          <div className={c('post_inner')}>
-            {tempPost.map((post, idx) => (
-              <PostItem
-                key={`${idx}`}
-                url={post?.url}
-                src={post?.src}
-                title={post?.title}
-                date={post?.date}
-                desc={post?.desc}
-              />
-            ))}
-          </div>
+          <Post />
         </div>
       </div>
       <motion.div

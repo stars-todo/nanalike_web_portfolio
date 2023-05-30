@@ -95,8 +95,8 @@
     display: inline-block;
     margin: rem(90) 0 rem(36);
     color: var(--color-gray-dark);
-    font-size: rem(22);
-    font-weight: 300;
+    font-size: rem(20);
+    font-weight: 400;
     line-height: 180%;
     word-break: keep-all;
     padding-right: $commonPadding;
@@ -112,7 +112,6 @@
 
     @include mq_m {
       font-size: mobile(20, 22);
-      font-weight: 400;
     }
   }
 }
@@ -252,6 +251,7 @@
   }
 
   &:nth-child(even) {
+    .thumbnail_mock,
     .thumbnail {
       order: 1;
 
