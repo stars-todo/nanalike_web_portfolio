@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import useBlogData from '@hooks/useBlogData';
 import classNames from 'classnames/bind';
 import * as styles from './Blog.module.scss';
@@ -8,11 +8,13 @@ import Alphabet from '@components/Alphabet/Alphabet';
 import {
   Variants,
   motion,
+  useMotionValue,
   useMotionValueEvent,
   useScroll,
   useTransform
 } from 'framer-motion';
 import Skeleton from '@components/Skeleton/Skeleton';
+import useViewport from '@hooks/useViewport';
 const c = classNames.bind(styles);
 
 const TextBig = ({ varaints, children }: { varaints?: Variants; children: string }) => {
@@ -362,9 +364,17 @@ const Post = () => {
 
 const Blog = () => {
   const blogRef = useRef<HTMLDivElement>(null);
+  const infoRef = useRef<HTMLDivElement>(null);
   const postRef = useRef<HTMLDivElement>(null);
 
-  const { scrollYProgress, scrollY } = useScroll({
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  useEffect(() => {
+    const { isDesktop } = useViewport();
+    setIsDesktop(isDesktop || false);
+  }, [window.innerWidth]);
+
+  const { scrollY } = useScroll({
     target: blogRef,
     offset: ['0', '1']
   });
@@ -392,48 +402,50 @@ const Blog = () => {
 
   const [isScrolling, setIsScrolling] = useState(false);
   const [isScrollOver, setIsScrollOver] = useState(false);
+
   const progress = useTransform(scrollY, (value) => {
     const refRect = blogRef.current?.getBoundingClientRect();
     const retOffset = blogRef?.current?.offsetTop || 0;
     const refHeight = refRect?.height || 0;
     const refTop = refRect?.top || 0;
     const viewportHeight = window.innerHeight;
-    const viewportWidth = window.innerWidth;
 
     const max = refHeight + (retOffset - viewportHeight);
-
-    const min = viewportWidth <= 1300 ? -100 : -60;
+    // 800 + (900 - 500)
+    const min = -60;
     const mappedValue = mapRange(value, retOffset, max, min, 0);
 
     if (isScrolling) {
       return `${mappedValue}%`;
     } else if (refTop > 0) {
-      return viewportWidth <= 1300 ? '-100%' : '-60%';
+      return '-60%';
     } else if (refTop < 0) {
       return '0%';
     }
   });
+
   const progress_y = useTransform(scrollY, (value) => {
     const refRect = blogRef.current?.getBoundingClientRect();
     const retOffset = blogRef?.current?.offsetTop || 0;
     const refHeight = refRect?.height || 0;
     const refTop = refRect?.top || 0;
+    const marginTop = infoRef.current?.getBoundingClientRect().height || 0;
     const viewportHeight = window.innerHeight;
-    const viewportWidth = window.innerWidth;
 
     const max = refHeight + (retOffset - viewportHeight);
-
-    const min = viewportWidth <= 1300 ? -100 : -60;
-    const mappedValue = mapRange(value, retOffset, max, min, 0);
+    // const max = retOffset + refHeight - marginTop;
+    const mappedValue = mapRange(value, retOffset + marginTop, max, -100, 0);
 
     if (isScrolling) {
       return `${mappedValue}%`;
     } else if (refTop > 0) {
-      return viewportWidth <= 1300 ? '-100%' : '-60%';
+      // return '-100%';
     } else if (refTop < 0) {
-      return '0%';
+      // return '0%';
     }
   });
+
+  const scrollY2 = useMotionValue(scrollY);
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     const refRect = blogRef.current?.getBoundingClientRect();
@@ -500,7 +512,7 @@ const Blog = () => {
       viewport={{ amount: 0.1 }}
     >
       <div className={c('inner')}>
-        <div className={c('info')}>
+        <div className={c('info')} ref={infoRef}>
           <motion.div variants={fadeInUp()} className={c('info_inner')}>
             <div>
               <ArticleTitle className={c('title')}>Blog</ArticleTitle>
@@ -527,7 +539,7 @@ const Blog = () => {
         </div>
       </div>
       <motion.div
-        className={c('background')}
+        className={c('background', 'x')}
         // initial={{ opacity: 0 }}
         // whileInView={{ opacity: 1 }}
         style={{
@@ -536,10 +548,11 @@ const Blog = () => {
         }}
       ></motion.div>
       <motion.div
-        className={c('background_y')}
+        className={c('background', 'y')}
         // initial={{ opacity: 0 }}
         // whileInView={{ opacity: 1 }}
         style={{
+          // top: !isScrolling ? infoRef.current?.getBoundingClientRect().height : 0,
           y: progress_y
           // Apply other animations or styles based on the progress value
         }}
