@@ -12,6 +12,7 @@ import * as styles from './Works.module.scss';
 import Alphabet from '@components/Alphabet/Alphabet';
 import ArticleTitle from '@components/ArticleTitle/ArticleTitle';
 import WorkItem, { worksList } from '@components/Works/WorkItem/WorkItem';
+import useViewport from '@hooks/useViewport';
 
 const c = classNames.bind(styles);
 
@@ -59,6 +60,7 @@ const myWorks = [
 ];
 
 const TextBig = ({ children }: { children: string }) => {
+  const { isDesktop } = useViewport();
   const textReveal: Variants = {
     hidden: {
       opacity: 0
@@ -70,7 +72,7 @@ const TextBig = ({ children }: { children: string }) => {
   };
   const svg = {
     hidden: {
-      y: 300,
+      y: !isDesktop ? 200 : 300,
       skewY: 10,
       transition: {
         type: 'spring',
@@ -89,7 +91,13 @@ const TextBig = ({ children }: { children: string }) => {
     }
   };
   return (
-    <motion.strong className={c('text_big')} variants={textReveal}>
+    <motion.strong
+      className={c('text_big')}
+      // initial="hidden"
+      // whileInView="visible"
+      variants={textReveal}
+      // viewport={{ once: true }}
+    >
       <span className="screenOut">{children}</span>
       <div className={c('text_big_svg')}>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 1287 157">
@@ -196,11 +204,9 @@ const Works = () => {
     background: {
       hidden: {
         opacity: 0
-        // x: -60
       },
       visible: {
         opacity: 1,
-        x: 0,
         transition: {
           ease: 'easeInOut',
           duration: 0.5
@@ -261,7 +267,7 @@ const Works = () => {
       className={c('works')}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.3 }}
+      // viewport={{ once: false, amount: 0.3 }}
     >
       <motion.div
         className={c('work_list')}
@@ -270,6 +276,7 @@ const Works = () => {
         whileInView="visible"
         viewport={{ once: false }}
       >
+        <ArticleTitle className={c('title', 'mq_m')}>Work Experience</ArticleTitle>
         {myWorks.map((work, index) => (
           <WorkItem
             variants={fadeInUp()}
@@ -286,15 +293,15 @@ const Works = () => {
       </motion.div>
       <motion.div
         className={c('background', { isShow: isScrolling })}
-        variants={animation.background}
-        style={{ opacity: op }}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        // viewport={{ root: worksRef }}
+        // variants={animation.background}
+        // style={{ opacity: op }}
+        // initial={{ opacity: 0 }}
+        // whileInView={{ opacity: 1 }}
       >
         <ArticleTitle className={c('title')}>Work Experience</ArticleTitle>
         <TextBig>I like What I do</TextBig>
       </motion.div>
+      {/* <motion.h1>TEST</motion.h1> */}
       {/* <Alphabet type="i" className={c('i')} /> */}
     </motion.article>
   );

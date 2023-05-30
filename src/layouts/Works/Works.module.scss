@@ -137,10 +137,31 @@
   position: relative;
   text-align: center;
   pointer-events: none;
+
+  @include mq_m {
+    display: none;
+  }
+
+  &.mq_m {
+    display: none;
+    color: var(--color-gray-light);
+
+    @include mq_m {
+      display: block;
+    }
+  }
 }
 
 .text_big {
   width: 100%;
+  // transform-origin: 35.5% 100%;
+  transform-origin: 50% 50%;
+
+  @include mq_m {
+    transform: rotate(90deg);
+    // margin-top: -20%;
+    margin-top: -10vh;
+  }
 
   .text_big_svg {
     overflow: hidden;
@@ -158,7 +179,8 @@
     }
 
     @include mq_m {
-      height: rem(120);
+      width: 130%;
+      height: rem(200);
     }
 
     svg {
@@ -170,6 +192,9 @@
 
       @include mq_l {
         stroke-width: calc(6px - 0.3vw);
+      }
+      @include mq_m {
+        stroke-width: calc(5px - 0.3vw);
       }
     }
   }

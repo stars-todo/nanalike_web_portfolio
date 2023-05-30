@@ -32,13 +32,6 @@
     padding-top: $padding_tablet;
     padding-bottom: calc(vh(30) + vw(70) + rem(10));
   }
-
-  // @include mq_t {
-  //   height: auto;
-  //   padding-top: vh(140);
-  //   padding-bottom: vh(60);
-  //   min-height: auto;
-  // }
 }
 
 .title {
@@ -85,6 +78,7 @@
     font-weight: 500;
     line-height: 120%;
     letter-spacing: -0.05em;
+    will-change: transform;
 
     @include mq_l {
       font-size: 10vw;
@@ -98,6 +92,11 @@
   .mail_animation {
     display: flex;
     overflow: hidden;
+    // user-select: none;
+  }
+
+  .mail_placeholder {
+    visibility: hidden;
   }
 }
 
@@ -145,14 +144,18 @@
   .links {
     display: flex;
     align-items: center;
-    gap: 3rem;
+    gap: rem(30);
     margin-top: rem(18);
 
     @include mq_t {
       flex-direction: column;
       align-items: flex-start;
-      gap: rem(15);
+      gap: rem(12);
       margin-top: rem(40);
+
+      a {
+        padding-right: rem(10);
+      }
     }
   }
 

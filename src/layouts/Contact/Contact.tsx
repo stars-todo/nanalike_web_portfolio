@@ -8,6 +8,7 @@ import CustomLink from '@components/CustomLink/CustomLink';
 import Copyright from '@components/Copyright/Copyright';
 import LangSelect from '@components/LangSelect/LangSelect';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import useViewport from '@hooks/useViewport';
 const c = classNames.bind(styles);
 
 const Footer = ({ scrollYProgress }: any) => {
@@ -39,6 +40,7 @@ const Footer = ({ scrollYProgress }: any) => {
 };
 
 const Contact = () => {
+  const { isTablet, isMobile } = useViewport();
   const articleRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: articleRef,
@@ -121,12 +123,12 @@ const Contact = () => {
       },
       visible: (i: number = 1) => ({
         opacity: 1,
-        transition: { staggerChildren: 0.025, delayChildren: i * 0 }
+        transition: { staggerChildren: 0.02, delayChildren: i * 0 }
       })
     },
     mailText: {
       hidden: {
-        y: 100,
+        y: isMobile ? 50 : 100,
         skewY: 10,
         transition: {
           type: 'spring',
@@ -164,13 +166,15 @@ const Contact = () => {
             웹 퍼블리싱이 필요한 프로젝트가 있나요?
           </motion.div>
           <div className={c('mail')}>
-            <button className={c('mail_button')} onClick={() => alert('복사!')}>
-              <span className="screenOut">클릭하여 메일 주소 복사</span>
-              <strong className="screenOut">nykim@nykim.net</strong>
+            <button
+              className={c('mail_button')}
+              onClick={() => alert('복사!')}
+              title="클릭으로 메일 주소 복사 💌"
+            >
               <motion.div
                 className={c('mail_animation')}
                 variants={animation.mailReveal}
-                aria-hidden="true"
+                aria-label="nykim@nykim.net"
               >
                 {Array.from('nykim@nykim.net').map((letter, index) => (
                   <motion.div

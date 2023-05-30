@@ -3,7 +3,7 @@
 .btn {
   z-index: 999; //TODO:
   position: fixed;
-  right: var(--d-padding-h);
+  right: rem(40);
   bottom: rem(40);
   display: flex;
   align-items: center;
@@ -19,7 +19,7 @@
     height: 22px;
 
     @include mq_m {
-      height: 18px;
+      height: 16px;
     }
   }
 
@@ -34,6 +34,8 @@
   }
 
   @include mq_m {
+    right: rem(30);
+    bottom: rem(30);
     width: mobile(80, 90);
     height: mobile(80, 90);
   }

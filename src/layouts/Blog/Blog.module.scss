@@ -145,18 +145,6 @@
     align-items: center;
     gap: rem(30);
 
-    // @include mq_ls {
-    //   flex-direction: column;
-    //   align-items: flex-start;
-    //   justify-content: flex-start;
-    //   gap: rem(32);
-    // }
-
-    // @include mq_t {
-    //   flex-direction: row;
-    //   align-items: center;
-    // }
-
     @include mq_m {
       flex-direction: column;
       align-items: flex-start;
@@ -224,7 +212,7 @@
 
   .desc {
     @include ellipsis(3);
-    font-size: rem(18);
+    font-size: rem(17);
     font-weight: 300;
     line-height: 180%;
     color: var(--color-gray-dark);
