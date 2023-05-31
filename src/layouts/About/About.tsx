@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Variants, motion, useScroll } from 'framer-motion';
+import { Variants, motion, useScroll, useTransform } from 'framer-motion';
 import classNames from 'classnames/bind';
 import * as styles from './About.module.scss';
 import CustomButton from '@components/CustomButton/CustomButton';
@@ -7,6 +7,7 @@ import NanaText from '@components/Logo/NanaText';
 import CustomLink from '@components/CustomLink/CustomLink';
 import Alphabet from '@components/Alphabet/Alphabet';
 import ArticleTitle from '@components/ArticleTitle/ArticleTitle';
+import { StaticImage } from 'gatsby-plugin-image';
 const c = classNames.bind(styles);
 
 const Backgrounds = () => {
@@ -191,17 +192,25 @@ const About = () => {
     target: aboutRef,
     offset: ['0', '1']
   });
+  const alphabetOpacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
 
   return (
     <article className={c('about')} ref={aboutRef}>
       <motion.div className={c('visual')} initial="hidden" whileInView="visible">
         <div className={c('profile')}>
-          <motion.img
+          {/* <motion.img
             className={c('photo')}
             variants={fadeInUp()}
             src="https://source.unsplash.com/random/?europe/460/440"
             alt="프로필 사진"
-          />
+          /> */}
+          <motion.div variants={fadeInUp()}>
+            <StaticImage
+              className={c('photo')}
+              alt="프로필 사진"
+              src="../../images/profile.png"
+            />
+          </motion.div>
         </div>
         <TextBig>I do what i like</TextBig>
         <motion.div
@@ -249,6 +258,14 @@ const About = () => {
             자기소개 더보기
           </CustomLink>
         </motion.div>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1, transition: { duration: 1 } }}
+        style={{ opacity: alphabetOpacity }}
+        viewport={{ amount: 0.1 }}
+      >
+        <Alphabet type="l" className={c('alphabet', 'l')} />
       </motion.div>
     </article>
   );

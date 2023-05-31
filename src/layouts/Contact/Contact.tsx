@@ -9,6 +9,7 @@ import Copyright from '@components/Copyright/Copyright';
 import LangSelect from '@components/LangSelect/LangSelect';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import useViewport from '@hooks/useViewport';
+import MailAddress from '@components/MailAddress/MailAddress';
 const c = classNames.bind(styles);
 
 const Footer = ({ scrollYProgress }: any) => {
@@ -46,6 +47,7 @@ const Contact = () => {
     target: articleRef,
     offset: ['0', '1']
   });
+  const alphabetOpacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
   // const footerOpacity = useTransform(scrollYProgress, [0.5, 1], [0, 0]);
 
   function fadeInUp(y = 30, duration = 0.7) {
@@ -165,29 +167,7 @@ const Contact = () => {
           <motion.div variants={fadeInUp()} className={c('title_sub')}>
             웹 퍼블리싱이 필요한 프로젝트가 있나요?
           </motion.div>
-          <div className={c('mail')}>
-            <button
-              className={c('mail_button')}
-              onClick={() => alert('복사!')}
-              title="클릭으로 메일 주소 복사 💌"
-            >
-              <motion.div
-                className={c('mail_animation')}
-                variants={animation.mailReveal}
-                aria-label="nykim@nykim.net"
-              >
-                {Array.from('nykim@nykim.net').map((letter, index) => (
-                  <motion.div
-                    key={index}
-                    className={c('mail_address')}
-                    variants={animation.mailText}
-                  >
-                    {letter === ' ' ? '\u00A0' : letter}
-                  </motion.div>
-                ))}
-              </motion.div>
-            </button>
-          </div>
+          <MailAddress />
           <motion.div variants={fadeInUp()}>
             <CustomButton icon="download" className={c('download')}>
               이력서 다운로드
@@ -223,6 +203,14 @@ const Contact = () => {
       <LangSelect className={c('langs')} />
       <Copyright className={c('copy')} />
       <Alphabet type="e" className={c('e')} />
+      {/* <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1, transition: { duration: 1 } }}
+        style={{ opacity: alphabetOpacity }}
+        viewport={{ amount: 0.1 }}
+      >
+        <Alphabet type="e" className={c('alphabet', 'e')} />
+      </motion.div> */}
     </motion.article>
   );
 };

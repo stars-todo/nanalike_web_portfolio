@@ -1,0 +1,342 @@
+@use 'sass:math';
+@use './../../styles/helpers/mixins' as *;
+
+$_footer_height: rem(460);
+$_footer_height_m: rem(400);
+
+.work_detail {
+  position: relative;
+  padding: rem(250) 0 0;
+  background-color: #fff;
+  box-shadow: rgba(120, 120, 120, 0.05) 0px 8px 24px;
+
+  @include mq_t {
+    // padding-top: rem(250);
+  }
+
+  @include mq_m {
+    padding-top: rem(230);
+  }
+}
+
+.btn_back {
+  z-index: 99999; //TODO:
+  position: absolute;
+  top: rem(110);
+  left: 0;
+  width: 100%;
+  text-align: center;
+
+  @include mq_t {
+    top: rem(130);
+  }
+
+  @include mq_m {
+    top: rem(136);
+  }
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: rem(90);
+  width: 100%;
+  max-width: rem(1600);
+  margin: 0 auto;
+  padding: 0 $commonPadding;
+
+  @include mq_l {
+    gap: 5vw;
+  }
+
+  @include mq_t {
+    flex-direction: column;
+    gap: rem(60);
+  }
+
+  .thumbnail {
+    flex-shrink: 0;
+    width: rem(540);
+    height: auto;
+    aspect-ratio: 1 / 1;
+
+    @include mq_l {
+      width: 40%;
+    }
+
+    @include mq_t {
+      width: 80%;
+    }
+  }
+
+  .summary {
+    .work_title {
+      font-size: rem(90);
+      word-break: keep-all;
+      line-height: 120%;
+      font-weight: 700;
+
+      @include mq_l {
+        font-size: rem(80);
+      }
+
+      @include mq_t {
+        font-size: rem(70);
+      }
+
+      @include mq_m {
+        font-size: mobile(42, 60);
+        line-height: 140%;
+      }
+    }
+
+    .skills {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: rem(40) 0 rem(20);
+      color: var(--color-gray-light);
+      font-size: rem(20);
+      line-height: 180%;
+      font-weight: 400;
+
+      @include mq_t {
+        margin: rem(30) 0 rem(10);
+      }
+
+      @include mq_m {
+        font-size: mobile(19, 20);
+      }
+
+      li:not(:first-child):before {
+        display: inline-block;
+        width: 1px;
+        height: 15px;
+        margin-right: 10px;
+        background-color: #d0d0d0;
+        transform: skew(-15deg, -15deg);
+        vertical-align: middle;
+        content: '';
+      }
+    }
+
+    .desc {
+      font-size: rem(20);
+      font-weight: 300;
+      color: var(--color-black-light);
+      line-height: 180%;
+      word-break: keep-all;
+
+      & + .desc {
+        margin-top: rem(10);
+      }
+
+      &:last-of-type {
+        margin-bottom: rem(22);
+      }
+
+      @include mq_t {
+        font-weight: 400;
+        word-break: break-all;
+      }
+    }
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: rem(80);
+  max-width: var(--d-max-width); //TODO: 공통화?
+  padding: 0 $commonPadding;
+  margin: rem(90) auto rem(100);
+
+  @include mq_t {
+    gap: rem(60);
+  }
+
+  .contents {
+    &.full {
+      width: 100%;
+
+      .contents_desc p {
+        max-width: rem(760);
+
+        @include mq_t {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+
+  .flex {
+    display: flex;
+    gap: rem(60);
+
+    @include mq_l {
+      gap: 4.5vw;
+    }
+
+    @include mq_t {
+      flex-direction: column;
+      gap: rem(60);
+    }
+
+    .contents {
+      &:nth-child(1) {
+        width: 40%;
+
+        @include mq_t {
+          width: 100%;
+        }
+      }
+
+      &:nth-child(2) {
+        width: 60%;
+
+        @include mq_t {
+          width: 100%;
+        }
+      }
+    }
+
+    .shot {
+      height: rem(540);
+    }
+  }
+
+  .shot {
+    width: 100%;
+    border-radius: 30px;
+    border: 1px solid #999;
+  }
+
+  .contents_desc {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: rem(60);
+    margin-top: rem(30);
+    font-size: rem(18);
+    color: var(--color-black-light);
+    line-height: 170%;
+
+    @include mq_t {
+      flex-direction: column;
+      gap: rem(40);
+    }
+
+    @include mq_m {
+      font-size: mobile(19, 20);
+    }
+  }
+}
+
+.slide {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: rem(40);
+  padding-bottom: rem(150);
+  margin: 0 0 $_footer_height;
+
+  @include mq_m {
+    margin-bottom: $_footer_height_m;
+  }
+
+  .slide_item {
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+    border-radius: 20px;
+
+    @include mq_m {
+      width: 72%;
+    }
+
+    &:hover {
+      .slide_name {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+
+  .slide_name {
+    z-index: 1;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    font-size: rem(24);
+    text-align: center;
+    font-weight: 700;
+    // line-height: 160%;
+    line-height: rem(260);
+    transition: all 0.25s; //TODO:
+  }
+
+  .slide_bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(17, 17, 17, 0.5);
+    backdrop-filter: blur(2px);
+  }
+}
+
+.work_footer {
+  z-index: -1;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: $_footer_height;
+  // background-color: var(--color-beige);
+  background-color: var(--color-beige-light);
+
+  @include mq_m {
+    min-height: $_footer_height_m;
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2vh;
+  }
+
+  .footer_title {
+    color: var(--color-black-light);
+    font-size: rem(24);
+    line-height: 160%;
+    text-align: center;
+
+    @include mq_m {
+      font-size: mobile(20, 24);
+      line-height: 200%;
+    }
+  }
+
+  .copy {
+    position: absolute;
+    bottom: rem(40);
+    left: 0;
+    width: 100%;
+
+    @include mq_m {
+      bottom: rem(30);
+    }
+  }
+}

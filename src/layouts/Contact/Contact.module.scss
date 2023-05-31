@@ -60,42 +60,6 @@
   }
 }
 
-.mail {
-  margin-bottom: rem(36);
-
-  &_button {
-    position: relative;
-    display: inline-block;
-    border: 0;
-    text-align: left;
-    max-width: 100%;
-  }
-
-  &_address {
-    z-index: 1;
-    position: relative;
-    @include font-sub;
-    font-size: rem(110);
-    font-weight: 500;
-    line-height: 120%;
-    letter-spacing: -0.05em;
-    will-change: transform;
-
-    @include mq_l {
-      font-size: 10vw;
-    }
-
-    @include mq_m {
-      font-size: calc(rem(10) + 7.5vw);
-    }
-  }
-
-  .mail_animation {
-    display: flex;
-    overflow: hidden;
-  }
-}
-
 .download {
   background-color: #fff;
 }
@@ -125,7 +89,7 @@
   }
 
   @include mq_m {
-    font-size: mobile(18, 20);
+    font-size: mobile(19, 20);
   }
 
   .desc {
@@ -264,8 +228,11 @@
 }
 
 .e {
+  z-index: -1;
+  display: none; //TODO:
+
   @include mq_t {
-    height: 85%;
+    height: 70%;
     padding-bottom: 15%;
   }
 }

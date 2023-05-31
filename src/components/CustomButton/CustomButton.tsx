@@ -3,15 +3,29 @@ import classNames from 'classnames/bind';
 import * as styles from './CustomButton.module.scss';
 const c = classNames.bind(styles);
 
-interface CustomButtonProps extends React.ComponentProps<'button'> {
+interface WrapperProps {
   className?: string;
   children: ReactNode | string;
+  href?: string;
+}
+
+interface CustomButtonProps extends WrapperProps {
   icon?: 'download' | 'back';
 }
 
-const CustomButton = ({ className, children, icon }: CustomButtonProps) => {
+const ButtonOrLink = ({ className, href, children }: WrapperProps) => {
+  return href ? (
+    <a className={c('button_custom', className)} href={href}>
+      {children}
+    </a>
+  ) : (
+    <button className={c('button_custom', className)}>{children}</button>
+  );
+};
+
+const CustomButton = ({ className, children, href, icon }: CustomButtonProps) => {
   return (
-    <button className={c('button_custom', `${className}`)}>
+    <ButtonOrLink className={className} href={href}>
       {icon && (
         <svg
           aria-hidden="true"
@@ -25,12 +39,16 @@ const CustomButton = ({ className, children, icon }: CustomButtonProps) => {
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="2.125"
-            d="m15.5 13.496-5.5 4.25-5.5-4.25M10 17.254v-15"
+            d={
+              icon === 'download'
+                ? 'm15.5 13.496-5.5 4.25-5.5-4.25M10 17.254v-15'
+                : 'M6.504 15.5 2.254 10l4.25-5.5M2.746 10h15'
+            }
           />
         </svg>
       )}
       {children}
-    </button>
+    </ButtonOrLink>
   );
 };
 

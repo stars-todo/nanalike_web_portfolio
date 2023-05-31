@@ -201,6 +201,8 @@
 }
 
 //TODO: 알파벳
-// .i {
-//   height: 100vh;
-// }
+.alphabet.i {
+  position: fixed;
+  height: 100vh;
+  display: none; //TODO:
+}

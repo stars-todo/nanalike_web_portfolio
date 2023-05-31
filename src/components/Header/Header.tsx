@@ -15,7 +15,9 @@ const Header = () => {
           <a className={c('mail')} href="mailto:nykim@nykim.net">
             nykim@nykim.net
           </a>
-          <span className={c('status')}>Available Now</span>
+          <span className={c('status')}>
+            <span>Available Now</span>
+          </span>
           <span className={c('circle')}>nanalikenanalikenanalikenanalikenanalike</span>
         </div>
         <div className={c('line')}></div>

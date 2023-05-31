@@ -25,7 +25,7 @@ export type worksList =
 
 interface WorkItemProps {
   className?: string;
-  href: worksList;
+  id: worksList;
   title: string;
   year?: string;
   skills?: string[];
@@ -37,7 +37,7 @@ interface WorkItemProps {
 
 const WorkItem = ({
   className,
-  href,
+  id,
   title,
   year,
   skills,
@@ -68,16 +68,11 @@ const WorkItem = ({
       style={style}
       variants={variants}
     >
-      <a
-        href={!isOngoing ? `/${href}` : undefined}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-disabled={isOngoing}
-      >
+      <a href={!isOngoing ? `/work/${id}` : undefined} aria-disabled={isOngoing}>
         <div className={c('work_contents')} id="interaction">
           <WorkIcon
             className={c('icon')}
-            work={href}
+            id={id}
             aria-hidden="true"
             isOngoing={isOngoing}
           />
@@ -86,14 +81,14 @@ const WorkItem = ({
               <strong className={c('title_text')}>{title}</strong>
               {year && (
                 <div className={c('year')}>
-                  <span className="screenOut">작업한 연도</span>
+                  <span className="screenOut">작업한 연도: </span>
                   {year}
                 </div>
               )}
             </div>
             <div className={c('info')}>
               <div className={c('skills')}>
-                <span className="screenOut">관련 기술</span>
+                <span className="screenOut">관련 기술: </span>
                 {skills?.map((skill) => (
                   <span key={skill} className={c('skill')}>
                     {skill}
@@ -102,7 +97,7 @@ const WorkItem = ({
               </div>
               {place && (
                 <div className={c('place')}>
-                  <span className="screenOut">근무처</span>
+                  <span className="screenOut">근무처: </span>
                   {place}
                 </div>
               )}

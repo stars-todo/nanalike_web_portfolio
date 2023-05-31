@@ -1,0 +1,50 @@
+@use './../../styles/helpers/mixins' as *;
+
+.mail {
+  margin-bottom: rem(36);
+
+  &.small {
+    font-size: rem(72);
+
+    @include mq_m {
+      font-size: calc(rem(10) + 7.5vw);
+    }
+  }
+
+  &.normal {
+    font-size: rem(110);
+
+    @include mq_l {
+      font-size: 10vw;
+    }
+
+    @include mq_m {
+      font-size: calc(rem(10) + 7.5vw);
+    }
+  }
+
+  &_button {
+    position: relative;
+    display: inline-block;
+    border: 0;
+    text-align: left;
+    max-width: 100%;
+    font-size: inherit;
+  }
+
+  &_address {
+    @include font-sub;
+    z-index: 1;
+    position: relative;
+    font-weight: 500;
+    line-height: 120%;
+    letter-spacing: -0.05em;
+    will-change: transform;
+    font-size: inherit;
+  }
+
+  .mail_animation {
+    display: flex;
+    overflow: hidden;
+  }
+}

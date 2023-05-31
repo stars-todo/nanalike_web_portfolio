@@ -113,6 +113,7 @@
   background-color: rgba(234, 234, 234, 0.502);
   border-radius: rem(20);
   pointer-events: none;
+  backdrop-filter: blur(1.2px);
 
   @include mq_t {
     display: none;

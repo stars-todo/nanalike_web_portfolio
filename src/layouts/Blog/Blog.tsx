@@ -367,7 +367,7 @@ const Blog = () => {
   const infoRef = useRef<HTMLDivElement>(null);
   const postRef = useRef<HTMLDivElement>(null);
 
-  const { scrollY } = useScroll({
+  const { scrollYProgress, scrollY } = useScroll({
     target: blogRef,
     offset: ['0', '1']
   });
@@ -461,6 +461,8 @@ const Blog = () => {
       setIsScrollOver(false);
     }
   });
+
+  const alphabetOpacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
   function fadeInUp(y = 30, x = 0, duration = 0.7) {
     return {
       hidden: {
@@ -543,7 +545,14 @@ const Blog = () => {
           y: progress_y
         }}
       ></motion.div>
-      <Alphabet type="k" className={c('k')} />
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1, transition: { duration: 1 } }}
+        style={{ opacity: alphabetOpacity }}
+        viewport={{ amount: 0.1 }}
+      >
+        <Alphabet type="k" className={c('alphabet', 'k')} />
+      </motion.div>
     </motion.article>
   );
 };

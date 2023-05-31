@@ -23,6 +23,7 @@
 }
 
 .info {
+  z-index: 1;
   position: sticky;
   top: 0;
   display: flex;
@@ -34,7 +35,9 @@
   max-height: 100vh;
   min-height: rem(820);
   padding-left: $commonPadding;
-  background-color: var(--color-beige);
+  // background-color: var(--color-beige);
+
+  background-color: rgba(245, 239, 232, 0.8);
 
   @include mq_l {
     position: relative;
@@ -117,6 +120,8 @@
 }
 
 .post {
+  z-index: 1;
+  position: relative;
   overflow-x: hidden;
   width: 60%;
   padding: calc(vh(30) + vw(65) + rem(50)) 0;
@@ -271,8 +276,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  // background-color: rgba(248, 243, 237, 0.6);
-  background-color: var(--color-beige);
+  background-color: rgba(248, 243, 237, 0.6);
+  // background-color: var(--color-beige);
   pointer-events: none;
   will-change: transform;
 
@@ -310,5 +315,9 @@
 }
 
 .k {
-  display: none;
+  display: none; //TODO:
+  z-index: -1;
+  position: fixed;
+  height: 100vh;
+  // z-index: 0;
 }

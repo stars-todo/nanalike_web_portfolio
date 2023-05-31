@@ -7,17 +7,17 @@ const c = classNames.bind(styles);
 
 interface WorkIconProps {
   className?: string;
-  work: worksList;
+  id: worksList;
   isOngoing?: boolean;
 }
 
-const WorkIcon = ({ work, className, isOngoing, ...props }: WorkIconProps) => {
+const WorkIcon = ({ id, className, isOngoing, ...props }: WorkIconProps) => {
   return (
     <div
       className={c('work_icon', `${className}`, { isOngoing })}
       style={{
-        backgroundColor: `${workIcons[work].color}`,
-        backgroundImage: `url(https://source.unsplash.com/random/?${workIcons[work].icon})`
+        backgroundColor: `${workIcons[id].color}`,
+        backgroundImage: `url(https://source.unsplash.com/random/?${workIcons[id].icon})`
       }}
       {...props}
     >

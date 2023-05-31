@@ -23,7 +23,7 @@
     outline: 5px solid rgba(0, 0, 255, 0.514);
   }
 
-  display: none; //TODO:
+  // display: none; //TODO:
 }
 
 .header {
@@ -58,6 +58,7 @@
   }
 
   .title {
+    flex-basis: 30%;
     font-size: rem(18);
     letter-spacing: -0.02em;
 
@@ -67,29 +68,35 @@
   }
 
   .status {
+    flex-basis: 30%;
     position: relative;
     padding-left: rem(18);
+    text-align: right;
 
-    &:before,
-    &:after {
-      position: absolute;
-      top: rem(6.5);
-      left: 0;
-      display: block;
-      content: '';
-      width: rem(10);
-      height: rem(10);
-      transform-origin: 50% 50%;
-      border-radius: 50%;
-    }
+    span {
+      position: relative;
 
-    &:before {
-      background-color: #baeda2;
-      animation: on 2s infinite;
-    }
+      &:before,
+      &:after {
+        position: absolute;
+        top: rem(6.5);
+        left: rem(-20);
+        display: block;
+        content: '';
+        width: rem(10);
+        height: rem(10);
+        transform-origin: 50% 50%;
+        border-radius: 50%;
+      }
 
-    &:after {
-      background-color: #a7de8d;
+      &:before {
+        background-color: #baeda2;
+        animation: on 2s infinite;
+      }
+
+      &:after {
+        background-color: #a7de8d;
+      }
     }
 
     @keyframes on {

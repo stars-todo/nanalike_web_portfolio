@@ -27,7 +27,7 @@ $_height: rem(1200);
   }
 
   @include mq_m {
-    margin-top: calc(vh(30) + vw(80) + rem(5));
+    margin-top: calc(vh(30) + vw(80) + rem(20));
   }
 }
 
@@ -39,6 +39,7 @@ $_height: rem(1200);
   $_mq_t_max_width: rem(500);
   $_mq_t_min_width: rem(400);
 
+  z-index: 1;
   position: relative;
   margin-top: rem(60);
 
@@ -143,13 +144,13 @@ $_height: rem(1200);
       border-radius: 4rem;
 
       @include mq_l {
-        width: $_mq_l_width;
+        // width: $_mq_l_width;
         max-width: $_mq_l_max_width;
         min-width: $_mq_l_min_width;
       }
 
       @include mq_t {
-        width: $_mq_t_width;
+        // width: $_mq_t_width;
         max-width: $_mq_t_max_width;
         min-width: $_mq_t_min_width;
       }
@@ -170,6 +171,8 @@ $_height: rem(1200);
 }
 
 .text {
+  z-index: 1;
+  position: relative;
   max-width: rem(730);
   margin-left: rem(174);
 
@@ -213,7 +216,7 @@ $_height: rem(1200);
     }
 
     @include mq_m {
-      font-size: mobile(18, 20);
+      font-size: mobile(19, 20);
     }
   }
 
@@ -241,4 +244,10 @@ $_height: rem(1200);
   width: 100%;
   height: 100%;
   background-color: var(--color-beige-light);
+}
+
+.alphabet.l {
+  z-index: 0;
+  // position: fixed;
+  display: none; //TODO:
 }

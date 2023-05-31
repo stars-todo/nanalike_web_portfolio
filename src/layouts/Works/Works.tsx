@@ -18,40 +18,40 @@ const c = classNames.bind(styles);
 
 const myWorks = [
   {
-    href: 'workboard',
+    id: 'workboard',
     title: '카카오워크 워크보드',
     year: '23-22',
     skills: ['React', 'TypeScript'],
     place: '카카오엔터프라이즈'
   },
   {
-    href: 'email',
+    id: 'email',
     title: '이메일 템플릿',
     year: '23-22',
     skills: ['Email', 'Gatsby'],
     place: '카카오엔터프라이즈'
   },
   {
-    href: 'interpark',
+    id: 'interpark',
     title: '인터파크 개편 & 유지보수',
     year: '21-20',
     skills: ['Cross-browsing', 'jQuery']
   },
   {
-    href: 'dooin',
+    id: 'dooin',
     title: '두인경매 지도 검색',
     year: '21',
     skills: ['Markup', 'jQuery']
   },
   {
-    href: 'cosmos',
+    id: 'cosmos',
     title: '코스모스랩 기업 홈페이지',
     year: '21',
     skills: ['Scroll Interaction'],
     place: '블록오디세이'
   },
   {
-    href: 'stars',
+    id: 'stars',
     title: '별별할일',
     year: '23',
     skills: ['Next.js', 'UX Design'],
@@ -260,6 +260,7 @@ const Works = () => {
   });
 
   const op = useTransform(scrollYProgress, [0.2, 0.9], [1, 0]);
+  const alphabetOpacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
 
   return (
     <motion.article
@@ -281,8 +282,8 @@ const Works = () => {
           <WorkItem
             variants={fadeInUp()}
             className={c('work_item')}
-            key={work.href}
-            href={work.href as worksList}
+            key={work.id}
+            id={work.id as worksList}
             title={work.title}
             year={work.year}
             skills={work.skills}
@@ -301,8 +302,14 @@ const Works = () => {
         <ArticleTitle className={c('title')}>Work Experience</ArticleTitle>
         <TextBig>I like What I do</TextBig>
       </motion.div>
-      {/* <motion.h1>TEST</motion.h1> */}
-      {/* <Alphabet type="i" className={c('i')} /> */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        // whileInView={{ opacity: 1, transition: { duration: 1 } }}
+        // style={{ opacity: alphabetOpacity }}
+        // viewport={{ amount: 0.1 }}
+      >
+        <Alphabet type="i" className={c('alphabet', 'i')} />
+      </motion.div>
     </motion.article>
   );
 };
