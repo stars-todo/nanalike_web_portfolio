@@ -13,15 +13,8 @@ import {
 import classNames from 'classnames/bind';
 import * as styles from './WorkItem.module.scss';
 import WorkIcon from '../WorkIcon/WorkIcon';
+import { worksList } from '@data-types/works';
 const c = classNames.bind(styles);
-
-export type worksList =
-  | 'workboard'
-  | 'email'
-  | 'interpark'
-  | 'dooin'
-  | 'cosmos'
-  | 'stars';
 
 interface WorkItemProps {
   className?: string;

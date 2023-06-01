@@ -23,7 +23,6 @@ const useBlogData = () => {
           } else {
             setData(result.rss.channel[0].item);
             setLoading(false);
-            console.log(result);
           }
         });
       } catch (error) {

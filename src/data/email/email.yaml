@@ -1,0 +1,15 @@
+id: email
+title: 이메일 템플릿
+skills: ['Email', 'Gatsby']
+link: ''
+info:
+  - 이메일(1)
+  - 이메일(2)
+full:
+  - img: 'https://source.unsplash.com/random/?love'
+    desc: ['1', '2']
+flex:
+  - img: 'https://source.unsplash.com/random/?love'
+    desc: ['3']
+  - img: 'https://source.unsplash.com/random/?love'
+    desc: ['4']

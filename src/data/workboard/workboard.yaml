@@ -1,0 +1,15 @@
+id: workboard
+title: 카카오워크 워크보드
+skills: ['React', 'TypeScript']
+link: ''
+info:
+  - 워크보드(1)
+  - 워크보드(2)
+full:
+  - img: 'https://source.unsplash.com/random/?love'
+    desc: ['1', '2']
+flex:
+  - img: 'https://source.unsplash.com/random/?love'
+    desc: ['3']
+  - img: 'https://source.unsplash.com/random/?love'
+    desc: ['4']

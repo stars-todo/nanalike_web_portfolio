@@ -11,53 +11,14 @@ import classNames from 'classnames/bind';
 import * as styles from './Works.module.scss';
 import Alphabet from '@components/Alphabet/Alphabet';
 import ArticleTitle from '@components/ArticleTitle/ArticleTitle';
-import WorkItem, { worksList } from '@components/Works/WorkItem/WorkItem';
+import WorkItem from '@components/Works/WorkItem/WorkItem';
 import useViewport from '@hooks/useViewport';
+import { useAllWorksJson } from '@hooks/useAllWorksJson';
+import { worksList } from '@data-types/works';
+
+// TODO: @types로 쓰면 node_modules꺼 쓰는 거임? 하고 인식해서 타입에러 뜨니 주의!
 
 const c = classNames.bind(styles);
-
-const myWorks = [
-  {
-    id: 'workboard',
-    title: '카카오워크 워크보드',
-    year: '23-22',
-    skills: ['React', 'TypeScript'],
-    place: '카카오엔터프라이즈'
-  },
-  {
-    id: 'email',
-    title: '이메일 템플릿',
-    year: '23-22',
-    skills: ['Email', 'Gatsby'],
-    place: '카카오엔터프라이즈'
-  },
-  {
-    id: 'interpark',
-    title: '인터파크 개편 & 유지보수',
-    year: '21-20',
-    skills: ['Cross-browsing', 'jQuery']
-  },
-  {
-    id: 'dooin',
-    title: '두인경매 지도 검색',
-    year: '21',
-    skills: ['Markup', 'jQuery']
-  },
-  {
-    id: 'cosmos',
-    title: '코스모스랩 기업 홈페이지',
-    year: '21',
-    skills: ['Scroll Interaction'],
-    place: '블록오디세이'
-  },
-  {
-    id: 'stars',
-    title: '별별할일',
-    year: '23',
-    skills: ['Next.js', 'UX Design'],
-    isOngoing: true
-  }
-];
 
 const TextBig = ({ children }: { children: string }) => {
   const { isDesktop } = useViewport();
@@ -90,6 +51,7 @@ const TextBig = ({ children }: { children: string }) => {
       }
     }
   };
+
   return (
     <motion.strong
       className={c('text_big')}
@@ -180,6 +142,7 @@ const TextBig = ({ children }: { children: string }) => {
 };
 
 const Works = () => {
+  const myWorks = useAllWorksJson();
   const articleRef = useRef<HTMLDivElement>(null);
   const [isScrolling, setIsScrolling] = useState(false);
 
@@ -282,8 +245,8 @@ const Works = () => {
           <WorkItem
             variants={fadeInUp()}
             className={c('work_item')}
-            key={work.id}
-            id={work.id as worksList}
+            key={work.jsonId}
+            id={work.jsonId as worksList}
             title={work.title}
             year={work.year}
             skills={work.skills}

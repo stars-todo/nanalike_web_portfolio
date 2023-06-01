@@ -1,0 +1,15 @@
+id: cosmos
+title: 코스모스랩 기업 홈페이지
+skills: ['Scroll Interaction']
+link: ''
+info:
+  - 코스모스랩 (1)
+  - 코스모스랩 (2)
+full:
+  - img: 'https://source.unsplash.com/random/?love'
+    desc: ['1', '2']
+flex:
+  - img: 'https://source.unsplash.com/random/?love'
+    desc: ['3']
+  - img: 'https://source.unsplash.com/random/?love'
+    desc: ['4']

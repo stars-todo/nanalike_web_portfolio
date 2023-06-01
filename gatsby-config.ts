@@ -19,9 +19,16 @@ const config: GatsbyConfig = {
       options: {
         name: `data`,
         path: `${__dirname}/src/data/`,
-        ignore: [`**/\.*`]
+        ignore: [`**/\.*`, '.cache/']
       },
       __key: 'images'
+    },
+    `gatsby-transformer-json`,
+    {
+      resolve: `gatsby-transformer-yaml`,
+      options: {
+        typeName: `Yaml`
+      }
     },
     `gatsby-plugin-smoothscroll`
   ]

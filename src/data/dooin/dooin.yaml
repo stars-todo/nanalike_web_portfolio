@@ -1,0 +1,15 @@
+id: dooin
+title: 두인경매 지도 검색
+skills: ['Markup', 'jQuery']
+link: ''
+info:
+  - 두인경매 (1)
+  - 두인경매 (2)
+full:
+  - img: 'https://source.unsplash.com/random/?love'
+    desc: ['1', '2']
+flex:
+  - img: 'https://source.unsplash.com/random/?love'
+    desc: ['3']
+  - img: 'https://source.unsplash.com/random/?love'
+    desc: ['4']

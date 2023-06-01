@@ -34,6 +34,7 @@
   width: 100%;
   font-size: rem(18);
   color: #000;
+  pointer-events: none;
 
   .inner {
     max-width: var(--d-max-width);
@@ -52,6 +53,7 @@
   justify-content: space-between;
   padding: rem(12);
   font-weight: 500;
+  pointer-events: auto;
 
   @include mq_m {
     justify-content: center;
@@ -131,7 +133,12 @@
     justify-content: center;
   }
 
+  span {
+    pointer-events: auto;
+  }
+
   .langs {
+    pointer-events: auto;
     @include mq_m {
       display: none;
     }

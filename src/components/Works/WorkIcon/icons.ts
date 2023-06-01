@@ -1,15 +1,13 @@
-import { worksList } from '../WorkItem/WorkItem';
-
-type iconList = 'board' | 'email' | 'ticket' | 'map' | 'home' | 'star';
+import { worksList } from '@data-types/works';
 
 export type iconType = {
-  icon: iconList;
+  icon: worksList;
   color: string;
 };
 
 export const workIcons: Record<worksList, iconType> = {
   workboard: {
-    icon: 'board',
+    icon: 'workboard',
     color: '#232D64'
   },
   email: {
@@ -17,19 +15,19 @@ export const workIcons: Record<worksList, iconType> = {
     color: '#FDF5D1'
   },
   interpark: {
-    icon: 'ticket',
+    icon: 'interpark',
     color: '#A5D0FE'
   },
   dooin: {
-    icon: 'map',
+    icon: 'dooin',
     color: '#9CD6B3'
   },
   cosmos: {
-    icon: 'home',
+    icon: 'cosmos',
     color: '#525E9C'
   },
   stars: {
-    icon: 'star',
+    icon: 'stars',
     color: '#F8F8F8'
   }
 };

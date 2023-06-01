@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PageLayout from '@layouts/PageLayout';
 import classNames from 'classnames/bind';
 import * as styles from './WorkDetail.module.scss';
@@ -9,7 +9,14 @@ import WorkIcon from '@components/Works/WorkIcon/WorkIcon';
 import MailAddress from '@components/MailAddress/MailAddress';
 import Copyright from '@components/Copyright/Copyright';
 import CustomButton from '@components/CustomButton/CustomButton';
-import { worksList } from '@components/Works/WorkItem/WorkItem';
+import {
+  motion,
+  useAnimationControls,
+  useMotionValueEvent,
+  useScroll
+} from 'framer-motion';
+import worksData from '@data/works.json';
+
 const c = classNames.bind(styles);
 
 const myWorks = [
@@ -55,119 +62,305 @@ const myWorks = [
   }
 ];
 
-const WorkDetail = () => {
+const WorkDetail = ({ id, data }: any) => {
+  const { scrollYProgress, scrollY } = useScroll({
+    offset: ['0', '1']
+  });
+
+  const articleRef = useRef<HTMLDivElement>(null);
+  const [isScrollOver, setIsScrollOver] = useState(false);
+
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    const refRect = articleRef.current?.getBoundingClientRect();
+    const retOffset = articleRef?.current?.offsetTop || 0;
+    const refHeight = refRect?.height || 0;
+    const viewportHeight = typeof window !== `undefined` ? window.innerHeight : 0;
+    console.log('latest', latest);
+    console.log('refHeight', refHeight);
+    console.log('viewportHeight', viewportHeight);
+
+    if (refHeight - latest <= viewportHeight - 200) {
+      setIsScrollOver(true);
+      console.log('NOW!!!!');
+    } else {
+      setIsScrollOver(false);
+    }
+  });
+
+  function fadeInUp(y = 30, duration = 0.6, delay = 0) {
+    return {
+      hidden: {
+        opacity: 0,
+        y: y
+      },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          ease: 'easeInOut',
+          duration: duration,
+          delay: delay
+        }
+      }
+    };
+  }
+
+  const animation = {
+    trigger: {
+      hidden: {
+        opacity: 0
+      },
+      visible: {
+        opacity: 1,
+        transition: {
+          when: 'beforeChildren',
+          staggerChildren: 0.5
+        }
+      }
+    },
+    link: {
+      hidden: {
+        opacity: 0,
+        x: -30
+      },
+      visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+          ease: 'easeInOut',
+          duration: 0.5,
+          delay: 0.3
+        }
+      }
+    },
+    button: {
+      hidden: {
+        opacity: 0,
+        x: -30
+      },
+      visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+          ease: 'easeInOut',
+          duration: 0.5
+        }
+      }
+    },
+    others: {
+      hidden: { opacity: 0, transition: { ease: 'linear' } },
+      visible: {
+        opacity: 1,
+        transition: {
+          when: 'beforeChildren',
+          staggerChildren: 0.12
+          // ease: 'linear'
+        }
+      }
+    },
+    othersText: {
+      hidden: { opacity: 0, x: 0, transition: { ease: 'linear' } },
+      visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+          duration: 0.85,
+          ease: 'linear'
+        }
+      }
+    },
+    othersLines: {
+      hidden: { opacity: 0, x: '-70%', transition: { ease: 'linear' } },
+      visible: {
+        opacity: 1,
+        x: 0,
+        transition: {
+          duration: 0.5,
+          ease: 'linear'
+        }
+      }
+    }
+  };
+
+  const controls = useAnimationControls();
+
+  useEffect(() => {
+    if (isScrollOver) {
+      controls.start('visible');
+    } else {
+      controls.start('hidden');
+    }
+  }, [controls, isScrollOver]);
+
   return (
     <>
-      <article className={c('work_detail')}>
+      <article className={c('work_detail')} ref={articleRef}>
         <div className={c('btn_back')}>
           <CustomButton icon="back" href="/">
             Go Home
           </CustomButton>
         </div>
-        <div className={c('info')}>
-          <StaticImage
-            className={c('thumbnail')}
-            alt="프로필 사진"
-            src="https://source.unsplash.com/random/?cat"
-          />
-          <div className={c('summary')}>
-            <ArticleTitle>Work Detail</ArticleTitle>
-            <h2 className={c('work_title')}>카카오워크 워크보드</h2>
-            <ul className={c('skills')}>
-              <li className={c('skills_item')}>React</li>
-              <li className={c('skills_item')}>TypeScript</li>
-            </ul>
-            <p className={c('desc')}>
-              워크보드는 업무 정보와 자료를 공유하기 위한 웹 서비스입니다. 종합 업무
-              플랫폼 ‘카카오워크’에 포함된 서비스 중 하나로, 내용을 빠르게 확인할 수 있는
-              게시판 형태로 개발되었습니다.
-            </p>
-            <p className={c('desc')}>
-              Figma를 활용해 UX/UI 방향을 논의한 뒤 React/TypeScript 환경에서 UI 개발을
-              진행했습니다. 아토믹 디자인을 활용한 디자인 시스템을 택했으며, Storybook으로
-              UI 컴포넌트를 관리했습니다.
-            </p>
-            <CustomLink href="/">웹사이트 바로가기</CustomLink>
-          </div>
-        </div>
+        <motion.div initial="hidden" whileInView="visible" className={c('info')}>
+          <motion.div className={c('thumbnail_wrapper')} variants={fadeInUp()}>
+            <StaticImage
+              className={c('thumbnail')}
+              alt=""
+              src="https://source.unsplash.com/random/?cat"
+            />
+          </motion.div>
+          <motion.div
+            className={c('summary')}
+            variants={animation.trigger}
+            initial="hidden"
+            whileInView="visible"
+          >
+            <motion.div variants={fadeInUp()}>
+              <ArticleTitle>Work Detail</ArticleTitle>
+              <h2 className={c('work_title')}>{data.title}</h2>
+            </motion.div>
+            <motion.div variants={fadeInUp(30, 0.6, 0.1)}>
+              <ul className={c('skills')}>
+                {data?.skills.map((skill) => {
+                  return <li className={c('skills_item')}>{skill}</li>;
+                })}
+              </ul>
+            </motion.div>
+            <motion.div variants={fadeInUp(30, 0.6, 0.2)}>
+              {data?.info.map((desc) => {
+                return <p className={c('desc')}>{desc}</p>;
+              })}
+            </motion.div>
+            {data?.link && (
+              <motion.div variants={animation.link}>
+                <CustomLink href={data.link}>웹사이트 바로가기</CustomLink>
+              </motion.div>
+            )}
+          </motion.div>
+        </motion.div>
         <div className={c('main')}>
-          <div className={c('contents', 'full')}>
-            <figure>
-              <StaticImage
-                className={c('shot')}
-                alt="작업한 내용 스크린샷"
-                src="https://source.unsplash.com/random/?dog"
-              />
-              <figcaption className={c('contents_desc')}>
-                <p>
-                  구축부터 유지보수까지 지속적으로 참여한 프로젝트입니다. 기획, 개발,
-                  테스트에 이르기까지 모든 실무자가 함께 공통의 과제를 바라보는 스프린트
-                  방식으로 작업했습니다. 초기부터 함께 했기에 더욱 애정이 담긴
-                  프로젝트입니다.
-                </p>
-                <p>
-                  프레임워크 기반의 UI 개발 경험을 통해 컴포넌트의 재사용성을 고민하고
-                  높일 수 있었습니다. 구축 단계에 함께 작업했던 UI 개발자가 있어 논의하고
-                  맞춰나가며 즐겁게 협업할 수 있었습니다. 마크업 개발을 통한 프로토타입을
-                  먼저 공유할 수 있어 UX를 재검토하고 향상시켜나갈 수 있었습니다.
-                </p>
-              </figcaption>
-            </figure>
-          </div>
-          <div className={c('flex')}>
-            <div className={c('contents')}>
-              <figure>
-                <StaticImage
-                  className={c('shot')}
-                  alt="작업한 내용 스크린샷"
-                  src="https://source.unsplash.com/random/?dog"
-                />
-                <figcaption className={c('contents_desc')}>
-                  <p>
-                    확장 가능성이 높은 신규 서비스인 만큼, 기본 요소를 잘 활용할 수 있도록
-                    컴포넌트를 정리했습니다. Storybook으로 UI 컴포넌트를 정리하여 유지보수
-                    작업이 보다 쉬워지도록 했습니다.
-                  </p>
-                </figcaption>
-              </figure>
+          {data?.full && (
+            <div className={c('contents', 'full')}>
+              {data?.full.map((contents) => (
+                <motion.figure
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={fadeInUp()}
+                >
+                  <img
+                    className={c('shot')}
+                    alt="작업한 내용 스크린샷"
+                    src={contents.img}
+                  />
+                  <figcaption className={c('contents_desc')}>
+                    {contents.desc.map((desc) => {
+                      return (
+                        <motion.p
+                          initial="hidden"
+                          whileInView="visible"
+                          variants={fadeInUp()}
+                        >
+                          {desc}
+                        </motion.p>
+                      );
+                    })}
+                  </figcaption>
+                </motion.figure>
+              ))}
             </div>
-            <div className={c('contents')}>
-              <figure>
-                <StaticImage
-                  className={c('shot')}
-                  alt="작업한 내용 스크린샷"
-                  src="https://source.unsplash.com/random/?dog"
-                />
-                <figcaption className={c('contents_desc')}>
-                  <p>
-                    TypeScript를 통해 안전하고 편하게 컴포넌트를 사용할 수 있도록
-                    했습니다. 정해진 prop만 받도록 해 예외 케이스에서 UI가 어긋나는 문제를
-                    방지했습니다. 또, 목 데이터를 사용하는 경우 미리 타입을 지정해두어 API
-                    연동 시의 혼동을 줄였습니다.
-                  </p>
-                </figcaption>
-              </figure>
+          )}
+          {data?.flex && (
+            <div className={c('flex')}>
+              {data?.flex.map((contents) => (
+                <div className={c('contents')}>
+                  <motion.figure
+                    initial="hidden"
+                    whileInView="visible"
+                    variants={fadeInUp()}
+                  >
+                    <img
+                      className={c('shot')}
+                      alt="작업한 내용 스크린샷"
+                      src={contents.img}
+                    />
+                    <figcaption className={c('contents_desc')}>
+                      {contents.desc.map((desc) => {
+                        return (
+                          <motion.p
+                            initial="hidden"
+                            whileInView="visible"
+                            variants={fadeInUp()}
+                          >
+                            {desc}
+                          </motion.p>
+                        );
+                      })}
+                    </figcaption>
+                  </motion.figure>
+                </div>
+              ))}
             </div>
-          </div>
+          )}
         </div>
-        <ul className={c('slide')}>
-          {myWorks.map((work, index) => (
-            <li className={c('slide_item')} key={work.id}>
-              <a href={`/work/${work.id}`} target="_blank" rel="noopener noreferrer">
-                <WorkIcon id={work.id as worksList} />
-                <span className={c('slide_name')}>{work.title}</span>
-                <span className={c('slide_bg')}></span>
-              </a>
-            </li>
-          ))}
-        </ul>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={animation.others}
+          className={c('others')}
+        >
+          <strong>Next</strong>
+          <ul className={c('others_list')}>
+            {worksData.map((work, index) => {
+              if (work.id !== id && !work.isOngoing) {
+                return (
+                  <motion.li className={c('others_item')} key={work.id}>
+                    <a href={`/work/${work.id}`}>
+                      <motion.div variants={animation.othersText} className={c('name')}>
+                        {work.title}
+                      </motion.div>
+                    </a>
+                    <motion.div
+                      variants={animation.othersLines}
+                      className={c('line')}
+                    ></motion.div>
+                  </motion.li>
+                );
+              }
+            })}
+          </ul>
+          <motion.div variants={animation.button}>
+            <CustomButton className={c('go_home')} icon="back" href="/">
+              Go Home
+            </CustomButton>
+          </motion.div>
+        </motion.div>
+        <div className={c('btn_back')}></div>
+        {/* <ul className={c('slide')}>
+          {[...myWorks, ...myWorks].map((work, index) => {
+            if (work?.id !== 'workboard') {
+              return (
+                <li className={c('slide_item')} key={work.id}>
+                  <a href={`/work/${work.id}`} target="_blank" rel="noopener noreferrer">
+                    <WorkIcon id={work.id as worksList} />
+                    <span className={c('slide_name')}>{work.title}</span>
+                    <span className={c('slide_bg')}></span>
+                  </a>
+                </li>
+              );
+            }
+          })}
+        </ul> */}
       </article>
       <footer className={c('work_footer')}>
-        <div className={c('inner')}>
+        <motion.div
+          initial="hidden"
+          // whileInView="visible"
+          animate={controls}
+          className={c('inner')}
+        >
           <div className={c('footer_title')}>웹 퍼블리싱이 필요한 프로젝트가 있나요?</div>
           <MailAddress size="small" />
           <Copyright className={c('copy')} />
-        </div>
+        </motion.div>
       </footer>
     </>
   );

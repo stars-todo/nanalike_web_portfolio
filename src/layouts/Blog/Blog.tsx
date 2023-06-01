@@ -178,80 +178,6 @@ const PostItem = ({ isLoading, className, url, src, title, date, desc }: any) =>
   );
 };
 
-const tempPost = [
-  {
-    url: 'https://nykim.work/117',
-    src: 'https://source.unsplash.com/random/?europe',
-    title: '2022년 짤막한 회고',
-    date: 'May 22, 2023',
-    desc: "[일기 모아 제본하기]도 이걸로 어느덧 네 번째! 이제 익숙해질 때도 됐는데 여전히 우당탕 헤매면서 마무리했다 (그리고 꼭 끝나야 보이는 오타... ) 올해 제본 컨셉은 뭘로 할까 고민하다가 우주로 정했다. 🪐✨ 매달 회고를 할 때마다 이번 달의 한마디를 적어두는데 그때 적었던 문구 중 하나에 꽂혀서 슥 가져와 넣었다. 주변에 보여주면 '뭔..."
-  },
-  {
-    url: 'https://nykim.work/117',
-    src: 'https://source.unsplash.com/random/?flower',
-    title: 'Gatsby 찍먹해보기 - 설치부터 배포까지',
-    date: 'May 22, 2023',
-    desc: '프롤로그 저는 종종 로컬에서 시작해 로컬에서 끝나는 마크업 작업(aka 이메일 템플릿)을 진행하는데요, 나중에 파일을 찾으려면 하나씩 파일을 열고 닫아야 하는 수고스러움이 있었습니다. 로컬에 흩어진 파일을 한 화면에서 볼 수 있게 정리하고 싶어! 하지만 어떻게?!!!"하고 고민하던 중... 그레잇한 개츠비를 알게 되어 찍먹해봤습니다. 결론부터 말하자면 (삽질도 많았지만) 좋은 경험이었어요!'
-  },
-  {
-    url: 'https://nykim.work/117',
-    src: 'https://source.unsplash.com/random/?book',
-    title: '[아무튼 Sass] 4. 더 멋지게 활용하기 - 흐름제어와 이것저것 등등 룰루랄라',
-    date: 'May 22, 2023',
-    desc: '프롤로그 저는 종종 로컬에서 시작해 로컬에서 끝나는 마크업 작업(aka 이메일 템플릿)을 진행하는데요, 나중에 파일을 찾으려면 하나씩 파일을 열고 닫아야 하는 수고스러움이 있었습니다. 로컬에 흩어진 파일을 한 화면에서 볼 수 있게 정리하고 싶어! 하지만 어떻게?!!!"하고 고민하던 중... 그레잇한 개츠비를 알게 되어 찍먹해봤습니다. 결론부터 말하자면 (삽질도 많았지만) 좋은 경험이었어요!'
-  },
-  {
-    url: 'https://nykim.work/117',
-    src: 'https://blog.kakaocdn.net/dn/bb1tpl/btrLKiHQ4dW/XQxIenzrhkt5wDYo0jh7W0/img.png',
-    title: 'elit duis mollit elit esse fugiat occaecat reprehenderit.',
-    date: 'May 22, 2023',
-    desc: '프롤로그 저는 종종 로컬에서 시작해 로컬에서 끝나는 마크업 작업(aka 이메일 템플릿)을 진행하는데요, 나중에 파일을 찾으려면 하나씩 파일을 열고 닫아야 하는 수고스러움이 있었습니다. 로컬에 흩어진 파일을 한 화면에서 볼 수 있게 정리하고 싶어! 하지만 어떻게?!!!"하고 고민하던 중... 그레잇한 개츠비를 알게 되어 찍먹해봤습니다. 결론부터 말하자면 (삽질도 많았지만) 좋은 경험이었어요!'
-  },
-  {
-    url: 'https://nykim.work/117',
-    src: 'https://source.unsplash.com/random/?relax',
-    title: '테스트용입니다',
-    date: 'May 22, 2023',
-    desc: '프롤로그 저는 종종 로컬에서 시작해 로컬에서 끝나는 마크업 작업(aka 이메일 템플릿)을 진행하는데요, 나중에 파일을 찾으려면 하나씩 파일을 열고 닫아야 하는 수고스러움이 있었습니다. 로컬에 흩어진 파일을 한 화면에서 볼 수 있게 정리하고 싶어! 하지만 어떻게?!!!"하고 고민하던 중... 그레잇한 개츠비를 알게 되어 찍먹해봤습니다. 결론부터 말하자면 (삽질도 많았지만) 좋은 경험이었어요!'
-  },
-  {
-    url: 'https://nykim.work/117',
-    src: 'https://source.unsplash.com/random/?document',
-    title: 'Aliqua proident sunt anim',
-    date: 'May 22, 2023',
-    desc: '프롤로그 저는 종종 로컬에서 시작해 로컬에서 끝나는 마크업 작업(aka 이메일 템플릿)을 진행하는데요, 나중에 파일을 찾으려면 하나씩 파일을 열고 닫아야 하는 수고스러움이 있었습니다. 로컬에 흩어진 파일을 한 화면에서 볼 수 있게 정리하고 싶어! 하지만 어떻게?!!!"하고 고민하던 중... 그레잇한 개츠비를 알게 되어 찍먹해봤습니다. 결론부터 말하자면 (삽질도 많았지만) 좋은 경험이었어요!'
-  },
-  {
-    url: 'https://nykim.work/117',
-    src: 'https://source.unsplash.com/random/?beautiful',
-    title: 'elit duis mollit elit esse fugiat occaecat reprehenderit.',
-    date: 'May 22, 2023',
-    desc: '프롤로그 저는 종종 로컬에서 시작해 로컬에서 끝나는 마크업 작업(aka 이메일 템플릿)을 진행하는데요, 나중에 파일을 찾으려면 하나씩 파일을 열고 닫아야 하는 수고스러움이 있었습니다. 로컬에 흩어진 파일을 한 화면에서 볼 수 있게 정리하고 싶어! 하지만 어떻게?!!!"하고 고민하던 중... 그레잇한 개츠비를 알게 되어 찍먹해봤습니다. 결론부터 말하자면 (삽질도 많았지만) 좋은 경험이었어요!'
-  },
-  {
-    url: 'https://nykim.work/117',
-    src: 'https://source.unsplash.com/random/?coffee',
-    title: '[8] elit duis mollit elit esse fugiat occaecat reprehenderit.',
-    date: 'May 22, 2023',
-    desc: '프롤로그 저는 종종 로컬에서 시작해 로컬에서 끝나는 마크업 작업(aka 이메일 템플릿)을 진행하는데요, 나중에 파일을 찾으려면 하나씩 파일을 열고 닫아야 하는 수고스러움이 있었습니다. 로컬에 흩어진 파일을 한 화면에서 볼 수 있게 정리하고 싶어! 하지만 어떻게?!!!"하고 고민하던 중... 그레잇한 개츠비를 알게 되어 찍먹해봤습니다. 결론부터 말하자면 (삽질도 많았지만) 좋은 경험이었어요!'
-  },
-  ,
-  {
-    url: 'https://nykim.work/117',
-    src: 'https://source.unsplash.com/random/?fish',
-    title: '[9] elit duis mollit elit esse fugiat occaecat reprehenderit.',
-    date: 'May 22, 2023',
-    desc: '프롤로그 저는 종종 로컬에서 시작해 로컬에서 끝나는 마크업 작업(aka 이메일 템플릿)을 진행하는데요, 나중에 파일을 찾으려면 하나씩 파일을 열고 닫아야 하는 수고스러움이 있었습니다. 로컬에 흩어진 파일을 한 화면에서 볼 수 있게 정리하고 싶어! 하지만 어떻게?!!!"하고 고민하던 중... 그레잇한 개츠비를 알게 되어 찍먹해봤습니다. 결론부터 말하자면 (삽질도 많았지만) 좋은 경험이었어요!'
-  },
-  {
-    url: 'https://nykim.work/117',
-    src: 'https://source.unsplash.com/random/?mountain',
-    title: '[10] elit duis mollit elit esse fugiat occaecat reprehenderit.',
-    date: 'May 22, 2023',
-    desc: '프롤로그 저는 종종 로컬에서 시작해 로컬에서 끝나는 마크업 작업(aka 이메일 템플릿)을 진행하는데요, 나중에 파일을 찾으려면 하나씩 파일을 열고 닫아야 하는 수고스러움이 있었습니다. 로컬에 흩어진 파일을 한 화면에서 볼 수 있게 정리하고 싶어! 하지만 어떻게?!!!"하고 고민하던 중... 그레잇한 개츠비를 알게 되어 찍먹해봤습니다. 결론부터 말하자면 (삽질도 많았지만) 좋은 경험이었어요!'
-  }
-];
-
 function removeTags(str: any) {
   return str.replace(/<[^>]*>/g, '');
 }
@@ -278,7 +204,7 @@ function removeTag(contents: any) {
 
   const regex = /data-url='([^']*)'/;
   const match = contents.match(regex);
-  console.log(match);
+  // console.log(match);
   return final;
 }
 

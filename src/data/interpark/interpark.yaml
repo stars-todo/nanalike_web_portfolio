@@ -1,0 +1,15 @@
+id: interpark
+title: 인터파크 개편 & 유지보수
+skills: ['Cross-browsing', 'jQuery']
+link: ''
+info:
+  - 인터파크(1)
+  - 인터파크(2)
+full:
+  - img: 'https://source.unsplash.com/random/?love'
+    desc: ['1', '2']
+flex:
+  - img: 'https://source.unsplash.com/random/?love'
+    desc: ['3']
+  - img: 'https://source.unsplash.com/random/?love'
+    desc: ['4']
