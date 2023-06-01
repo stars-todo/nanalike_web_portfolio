@@ -55,13 +55,26 @@ const WorkItem = ({
       }
     };
   }
+
+  const scrollToTop = () => {
+    if (location.pathname.includes(`work`)) {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTo(0, 0);
+    }
+    // history.scrollRestoration = 'manual';
+  };
+
   return (
     <motion.div
       className={c('work_item', `${className}`, { isOngoing })}
       style={style}
       variants={variants}
     >
-      <a href={!isOngoing ? `/work/${id}` : undefined} aria-disabled={isOngoing}>
+      <a
+        href={!isOngoing ? `/work/${id}` : undefined}
+        aria-disabled={isOngoing}
+        // onClick={() => scrollToTop()}
+      >
         <div className={c('work_contents')} id="interaction">
           <WorkIcon
             className={c('icon')}

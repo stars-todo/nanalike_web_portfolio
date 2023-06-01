@@ -216,7 +216,7 @@ const WorkDetail = ({ id, data }: any) => {
           >
             <motion.div variants={fadeInUp()}>
               <ArticleTitle>Work Detail</ArticleTitle>
-              <h2 className={c('work_title')}>{data.title}</h2>
+              <h2 className={c('work_title')}>{data?.title}</h2>
             </motion.div>
             <motion.div variants={fadeInUp(30, 0.6, 0.1)}>
               <ul className={c('skills')}>

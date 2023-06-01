@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import PageLayout from '@layouts/PageLayout';
 import WorkDetail from '@layouts/WorkDetail/WorkDetail';
 import test from '@data/workboard/workboard.yaml';
@@ -30,7 +30,11 @@ const WorkDetailPage = ({ data, params }: any) => {
   //     }
   //   }
   // `);
-  console.log(data?.allYaml);
+  const url = typeof window !== 'undefined' ? window.location.pathname : '';
+  useEffect(() => {
+    document.documentElement.scrollTo(0, 0);
+  }, [url]);
+
   return (
     <PageLayout>
       <WorkDetail id={params.relativeDirectory} data={data?.allYaml?.nodes[0]} />
@@ -64,6 +68,6 @@ export const query = () => graphql`
 
 export const Head = ({ data }: { data: any }) => (
   <title>
-    나나라이크{` | ${data.allYaml?.nodes[0].title}` || ' | 웹퍼블리셔 포트폴리오'}
+    나나라이크{` | ${data.allYaml?.nodes[0]?.title}` || ' | 웹퍼블리셔 포트폴리오'}
   </title>
 );
