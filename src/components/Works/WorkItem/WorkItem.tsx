@@ -66,7 +66,7 @@ const WorkItem = ({
 
   return (
     <motion.div
-      className={c('work_item', `${className}`, { isOngoing })}
+      className={c('work_item', className, { isOngoing })}
       style={style}
       variants={variants}
     >
@@ -74,6 +74,7 @@ const WorkItem = ({
         href={!isOngoing ? `/work/${id}` : undefined}
         aria-disabled={isOngoing}
         // onClick={() => scrollToTop()}
+        data-cursor={isOngoing ? null : 'work'}
       >
         <div className={c('work_contents')} id="interaction">
           <WorkIcon

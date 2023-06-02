@@ -5,14 +5,22 @@ const c = classNames.bind(styles);
 
 interface CustomLinkProps extends React.ComponentProps<'a'> {
   className?: string;
+  cursor?: 'outlink';
   children: ReactNode | string;
   href: string;
 }
 
-const CustomLink = ({ className, children, href, ...props }: CustomLinkProps) => {
+const CustomLink = ({
+  className,
+  cursor = 'outlink',
+  children,
+  href,
+  ...props
+}: CustomLinkProps) => {
   return (
     <a
-      className={c('link_custom', `${className}`)}
+      data-cursor={cursor}
+      className={c('link_custom', className)}
       href={href}
       target="_blank"
       rel="noopener noreferrer"
@@ -25,7 +33,7 @@ const CustomLink = ({ className, children, href, ...props }: CustomLinkProps) =>
         fill="none"
         viewBox="0 0 18 18"
       >
-        <circle cx="9" cy="9" r="9" fill="#202020" />
+        <circle cx="9" cy="9" r="9" fill="currentColor" />
         <path
           stroke="#fff"
           stroke-linecap="round"

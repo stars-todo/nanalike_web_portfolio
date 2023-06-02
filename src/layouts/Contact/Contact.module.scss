@@ -33,10 +33,21 @@
     padding-top: $padding_tablet;
     padding-bottom: calc(vh(30) + vw(70) + rem(10));
   }
+
+  &.mailHover {
+    @media (hover: hover) and (pointer: fine) {
+      .title,
+      .download,
+      .contents {
+        opacity: 0.4 !important;
+      }
+    }
+  }
 }
 
 .title {
   font-size: rem(20);
+  transition: opacity 0.3s;
 
   @include mq_t {
     text-align: center;
@@ -53,6 +64,7 @@
   font-weight: 400;
   line-height: 150%;
   letter-spacing: -0.01em;
+  transition: opacity 0.3s;
 
   @include mq_m {
     font-size: mobile(20, 24);
@@ -62,6 +74,7 @@
 
 .download {
   background-color: #fff;
+  transition: opacity 0.3s;
 }
 
 .contents {
@@ -76,6 +89,7 @@
   font-weight: 400;
   line-height: 180%;
   color: var(--color-gray);
+  transition: opacity 0.3s;
 
   @include mq_l {
     flex-wrap: wrap;

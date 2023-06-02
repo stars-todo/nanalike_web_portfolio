@@ -1,6 +1,8 @@
 @use './../../styles/helpers/mixins' as *;
 
 .button_custom {
+  overflow: hidden;
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -14,12 +16,81 @@
   border-radius: 3rem;
   border: 1px solid var(--color-black);
 
-  .icon {
-    width: 1em;
+  span {
+    z-index: 1;
+    position: relative;
   }
 
-  @include mq_m {
-    // height: rem(36);
-    // font-size: rem(18);
+  .icon {
+    width: 1em;
+    z-index: 1;
+    position: relative;
+  }
+}
+
+.download {
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 110%;
+    height: 110%;
+    content: '';
+    background: var(--color-black);
+    transform: translate3d(0, 100%, 0);
+    transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+  }
+
+  &:hover {
+    span,
+    .icon {
+      color: #fff;
+    }
+
+    &:before {
+      transform: translate3d(0, 0%, 0);
+    }
+  }
+}
+
+.back {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      svg {
+        animation: arrow 3s infinite;
+      }
+    }
+  }
+}
+
+@keyframes arrow {
+  0% {
+    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translate3d(0, 0, 0);
+  }
+
+  12% {
+    -webkit-animation-timing-function: cubic-bezier(0.42, 0, 1, 1);
+    animation-timing-function: cubic-bezier(0.42, 0, 1, 1);
+    transform: translate3d(-5px, 0, 0);
+  }
+
+  24% {
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 0.58, 1);
+    animation-timing-function: cubic-bezier(0, 0, 0.58, 1);
+    transform: translate3d(0, 0, 0);
+  }
+
+  32% {
+    -webkit-animation-timing-function: cubic-bezier(0.42, 0, 1, 1);
+    animation-timing-function: cubic-bezier(0.42, 0, 1, 1);
+    transform: translate3d(-3px, 0, 0);
+  }
+
+  40% {
+    -webkit-animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    transform: translate3d(0, 0, 0);
   }
 }

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import classNames from 'classnames/bind';
 import * as styles from './Contact.module.scss';
 import ArticleTitle from '@components/ArticleTitle/ArticleTitle';
@@ -40,7 +40,7 @@ const Footer = ({ scrollYProgress }: any) => {
   );
 };
 
-const Contact = () => {
+const Contact = ({ setCopied }: any) => {
   const { isTablet, isMobile } = useViewport();
   const articleRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -150,9 +150,11 @@ const Contact = () => {
     }
   };
 
+  const [mailHover, setMailHover] = useState(false);
+
   return (
     <motion.article
-      className={c('contact')}
+      className={c('contact', { mailHover })}
       initial="hidden"
       whileInView="visible"
       // viewport={{ amount: 0.25 }}
@@ -167,7 +169,11 @@ const Contact = () => {
           <motion.div variants={fadeInUp()} className={c('title_sub')}>
             웹 퍼블리싱이 필요한 프로젝트가 있나요?
           </motion.div>
-          <MailAddress />
+          <MailAddress
+            className={c('mail')}
+            setMailHover={setMailHover}
+            setCopied={setCopied}
+          />
           <motion.div variants={fadeInUp()}>
             <CustomButton icon="download" className={c('download')}>
               이력서 다운로드

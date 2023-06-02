@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames/bind';
 import * as styles from './CustomButton.module.scss';
+import { motion } from 'framer-motion';
 const c = classNames.bind(styles);
 
 interface WrapperProps {
@@ -15,11 +16,24 @@ interface CustomButtonProps extends WrapperProps {
 
 const ButtonOrLink = ({ className, href, children }: WrapperProps) => {
   return href ? (
-    <a className={c('button_custom', className)} href={href}>
+    <motion.a
+      whileHover={{ scale: 1.1 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      href={href}
+      className={c('button_custom', 'back', className)}
+      data-cursor="back"
+    >
       {children}
-    </a>
+    </motion.a>
   ) : (
-    <button className={c('button_custom', className)}>{children}</button>
+    <motion.button
+      whileHover={{ scale: 1.1 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      className={c('button_custom', 'download', className)}
+      data-cursor="download"
+    >
+      {children}
+    </motion.button>
   );
 };
 
@@ -35,7 +49,7 @@ const CustomButton = ({ className, children, href, icon }: CustomButtonProps) =>
           fill="none"
         >
           <path
-            stroke="#202020"
+            stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="2.125"
@@ -47,7 +61,7 @@ const CustomButton = ({ className, children, href, icon }: CustomButtonProps) =>
           />
         </svg>
       )}
-      {children}
+      <span> {children}</span>
     </ButtonOrLink>
   );
 };

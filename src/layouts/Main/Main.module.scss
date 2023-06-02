@@ -1,5 +1,5 @@
 @use './../../styles/helpers/mixins' as *;
-$_parallex_height: rem(60);
+$_parallex_height: 600px;
 
 .main {
   position: relative;
@@ -176,10 +176,12 @@ $_position_m: calc(vh(70) + vw(50) + rem(150));
 
 .decoration {
   position: relative;
+  padding-bottom: rem(20);
   .ticket_img {
     @include font-sub;
     position: relative;
-    top: -$_parallex_height;
+    // top: -$_parallex_height;
+    // top: 0;
     overflow: hidden;
     margin-left: auto;
     margin-right: auto;
@@ -224,11 +226,15 @@ $_position_m: calc(vh(70) + vw(50) + rem(150));
   }
 
   .bg {
-    z-index: -2;
+    // z-index: -2;
+    top: 0;
+    left: 0;
     position: absolute;
-    top: -500px;
+    top: -400px;
     width: 100%;
-    height: rem(1800);
+    min-height: rem(1100);
+    height: 200vh;
+    max-height: rem(1800);
     background-color: var(--color-beige-light);
   }
 }
@@ -256,7 +262,7 @@ $_position_m: calc(vh(70) + vw(50) + rem(150));
   overflow: hidden;
   z-index: 10;
   position: relative;
-  top: -$_parallex_height;
+  top: -80px;
   left: 0;
   display: flex;
   align-items: center;

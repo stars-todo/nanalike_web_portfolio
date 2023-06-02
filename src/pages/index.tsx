@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { HeadFC, PageProps } from 'gatsby';
 import PageLayout from '@layouts/PageLayout';
 import Main from '@layouts/Main/Main';
@@ -19,6 +19,8 @@ const IndexPage: React.FC<PageProps> = () => {
   //   initialFunction();
   // }, []);
 
+  const [copied, setCopied] = useState(false);
+
   return (
     <div asscroll-container="true">
       <PageLayout>
@@ -26,7 +28,7 @@ const IndexPage: React.FC<PageProps> = () => {
         <About />
         <Works />
         <Blog />
-        <Contact />
+        <Contact setCopied={setCopied} />
       </PageLayout>
     </div>
   );

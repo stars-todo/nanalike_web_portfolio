@@ -21,6 +21,7 @@ const Main = () => {
   const titleOpacity = useTransform(scrollYProgress, [0.3, 0.5], [1, 0]);
   const guideOpacity_1 = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const guideOpacity_2 = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
+  // const backgroundY = 0;
   const backgroundY = useParallax(scrollYProgress, 500);
   const nananaAlpha = useTransform(scrollYProgress, [0.7, 1], [1, 0]);
 

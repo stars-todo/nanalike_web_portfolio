@@ -5,7 +5,7 @@ import * as styles from './MailAddress.module.scss';
 import useViewport from '@hooks/useViewport';
 const c = classNames.bind(styles);
 
-const MailAddress = ({ size = 'normal' }: { size?: 'normal' | 'small' }) => {
+const MailAddress = ({ setCopied, className, size = 'normal', setMailHover }: any) => {
   const { isMobile } = useViewport();
   const animation = {
     mailReveal: {
@@ -38,12 +38,43 @@ const MailAddress = ({ size = 'normal' }: { size?: 'normal' | 'small' }) => {
       }
     }
   };
+
+  const handleCopy = (copyText: string) => {
+    try {
+      const textarea = document.createElement('textarea');
+      textarea.value = copyText;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      document.body.classList.add('copied');
+      setCopied(true);
+      setTimeout(() => {
+        document.body.classList.remove('copied');
+        setCopied(false);
+      }, 1000);
+    } catch (error) {
+      document.body.classList.remove('copied');
+      console.error('Failed to copy text:', error);
+    }
+  };
+
   return (
-    <div className={c('mail', `${size}`)}>
+    <div className={c('mail', `${size}`, className)}>
       <button
         className={c('mail_button')}
-        onClick={() => alert('복사!')}
-        title="클릭으로 메일 주소 복사 💌"
+        onClick={() => handleCopy('nykim@nykim.net')}
+        onMouseOver={() => {
+          if (setMailHover) {
+            setMailHover(true);
+          }
+        }}
+        onMouseLeave={() => {
+          if (setMailHover) {
+            setMailHover(false);
+          }
+        }}
+        data-cursor="copy"
       >
         <motion.div
           className={c('mail_animation')}

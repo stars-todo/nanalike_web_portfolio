@@ -152,24 +152,56 @@ const TextBig = ({ varaints, children }: { varaints?: Variants; children: string
   );
 };
 
-const PostItem = ({ isLoading, className, url, src, title, date, desc }: any) => {
+const PostItem = ({
+  idx,
+  hover,
+  setHover,
+  data,
+  isLoading,
+  className,
+  url,
+  src,
+  title,
+  date,
+  desc
+}: any) => {
+  // console.dir(data);
+  // TODO:
+
   return (
-    <div className={c('post_item', className)}>
-      <a href={url} className={c('link')} target="_blank" rel="noopener noreferrer">
-        {isLoading ? (
+    <div className={c('post_item', isLoading, className)}>
+      <a
+        href={data && data.link[0]}
+        className={c('link', { on: hover === idx + 1 })}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-cursor="outlink"
+        onMouseOver={() => setHover(idx + 1)}
+        onMouseLeave={() => setHover(null)}
+      >
+        {!data ? (
           <Skeleton className={c('thumbnail_mock')} width="100%" height="220" />
         ) : (
-          <img className={c('thumbnail')} src={src} alt="" onError={() => {}} />
+          <img
+            className={c('thumbnail')}
+            src={getImg(data.description[0])}
+            alt=""
+            onError={() => {}}
+          />
         )}
         <div className={c('text')}>
           <span className={c('date')}>
-            {isLoading ? <Skeleton width="100%" height="20" /> : date}
+            {!data ? <Skeleton width="100%" height="20" /> : getDate(data.pubDate[0])}
           </span>
           <strong className={c('title')}>
-            {isLoading ? <Skeleton width="100%" height="30" /> : title}
+            {!data ? <Skeleton width="100%" height="30" /> : data.title[0]}
           </strong>
           <p className={c('desc')}>
-            {isLoading ? <Skeleton width="100%" height="80" /> : desc}
+            {!data ? (
+              <Skeleton width="100%" height="80" />
+            ) : (
+              removeTag(data.description[0])
+            )}
           </p>
         </div>
       </a>
@@ -246,12 +278,12 @@ const Post = () => {
   const getParser = (desc: any) => {
     return new DOMParser().parseFromString(desc, 'text/html');
   };
+  const [hover, setHover] = useState(null);
 
   return (
     <>
-      <div className={c('post_inner')}>
-        <div>
-          {data ? (
+      <div className={c('post_inner', { hover }, `${hover}`)}>
+        {/* {data ? (
             <>
               {data.map((item) => (
                 <PostItem
@@ -270,8 +302,37 @@ const Post = () => {
                 return <PostItem isLoading key={`${index}`} />;
               })}
             </>
-          )}
-        </div>
+          )} */}
+
+        <>
+          {Array.from({ length: 10 }, (_, index) => {
+            return (
+              <PostItem
+                key={`${index}`}
+                data={data?.[index]}
+                idx={index}
+                hover={hover}
+                setHover={setHover}
+              />
+            );
+          })}
+        </>
+        {/* {loading &&
+          Array.from({ length: 10 }, (_, index) => {
+            return <PostItem isLoading key={`${index}`} />;
+          })}
+        {!loading &&
+          data?.map((item) => (
+            <PostItem
+              key={item.title[0]}
+              url={item.link[0]}
+              src={getImg(item.description[0])}
+              title={item.title[0]}
+              date={getDate(item.pubDate[0])}
+              desc={removeTag(item.description[0])}
+            />
+          ))} */}
+
         {/* {tempPost.map((post, idx) => (
           <PostItem
             key={`${idx}`}
