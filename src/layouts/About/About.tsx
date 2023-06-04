@@ -250,7 +250,7 @@ const About = () => {
           </motion.p>
         </div>
         <motion.div variants={animation.link}>
-          <CustomLink className={c('link')} href="https://nykim.net/about">
+          <CustomLink className={c('link')} href="/about">
             자기소개 더보기
           </CustomLink>
         </motion.div>
