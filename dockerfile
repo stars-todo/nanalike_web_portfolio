@@ -1,7 +1,7 @@
 # ====
 # Step1: MultiStage build-stage
 # Use the node:18-alpine3.18 as the base image
-FROM node:18-alpine3.18 as build-stage
+FROM node:18.16.0-alpine3.17 as build-stage
 
 # Install python/pip
 ENV PYTHONUNBUFFERED=1
