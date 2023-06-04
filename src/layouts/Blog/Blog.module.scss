@@ -1,4 +1,4 @@
-@use './../../styles/helpers/mixins' as *;
+@use '/src/styles/helpers' as *;
 
 .blog {
   z-index: 1;
@@ -34,7 +34,7 @@
   width: 40%;
   max-height: 100vh;
   min-height: rem(820);
-  padding-left: $commonPadding;
+  padding-left: $padding_global;
   // background-color: var(--color-beige);
 
   background-color: rgba(245, 239, 232, 0.8);
@@ -45,7 +45,7 @@
     height: auto;
     min-height: auto;
     margin: 0 auto;
-    padding: calc(vh(30) + vw(65) + rem(100)) $commonPadding
+    padding: calc(vh(30) + vw(65) + rem(100)) $padding_global
       calc(vh(30) + vw(65) + rem(50));
   }
 
@@ -102,7 +102,7 @@
     font-weight: 400;
     line-height: 180%;
     word-break: keep-all;
-    padding-right: $commonPadding;
+    padding-right: $padding_global;
 
     @include mq_t {
       margin: rem(70) 0 rem(30);
@@ -128,13 +128,13 @@
 
   @include mq_l {
     width: 100%;
-    padding-left: $commonPadding;
-    padding-right: $commonPadding;
+    padding-left: $padding_global;
+    padding-right: $padding_global;
   }
 
   .post_inner {
     width: 100%;
-    padding: 0 calc($commonPadding + 1.5vw);
+    padding: 0 calc($padding_global + 1.5vw);
 
     @include mq_l {
       max-width: var(--l-max-width);
@@ -220,7 +220,6 @@
   }
 
   .date {
-    @include font-sub;
     font-size: rem(16);
     line-height: 140%;
     color: var(--color-gray-light);
@@ -232,6 +231,7 @@
   }
 
   .title {
+    @include font-main;
     @include ellipsis();
     margin: rem(4) 0 rem(20);
     font-size: rem(26);
@@ -245,6 +245,7 @@
   }
 
   .desc {
+    @include font-main;
     @include ellipsis(3);
     font-size: rem(17);
     font-weight: 300;

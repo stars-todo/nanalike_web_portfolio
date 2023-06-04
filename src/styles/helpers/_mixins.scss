@@ -1,40 +1,15 @@
+@use 'sass:math';
 @use 'sass:string';
+@use './../helpers/variables' as *;
 
-$max: 1920;
-$desktop: 1600;
-$laptop: 1300;
-$tablet: 900;
-$mobile: 600;
-
-$laptop2: 1400; //DELETE
-// $tablet: 768;
-
-@mixin mq_l {
-  @media (max-width: #{$laptop}px) {
-    @content;
-  }
-}
-
-@mixin mq_ls {
-  @media (max-width: #{$laptop2}px) {
-    @content;
-  }
-}
-
-@mixin mq_t {
-  @media (max-width: #{$tablet}px) {
-    @content;
-  }
-}
-
-@mixin mq_m {
-  @media (max-width: #{$mobile}px) {
-    @content;
-  }
+@mixin font-main {
+  font-family: 'Pretendard', -apple-system, 'Apple SD Gothic Neo', '맑은 고딕',
+    'Malgun Gothic', sans-serif;
 }
 
 @mixin font-sub {
-  font-family: 'Montserrat';
+  font-family: 'Montserrat', -apple-system, 'Apple SD Gothic Neo', '맑은 고딕',
+    'Malgun Gothic', sans-serif;
 }
 
 @mixin ellipsis($lines: 1) {
@@ -65,49 +40,20 @@ $laptop2: 1400; //DELETE
   clip: rect(0, 0, 0, 0);
 }
 
-@function vh($px) {
-  @return #{calc($px / 1080) * 100}vh;
+@function vh($px, $break: 1080) {
+  @return #{math.div($px, $break) * 100}vh;
 }
 
 @function vw($px, $break: 1920) {
-  @return #{calc($px / $break) * 100}vw;
+  @return #{math.div($px, $break) * 100}vw;
 }
 
 @function rem($px) {
-  @return calc($px / 10) * 1rem;
+  @return math.div($px, 10) * 1rem;
 }
-
-@function break($px, $unit: vw, $break: $laptop) {
-  @return #{calc($px * 100 / $break)}#{$unit};
-}
-
-@function minPadding($min, $contentsSize, $morePadding: 0) {
-  @return max(#{$min}, #{calc(50vh - $contentsSize)});
-}
-
-$base-size: 16px;
-@function rem2($sizes...) {
-  $values: null;
-
-  @each $size in $sizes {
-    @if type-of($size) != 'number' {
-      @debug #{'Invalid value passed to getRem: "' $size '", which is of type'
-        type-of($size)};
-    } @else if unit($size) == '' {
-      $values: append($values, #{$size * 1px / $base-size}rem);
-    } @else if unit($size) == 'px' {
-      $values: append($values, #{$size / $base-size}rem);
-    }
-  }
-
-  @return $values;
-}
-
-$commonPadding: clamp(var(--m-padding-h), break(60), var(--d-padding-h));
-$padding_tablet: calc(vh(30) + vw(80) + rem(90));
 
 @function mobileVw($px, $unit: vw, $break: $mobile) {
-  @return #{calc($px * 100 / $break)}#{$unit};
+  @return #{math.div($px * 100, $break)}#{$unit};
 }
 
 @function mobile($min, $max) {

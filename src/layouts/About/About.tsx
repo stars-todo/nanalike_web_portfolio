@@ -196,73 +196,67 @@ const About = () => {
 
   return (
     <article className={c('about')} ref={aboutRef}>
-      <motion.div className={c('visual')} initial="hidden" whileInView="visible">
-        <div className={c('profile')}>
-          {/* <motion.img
+      <div className={c('inner')}>
+        <motion.div className={c('visual')} initial="hidden" whileInView="visible">
+          <div className={c('profile')}>
+            {/* <motion.img
             className={c('photo')}
             variants={fadeInUp()}
             src="https://source.unsplash.com/random/?europe/460/440"
             alt="프로필 사진"
           /> */}
-          <motion.div variants={fadeInUp()}>
-            <StaticImage
-              className={c('photo')}
-              alt="프로필 사진"
-              src="../../images/profile_temp.jpg"
-            />
+            <motion.div variants={fadeInUp()}>
+              <StaticImage
+                className={c('photo')}
+                alt="프로필 사진"
+                src="../../images/profile_temp.jpg"
+              />
+            </motion.div>
+          </div>
+          <TextBig>I do what i like</TextBig>
+          <motion.div
+            className="center"
+            variants={fadeInUp(40)}
+            initial="hidden"
+            whileInView="visible"
+          >
+            {/* <CustomButton \ */}
           </motion.div>
-        </div>
-        <TextBig>I do what i like</TextBig>
+        </motion.div>
         <motion.div
-          className="center"
-          variants={fadeInUp(40)}
+          className={c('text')}
           initial="hidden"
           whileInView="visible"
+          variants={animation.desc}
         >
-          {/* <CustomButton \ */}
+          <ArticleTitle className={c('title')}>
+            About
+            <NanaText className={c('nana')} />
+          </ArticleTitle>
+          <div className={c('desc')}>
+            <motion.p variants={fadeInUp()}>
+              안녕하세요! UI 개발자 김나영입니다.
+              <span className={c('aka')}>a.k.a, Nana</span>&nbsp;
+              <br className={c('br_keep')} />
+              좋아하면 더 잘한다는 마음으로 UI 개발 일을 하고 있습니다.
+            </motion.p>
+            <motion.p variants={fadeInUp()}>
+              웹 퍼블리싱을 빠삭하게 다룹니다. React/TypeScript 등 프레임워크 환경에서
+              컴포넌트 단위의 마크업 작업을 능숙하게 할 수 있어요. 어디에서도 잘 보이는
+              반응형, 웹 접근성과 웹 표준을 고려한 웹 페이지를 그려냅니다.
+            </motion.p>
+            <motion.p variants={fadeInUp()}>
+              맡은 프로젝트의 목적을 우선적으로 고려하며, 원활한 협업을 중요하게 생각해요.
+              다양한 직군과 함께 멋지고 즐거운 UX를 만드는 데 관심이 많습니다.
+            </motion.p>
+          </div>
+          <motion.div variants={animation.link}>
+            <CustomLink className={c('link')} href="https://nykim.net/about">
+              자기소개 더보기
+            </CustomLink>
+          </motion.div>
         </motion.div>
-      </motion.div>
-      <motion.div
-        className={c('text')}
-        initial="hidden"
-        whileInView="visible"
-        variants={animation.desc}
-      >
-        <ArticleTitle className={c('title')}>
-          About
-          <NanaText className={c('nana')} />
-        </ArticleTitle>
-        <div className={c('desc')}>
-          <motion.p variants={fadeInUp()}>
-            안녕하세요! UI 개발자 김나영입니다.
-            <span className={c('aka')}>a.k.a, Nana</span>&nbsp;
-            <br className={c('br_keep')} />
-            좋아하면 더 잘한다는 마음으로 UI 개발 일을 하고 있습니다.
-          </motion.p>
-          <motion.p variants={fadeInUp()}>
-            웹 퍼블리싱을 빠삭하게 다룹니다. React/TypeScript 등 프레임워크 환경에서
-            컴포넌트 단위의 마크업 작업을 능숙하게 할 수 있어요. 어디에서도 잘 보이는
-            반응형, 웹 접근성과 웹 표준을 고려한 웹 페이지를 그려냅니다.
-          </motion.p>
-          <motion.p variants={fadeInUp()}>
-            맡은 프로젝트의 목적을 우선적으로 고려하며, 원활한 협업을 중요하게 생각해요.
-            다양한 직군과 함께 멋지고 즐거운 UX를 만드는 데 관심이 많습니다.
-          </motion.p>
-        </div>
-        <motion.div variants={animation.link}>
-          <CustomLink className={c('link')} href="https://nykim.net/about">
-            자기소개 더보기
-          </CustomLink>
-        </motion.div>
-      </motion.div>
-      {/* <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1, transition: { duration: 1 } }}
-        style={{ opacity: alphabetOpacity }}
-        viewport={{ amount: 0.1 }}
-      >
-        <Alphabet type="l" className={c('alphabet', 'l')} />
-      </motion.div> */}
+      </div>
     </article>
   );
 };

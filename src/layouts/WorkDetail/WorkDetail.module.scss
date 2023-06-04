@@ -1,5 +1,4 @@
-@use 'sass:math';
-@use './../../styles/helpers/mixins' as *;
+@use '/src/styles/helpers' as *;
 
 $_footer_height: rem(460);
 $_footer_height_m: rem(400);
@@ -43,7 +42,7 @@ $_footer_height_m: rem(400);
   width: 100%;
   max-width: rem(1600);
   margin: 0 auto;
-  padding: 0 $commonPadding;
+  padding: 0 $padding_global;
 
   @include mq_l {
     gap: 4.5vw;
@@ -164,7 +163,7 @@ $_footer_height_m: rem(400);
   flex-direction: column;
   gap: rem(80);
   max-width: var(--d-max-width); //TODO: 공통화?
-  padding: 0 $commonPadding;
+  padding: 0 $padding_global;
   margin: rem(90) auto 0;
 
   @include mq_t {
@@ -326,7 +325,7 @@ $_footer_height_m: rem(400);
 
 .others {
   margin: rem(150) auto $_footer_height;
-  padding: 0 $commonPadding rem(110);
+  padding: 0 $padding_global rem(110);
 
   strong {
     @include font-sub;

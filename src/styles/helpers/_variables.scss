@@ -25,3 +25,12 @@
   --color-beige-light: #faf7f5;
   --color-beige: #f7f2ed;
 }
+
+// 미디어 쿼리 분기점
+$desktop: 1600;
+$laptop: 1300;
+$tablet: 900;
+$mobile: 600;
+
+$padding_global: clamp(var(--m-padding-h), 4.615vw, var(--d-padding-h));
+$padding_tablet: calc(vh(30) + vw(80) + rem(90));

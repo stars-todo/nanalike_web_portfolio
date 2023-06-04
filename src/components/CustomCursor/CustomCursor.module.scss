@@ -1,5 +1,4 @@
-@use 'sass:math';
-@use './../../styles/helpers/mixins' as *;
+@use '/src/styles/helpers' as *;
 
 @media (hover: hover) and (pointer: fine) {
   .cursor {

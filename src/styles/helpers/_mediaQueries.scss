@@ -1,0 +1,19 @@
+@use './../helpers/variables' as *;
+
+@mixin mq_l {
+  @media (max-width: #{$laptop}px) {
+    @content;
+  }
+}
+
+@mixin mq_t {
+  @media (max-width: #{$tablet}px) {
+    @content;
+  }
+}
+
+@mixin mq_m {
+  @media (max-width: #{$mobile}px) {
+    @content;
+  }
+}

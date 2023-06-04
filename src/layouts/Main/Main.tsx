@@ -4,24 +4,23 @@ import classNames from 'classnames/bind';
 import * as styles from './Main.module.scss';
 import NanalikeLogo from '@components/Logo/NanalikeLogo';
 import Ticket from '@components/Ticket/Ticket';
-import ticketImage from './ticket_no_border.png';
+import ticketImage from './ticket.png';
 const c = classNames.bind(styles);
 
 const Main = () => {
-  const mainRef = useRef<HTMLDivElement>(null);
+  const mainRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: mainRef,
     offset: ['0', '1']
   });
 
-  function useParallax(value: MotionValue<number>, distance: any) {
+  const useParallax = (value: MotionValue<number>, distance: number) => {
     return useTransform(value, [0, 1], [distance, `-${distance}`]);
-  }
+  };
 
   const titleOpacity = useTransform(scrollYProgress, [0.3, 0.5], [1, 0]);
   const guideOpacity_1 = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const guideOpacity_2 = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
-  // const backgroundY = 0;
   const backgroundY = useParallax(scrollYProgress, 500);
   const nananaAlpha = useTransform(scrollYProgress, [0.7, 1], [1, 0]);
 
@@ -29,18 +28,16 @@ const Main = () => {
     <>
       <article className={c('main')} ref={mainRef}>
         <div className={c('inner')}>
-          <motion.div style={{ opacity: titleOpacity }} className={c('title')}>
+          <motion.div className={c('title')} style={{ opacity: titleOpacity }}>
             <div className={c('title_inner')}>
               <strong className={c('title_sub')}>좋아하니까, 나나답게</strong>
               <NanalikeLogo className={c('logo')} />
             </div>
             <p className={c('desc')}>
-              <span>
-                탄탄한 코드 위에 감각적인 인터페이스를 그리는 UI 개발자 나나입니다.
-              </span>
+              <span>탄탄한 코드 위에 감각적인 인터페이스를 그리는 나나입니다.</span>
               <span>사용하기 쉬운 UI와 기억에 남는 UX를 개발하는 일을 해요.</span>
               <br className={c('mobile')} />
-              <span>좋아하면 더 잘한다는 마음으로, 즐겁게 일하고 있어요!</span>
+              <span>좋아하면 더 잘한다는 마음으로, 오늘도 즐겁게 일하고 있어요!</span>
             </p>
           </motion.div>
           <div className={c('guide')} aria-hidden="true">
@@ -63,19 +60,12 @@ const Main = () => {
               />
             </svg>
           </div>
-          <motion.div
-            style={{ opacity: nananaAlpha }}
-            className={c('nananana')}
-          ></motion.div>
+          <motion.div className={c('nanana')} style={{ opacity: nananaAlpha }} />
         </div>
       </article>
       <div className={c('decoration')}>
-        <motion.div className={c('bg')} style={{ y: backgroundY }}></motion.div>
+        <motion.div className={c('bg')} style={{ y: backgroundY }} />
         <motion.div className={c('ticket')}>
-          {/* <div className={c('ticket_img')}>
-            <span>May 26, 2023</span>
-            <p>May 26, 2023</p>
-          </div> */}
           <Ticket src={ticketImage} />
         </motion.div>
       </div>

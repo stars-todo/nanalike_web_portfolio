@@ -1,33 +1,36 @@
-@use './../../styles/helpers/mixins' as *;
+@use '/src/styles/helpers' as *;
 
 $_height: rem(1200);
 
 .about {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: var(--d-max-width); //TODO: 공통화?
-  min-height: rem(1080); //TODO: 공통화?
-  margin: 0 auto;
-  padding: 0 $commonPadding;
   background-color: var(--color-beige-light);
 
-  @include mq_l {
-    flex-direction: column;
-    margin-top: calc(vh(30) + vw(60) + rem(80));
-    padding-bottom: calc(vh(30) + vw(60) + rem(80));
-    gap: rem(80);
-  }
+  .inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: var(--d-max-width); //TODO: 공통화?
+    min-height: rem(1080); //TODO: 공통화?
+    margin: 0 auto;
+    padding: 0 $padding_global;
 
-  @include mq_t {
-    margin-top: $padding_tablet;
-    padding-bottom: $padding_tablet;
-  }
+    @include mq_l {
+      flex-direction: column;
+      margin-top: calc(vh(30) + vw(60) + rem(80));
+      padding-bottom: calc(vh(30) + vw(60) + rem(80));
+      gap: rem(80);
+    }
 
-  @include mq_m {
-    margin-top: calc(vh(30) + vw(80) + rem(20));
+    @include mq_t {
+      margin-top: $padding_tablet;
+      padding-bottom: $padding_tablet;
+    }
+
+    @include mq_m {
+      margin-top: calc(vh(30) + vw(80) + rem(20));
+    }
   }
 }
 

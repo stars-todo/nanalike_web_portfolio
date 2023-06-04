@@ -1,4 +1,4 @@
-@use './../../styles/helpers/mixins' as *;
+@use '/src/styles/helpers' as *;
 
 .test {
   top: 0;
@@ -39,7 +39,7 @@
   .inner {
     max-width: var(--d-max-width);
     margin: 0 auto;
-    padding: 0 $commonPadding;
+    padding: 0 $padding_global;
   }
 
   @include mq_m {
