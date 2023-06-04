@@ -1,0 +1,14 @@
+# Use the official Nginx base image
+FROM nginx:1.25.0-alpine3.17-slim
+
+# Remove the default Nginx configuration file
+# RUN rm /etc/nginx/conf.d/default.conf
+
+# Copy your custom Nginx configuration file to the container
+# COPY webserver/nginx.conf /etc/nginx/conf.d/nginx.conf
+
+# Expose port 80 to allow incoming HTTP traffic
+EXPOSE 80
+
+# Start the Nginx server
+CMD ["nginx", "-g", "daemon off;"]

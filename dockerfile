@@ -24,16 +24,22 @@ COPY . .
 # Build the Gatsby project
 RUN npm run build
 
+# CMD ["npm", "run", "servepublic"]
+
 # ====
 # Step2: MultiStage actual serving image
-FROM node:18-alpine3.18
+FROM nginx:1.25.0-alpine3.17-slim
 
-COPY package*.json ./
+# Remove the default Nginx configuration file
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Copy my config for site configuration
+COPY ./webserver/natchan.conf /etc/nginx/conf.d/natchan.conf
 
 WORKDIR /natchan-app
-COPY --from=build-stage /natchan-app/ ./
+COPY --from=build-stage /natchan-app/public ./
 
 # Expose the default Gatsby port (if your project uses a different port, change it accordingly)
 EXPOSE 80
 
-CMD ["npm", "run", "servepublic"]
+CMD ["nginx", "-g", "daemon off;"]
