@@ -164,6 +164,8 @@
   }
 
   .thanks {
+    opacity: 0; //TODO:
+    visibility: hidden; //TODO:
     display: flex;
     flex-direction: column;
     justify-content: center;

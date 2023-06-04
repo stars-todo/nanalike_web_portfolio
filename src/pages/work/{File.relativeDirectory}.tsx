@@ -3,33 +3,10 @@ import PageLayout from '@layouts/PageLayout';
 import WorkDetail from '@layouts/WorkDetail/WorkDetail';
 import test from '@data/workboard/workboard.yaml';
 import { graphql, useStaticQuery } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-// const data = useStaticQuery(graphql`
-//   query MyQuery {
-//     allYaml(filter: { yamlId: { eq: "workboard" } }) {
-//       nodes {
-//         title
-//         skills
-//         link
-//         yamlId
-//       }
-//     }
-//   }
-// `);
 const WorkDetailPage = ({ data, params }: any) => {
-  // const a = +props.params.relativeDirectory;
-  // const data = useStaticQuery<any>(graphql`
-  //   query allFileInfo {
-  //     allYaml(filter: { yamlId: { eq: a } }) {
-  //       nodes {
-  //         title
-  //         skills
-  //         link
-  //         yamlId
-  //       }
-  //     }
-  //   }
-  // `);
+  console.log(params);
   const url = typeof window !== 'undefined' ? window.location.pathname : '';
   useEffect(() => {
     document.documentElement.scrollTo(0, 0);
@@ -37,29 +14,47 @@ const WorkDetailPage = ({ data, params }: any) => {
 
   return (
     <PageLayout>
-      <WorkDetail id={params.relativeDirectory} data={data?.allYaml?.nodes[0]} />
+      <WorkDetail
+        id={params.relativeDirectory}
+        data={data?.file?.childYaml}
+        images={data.images?.nodes}
+      />
     </PageLayout>
   );
 };
 
 export default WorkDetailPage;
 
-export const query = () => graphql`
-  query allYamlData($relativeDirectory: String!) {
-    allYaml(filter: { yamlId: { eq: $relativeDirectory } }) {
-      nodes {
+export const query = graphql`
+  query ($relativeDirectory: String!) {
+    file(relativeDirectory: { eq: $relativeDirectory }) {
+      childYaml {
         yamlId
         title
         skills
         link
         info
-        flex {
-          desc
-          img
-        }
-        full {
-          desc
-          img
+        full
+        flex
+      }
+    }
+    images: allFile(
+      sort: { name: ASC }
+      filter: {
+        relativeDirectory: { eq: $relativeDirectory }
+        extension: { regex: "/(jpg|jpeg|png|gif)/" }
+      }
+    ) {
+      nodes {
+        relativePath
+        publicURL
+        childImageSharp {
+          gatsbyImageData(
+            quality: 100
+            layout: FULL_WIDTH
+            placeholder: TRACED_SVG
+            formats: [AUTO, WEBP]
+          )
         }
       }
     }
@@ -68,6 +63,6 @@ export const query = () => graphql`
 
 export const Head = ({ data }: { data: any }) => (
   <title>
-    나나라이크{` | ${data.allYaml?.nodes[0]?.title}` || ' | 웹퍼블리셔 포트폴리오'}
+    나나라이크{` | ${data.file?.childYaml?.title}` || ' | 웹퍼블리셔 포트폴리오'}
   </title>
 );

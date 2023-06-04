@@ -159,6 +159,7 @@ $_footer_height_m: rem(400);
 }
 
 .main {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: rem(80);
@@ -181,12 +182,21 @@ $_footer_height_m: rem(400);
           max-width: 100%;
         }
       }
+
+      @include mq_m {
+        .shot {
+          min-height: rem(400);
+        }
+      }
     }
   }
 
   .flex {
     display: flex;
     gap: rem(60);
+    width: 100%;
+    overflow: hidden;
+    min-width: 0;
 
     @include mq_l {
       gap: 4.5vw;
@@ -216,7 +226,10 @@ $_footer_height_m: rem(400);
     }
 
     .shot {
-      height: rem(560);
+      height: rem(700);
+      @include mq_m {
+        height: rem(400);
+      }
     }
   }
 
@@ -224,7 +237,7 @@ $_footer_height_m: rem(400);
     width: 100%;
     border-radius: 30px;
     border: 1px solid #999;
-    aspect-ratio: 4 / 3;
+    // aspect-ratio: 4 / 3;
     max-height: rem(1200);
     object-fit: cover;
   }

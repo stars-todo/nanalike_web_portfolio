@@ -3,16 +3,21 @@
 .work_icon {
   overflow: hidden;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: rem(380);
   aspect-ratio: 38 / 26;
   border-radius: rem(20);
   color: #fff;
   text-align: center;
   border: 1px solid var(--color-gray-title);
-  box-shadow: rem(15) rem(15) rem(25) 0px rgba(56, 56, 56, 0.05);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
+  // box-shadow: rem(15) rem(15) rem(25) 0px rgba(56, 56, 56, 0.05);
+
+  img {
+    width: 65%;
+    aspect-ratio: 1 / 1;
+  }
 
   @include mq_m {
     aspect-ratio: 34 / 22;
