@@ -41,8 +41,8 @@
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {
-      color: rgba(23, 23, 23, 0.8);
-      transition: color 0.3s;
+      // color: rgba(23, 23, 23, 0.8);
+      // transition: color 0.3s;
 
       &:after {
         transform-origin: 0% 50%;

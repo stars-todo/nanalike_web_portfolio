@@ -48,13 +48,14 @@ const Ticket: React.FC<CanvasImageProps> = ({ src }) => {
         // context.fillText(dateWithMonth + ' ' + dateYear, 631, 190);
 
         context.drawImage(image, 0, 0, 700, 300);
+        context.font = 'sans-serif';
         context.font = '400 26px Montserrat';
         context.fillStyle = '#CBB9A7';
         context.fillText(dateWithMonth, 44, 220);
         context.fillText(dateYear, 44, 254);
-        context.font = '400 18px Montserrat';
+        context.font = '400 18px Montserrat ';
         context.fillStyle = '#E3E1DF';
-        context.fillText(dateWithMonth + ' ' + dateYear, 550, 164);
+        context.fillText(dateWithMonth + ' ' + dateYear, 560, 164);
       }
     };
   }, [src]);

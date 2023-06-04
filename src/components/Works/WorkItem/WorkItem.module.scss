@@ -19,6 +19,12 @@
     display: block;
     width: 100%;
   }
+
+  &:hover {
+    .bg {
+      background-color: rgba(234, 234, 234, 0.8);
+    }
+  }
 }
 
 .contents {
@@ -114,6 +120,7 @@
   border-radius: rem(20);
   pointer-events: none;
   backdrop-filter: blur(1.2px);
+  transition: background-color 0.3s;
 
   @include mq_t {
     display: none;

@@ -19,10 +19,6 @@ const useViewport = () => {
     }
   }
 
-  console.log('isLaptop', isLaptop);
-  console.log('isTablet', isTablet);
-  console.log('isMobile', isMobile);
-
   return {
     isDesktop,
     isLaptop,

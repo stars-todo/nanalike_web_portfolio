@@ -3,13 +3,16 @@ title: 코스모스랩 기업 홈페이지
 skills: ['Scroll Interaction']
 link: ''
 info:
-  - 코스모스랩 (1)
-  - 코스모스랩 (2)
+  - 기업을 소개하기 위한 원페이지 웹사이트입니다. 스크롤 인터렉션을 통해 사용자의 이목을 끌고 콘텐츠에 집중할 수 있게 합니다. 다양한 동적 요소를 통해 사용자는 흥미를 유지하며 웹사이트의 내용을 탐색할 수 있습니다.
+  - 클라이언트와 기획 단계부터 함께 논의하며 보다 적합한 UI를 제공할 수 있도록 했습니다. 반응형 UI와 섹션별 인터렉션을 제안해 결과물의 완성도를 더욱 높였습니다.
 full:
-  - img: 'https://source.unsplash.com/random/?love'
-    desc: ['1', '2']
+  - img: 'https://source.unsplash.com/random/?like'
+    desc:
+      [
+        '스크롤 관련 라이브러리를 사용해 사용자의 스크롤링에 반응하는 콘텐츠를 볼 수 있어요. 풀반응형으로 어떤 기기에서도 편하게 웹 사이트를 볼 수 있습니다.'
+      ]
 flex:
-  - img: 'https://source.unsplash.com/random/?love'
-    desc: ['3']
-  - img: 'https://source.unsplash.com/random/?love'
-    desc: ['4']
+  - img: 'https://source.unsplash.com/random/?homepage'
+    desc: ['']
+  - img: 'https://source.unsplash.com/random/?web'
+    desc: ['']

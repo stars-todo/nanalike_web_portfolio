@@ -2,10 +2,10 @@
   overflow: hidden;
   z-index: 0;
   pointer-events: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  // right: 0;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -15,7 +15,9 @@
   height: 100%;
 
   svg {
-    height: 100%;
-    transform: scale(1.2);
+    opacity: 0.2;
+    height: 100vh;
+    // transform: scale(1.2);
+    color: rgba(221, 221, 221, 0.4);
   }
 }

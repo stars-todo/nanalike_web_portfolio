@@ -3,13 +3,22 @@ title: 이메일 템플릿
 skills: ['Email', 'Gatsby']
 link: ''
 info:
-  - 이메일(1)
-  - 이메일(2)
+  - 이메일 템플릿은 별도의 방식으로 마크업된 HTML 파일입니다. 단순한 텍스트 대신, 다양하고 풍부한 내용을 담은 이메일을 보내기 위해 템플릿을 사용합니다.
+  - 해당 업무는 마케팅 담당자가 요청하는 경우가 많아서, 템플릿을 한 곳에서 확인할 수 있는 사이트를 별도로 만들었습니다. 담당자는 기존의 요청과 산출물을 다시 볼 수 있어 활용이 쉬워지고, 개발자는 히스토리를 쉽게 관리할 수 있게 되었습니다.
 full:
-  - img: 'https://source.unsplash.com/random/?love'
-    desc: ['1', '2']
+  - img: 'https://source.unsplash.com/random/?mail'
+    desc:
+      [
+        '템플릿 파일 배포를 위해 Gatsby로 배포용 사이트를 만들었어요. 누구나 접속해 리스트와 히스토리를 볼 수 있습니다. 요청 후 수정이 필요하다면? 담당자는 파일을 다시 전달받는 대신 새로고침만 누르면 됩니다. 더 빠르고 편한 협업 경험을 만들기 위해 찾은 개선점이에요.'
+      ]
 flex:
-  - img: 'https://source.unsplash.com/random/?love'
-    desc: ['3']
-  - img: 'https://source.unsplash.com/random/?love'
-    desc: ['4']
+  - img: 'https://source.unsplash.com/random/?document'
+    desc:
+      [
+        'HTML 사용에 익숙하지 않은 담당자를 위해 가이드를 제작하고 공유해요. 이렇게 문서화하면 담당자들 간의 전파도 쉬워지고, 팀내 업무 인수인계에도 도움이 됩니다.'
+      ]
+  - img: 'https://source.unsplash.com/random/?work'
+    desc:
+      [
+        '맞춤 마크업을 통해 다양한 이메일 클라이언트 환경에서 잘 보이도록 합니다. 마지막까지 꼼꼼하게 테스트하는 건 물론이죠!'
+      ]

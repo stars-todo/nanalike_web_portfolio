@@ -192,6 +192,8 @@ const WorkDetail = ({ id, data }: any) => {
     }
   }, [controls, isScrollOver]);
 
+  const src = `../../images/workboard_1.png`;
+
   return (
     <>
       <article className={c('work_detail')} ref={articleRef}>
@@ -357,7 +359,7 @@ const WorkDetail = ({ id, data }: any) => {
           animate={controls}
           className={c('inner')}
         >
-          <div className={c('footer_title')}>웹 퍼블리싱이 필요한 프로젝트가 있나요?</div>
+          <div className={c('footer_title')}>함께 멋진 일을 할 사람을 찾고 계신가요?</div>
           <MailAddress size="small" />
           <Copyright className={c('copy')} />
         </motion.div>

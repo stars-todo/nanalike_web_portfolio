@@ -19,8 +19,6 @@ const IndexPage: React.FC<PageProps> = () => {
   //   initialFunction();
   // }, []);
 
-  const [copied, setCopied] = useState(false);
-
   return (
     <div asscroll-container="true">
       <PageLayout>
@@ -28,7 +26,7 @@ const IndexPage: React.FC<PageProps> = () => {
         <About />
         <Works />
         <Blog />
-        <Contact setCopied={setCopied} />
+        <Contact />
       </PageLayout>
     </div>
   );

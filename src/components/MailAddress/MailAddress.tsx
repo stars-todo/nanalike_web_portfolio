@@ -61,9 +61,9 @@ const MailAddress = ({ setCopied, className, size = 'normal', setMailHover }: an
 
   return (
     <div className={c('mail', `${size}`, className)}>
-      <button
+      <div
         className={c('mail_button')}
-        onClick={() => handleCopy('nykim@nykim.net')}
+        // onClick={() => handleCopy('nykim@nykim.net')}
         onMouseOver={() => {
           if (setMailHover) {
             setMailHover(true);
@@ -74,7 +74,7 @@ const MailAddress = ({ setCopied, className, size = 'normal', setMailHover }: an
             setMailHover(false);
           }
         }}
-        data-cursor="copy"
+        // data-cursor="copy"
       >
         <motion.div
           className={c('mail_animation')}
@@ -91,7 +91,7 @@ const MailAddress = ({ setCopied, className, size = 'normal', setMailHover }: an
             </motion.div>
           ))}
         </motion.div>
-      </button>
+      </div>
     </div>
   );
 };

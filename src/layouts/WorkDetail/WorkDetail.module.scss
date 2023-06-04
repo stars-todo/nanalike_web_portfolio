@@ -174,7 +174,7 @@ $_footer_height_m: rem(400);
     &.full {
       width: 100%;
 
-      .contents_desc p {
+      .contents_desc p:not(:only-child) {
         max-width: rem(760);
 
         @include mq_t {

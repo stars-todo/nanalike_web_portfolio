@@ -23,7 +23,7 @@ const Header = () => {
         <div className={c('line')}></div>
         <div className={c('bottom')}>
           <span>나나: 좋아해서 더 잘하는 웹 퍼블리셔</span>
-          <LangSelect className={c('langs')} />
+          {/* <LangSelect className={c('langs')} /> */}
         </div>
       </div>
     </header>

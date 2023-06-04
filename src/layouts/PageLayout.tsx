@@ -10,25 +10,25 @@ interface PageLayoutProps {
 const PageLayout = ({ children }: PageLayoutProps) => {
   const scrollRef = useRef(null);
 
-  const userAgent =
-    typeof window !== `undefined` ? navigator.userAgent.toLowerCase() : '';
-  const [isMobileDevice, setIsMobileDevice] = useState(false);
-  useEffect(() => {
-    const isMobileDevice = (): boolean => {
-      return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
-        userAgent
-      );
-    };
-    setIsMobileDevice(isMobileDevice());
-  }, [userAgent]);
+  // const userAgent =
+  //   typeof window !== `undefined` ? navigator.userAgent.toLowerCase() : '';
+  // const [isMobileDevice, setIsMobileDevice] = useState(false);
+  // useEffect(() => {
+  //   const isMobileDevice = (): boolean => {
+  //     return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
+  //       userAgent
+  //     );
+  //   };
+  //   setIsMobileDevice(isMobileDevice());
+  // }, [userAgent]);
 
-  console.log('모바일접속?', isMobileDevice);
+  // console.log('모바일접속?', isMobileDevice);
   return (
-    <div ref={scrollRef}>
-      {!isMobileDevice && <CustomCursor />}
+    <div>
+      {/* {!isMobileDevice && <CustomCursor />} */}
       <Header />
       <main ref={scrollRef}>{children}</main>
-      <LikeButton />
+      {/* <LikeButton /> */}
     </div>
   );
 };

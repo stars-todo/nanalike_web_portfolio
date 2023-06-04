@@ -21,7 +21,6 @@ import { worksList } from '@data-types/works';
 const c = classNames.bind(styles);
 
 const TextBig = ({ children }: { children: string }) => {
-  const { isDesktop } = useViewport();
   const textReveal: Variants = {
     hidden: {
       opacity: 0
@@ -265,14 +264,14 @@ const Works = () => {
         <ArticleTitle className={c('title')}>Work Experience</ArticleTitle>
         <TextBig>I like What I do</TextBig>
       </motion.div>
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0 }}
         // whileInView={{ opacity: 1, transition: { duration: 1 } }}
         // style={{ opacity: alphabetOpacity }}
         // viewport={{ amount: 0.1 }}
       >
         <Alphabet type="i" className={c('alphabet', 'i')} />
-      </motion.div>
+      </motion.div> */}
     </motion.article>
   );
 };

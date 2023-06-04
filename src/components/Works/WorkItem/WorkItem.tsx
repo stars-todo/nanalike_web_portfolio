@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   MotionValue,
   Variants,
@@ -64,6 +64,18 @@ const WorkItem = ({
     // history.scrollRestoration = 'manual';
   };
 
+  // const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  // const onMouseMove = (e: MouseEvent) => {
+  //   const mousePos = (e.clientX / window.innerWidth) * 2 - 1;
+  //   const mousePos2 = (e.clientX / window.innerWidth) * 2;
+  //   setPosition({ x: mousePos, y: mousePos2 });
+  // };
+
+  // const rotateY = {
+  //   transform: `rotateX(${position.x}deg) rotateY(${position.y}deg)`
+  // };
+
   return (
     <motion.div
       className={c('work_item', className, { isOngoing })}
@@ -76,7 +88,7 @@ const WorkItem = ({
         // onClick={() => scrollToTop()}
         data-cursor={isOngoing ? null : 'work'}
       >
-        <div className={c('work_contents')} id="interaction">
+        <div className={c('work_contents')}>
           <WorkIcon
             className={c('icon')}
             id={id}
