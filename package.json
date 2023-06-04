@@ -12,6 +12,7 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
+    "servepublic": "gatsby serve -H 0.0.0.0 -p 80",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit"
   },
@@ -27,6 +28,7 @@
     "gatsby-remark-images": "^7.10.0",
     "gatsby-source-filesystem": "^5.10.0",
     "gatsby-transformer-json": "^5.10.0",
+    "gatsby-transformer-remark": "^6.10.0",
     "gatsby-transformer-sharp": "^5.10.0",
     "gatsby-transformer-yaml": "^5.10.0",
     "gsap": "^3.11.5",
