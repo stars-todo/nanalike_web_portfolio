@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import * as styles from './WorkIcon.module.scss';
 import { workIcons } from './icons';
-import { worksList } from '../WorkItem/WorkItem';
+import { worksList } from '@data-types/works';
 import icon_workboard from '@static/icon_workboard.png';
 import icon_email from '@static/icon_email.png';
 import icon_interpark from '@static/icon_interpark.png';
@@ -51,8 +51,7 @@ const WorkIcon = ({ id, className, isOngoing, ...props }: WorkIconProps) => {
     <div
       className={c('work_icon', `${className}`, { isOngoing })}
       style={{
-        backgroundColor: `${workIcons[id].color}`
-        // backgroundImage: `url(https://source.unsplash.com/random/?${workIcons[id].icon})`
+        backgroundColor: `${workIcons[id]?.color || ''}`
       }}
       {...props}
     >

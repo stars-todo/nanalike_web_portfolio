@@ -107,6 +107,7 @@ $_footer_height_m: rem(400);
     }
 
     .skills {
+      @include font-main;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -137,11 +138,13 @@ $_footer_height_m: rem(400);
     }
 
     .desc {
+      @include font-main;
       font-size: rem(20);
       font-weight: 300;
       color: var(--color-black-light);
       line-height: 180%;
       word-break: keep-all;
+      word-wrap: break-word;
 
       & + .desc {
         margin-top: rem(10);
@@ -153,7 +156,7 @@ $_footer_height_m: rem(400);
 
       @include mq_t {
         font-weight: 400;
-        word-break: break-all;
+        hyphens: auto;
       }
     }
   }
@@ -173,6 +176,7 @@ $_footer_height_m: rem(400);
   }
 
   .contents {
+    @include font-main;
     &.full {
       width: 100%;
 
@@ -330,7 +334,6 @@ $_footer_height_m: rem(400);
   padding: 0 $padding_global rem(110);
 
   strong {
-    @include font-sub;
     font-weight: 500;
     padding: rem(12);
     font-size: rem(22);

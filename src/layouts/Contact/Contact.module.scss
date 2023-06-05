@@ -19,6 +19,10 @@
   padding: 0 $padding_global;
   background-color: #fff;
 
+  @include mq_m {
+    min-height: auto;
+  }
+
   &_inner {
     position: relative;
     margin-top: -5vw;
@@ -35,7 +39,7 @@
   }
 
   @include mq_m {
-    padding-bottom: calc(vh(10) + vw(20));
+    padding-bottom: 0;
   }
 
   &.mailHover {
@@ -177,7 +181,7 @@
     font-size: 14px;
     //
 
-    display: none; //TODO:
+    // display: none; //TODO:
 
     @include mq_t {
       flex-direction: row;
@@ -186,6 +190,7 @@
 
     @include mq_m {
       font-size: 13px;
+      flex-wrap: wrap;
     }
 
     .thanks_title {
@@ -241,11 +246,12 @@
   transform: translate3d(-50%, 0, 0);
 
   @include mq_t {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    transform: none;
-    margin-top: rem(80);
+    bottom: rem(30);
+    // position: relative;
+    // bottom: 0;
+    // left: 0;
+    // transform: none;
+    margin-top: rem(120);
   }
 }
 

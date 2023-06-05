@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import {
   MotionValue,
   Variants,
@@ -76,18 +76,23 @@ const WorkItem = ({
   //   transform: `rotateX(${position.x}deg) rotateY(${position.y}deg)`
   // };
 
+  const LinkOrDiv = ({ children }: { children: ReactNode }) => {
+    return isOngoing ? (
+      <div>{children}</div>
+    ) : (
+      <a href={`/work/${id}`} data-cursor="work">
+        {children}
+      </a>
+    );
+  };
+
   return (
     <motion.div
       className={c('work_item', className, { isOngoing })}
       style={style}
       variants={variants}
     >
-      <a
-        href={!isOngoing ? `/work/${id}` : undefined}
-        aria-disabled={isOngoing}
-        // onClick={() => scrollToTop()}
-        data-cursor={isOngoing ? null : 'work'}
-      >
+      <LinkOrDiv>
         <div className={c('work_contents')}>
           <WorkIcon
             className={c('icon')}
@@ -124,7 +129,7 @@ const WorkItem = ({
           </div>
         </div>
         <div className={c('bg')}></div>
-      </a>
+      </LinkOrDiv>
     </motion.div>
   );
 };

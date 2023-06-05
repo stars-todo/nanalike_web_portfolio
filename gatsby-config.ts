@@ -53,6 +53,12 @@ const config: GatsbyConfig = {
       options: {
         icon: `${__dirname}/src/static/favicon.svg`
       }
+    },
+    {
+      resolve: 'gatsby-plugin-html-attributes',
+      options: {
+        lang: 'ko-KR'
+      }
     }
   ]
 };

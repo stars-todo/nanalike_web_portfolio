@@ -27,13 +27,17 @@ const Footer = ({ scrollYProgress }: any) => {
         <span className="screenOut">Thanks to</span>
         <div className={c('names')}>
           <div className={c('thanks_name')}>
-            <a href="">yeon.me</a>
-            <span>Sever Development</span>
+            <a href="https://yeon.me" target="_blank" rel="noopener noreferrer">
+              yeon.me
+            </a>
+            <span>Server Dev.</span>
           </div>
-          <div className={c('thanks_name')}>
-            <a href="">vid3d.net</a>
+          {/* <div className={c('thanks_name')}>
+            <a href="http://vid3d.net" target="_blank" rel="noopener noreferrer">
+              vid3d.net
+            </a>
             <span>3D Icon Modeling</span>
-          </div>
+          </div> */}
         </div>
       </div>
     </motion.footer>

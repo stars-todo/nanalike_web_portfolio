@@ -62,7 +62,7 @@ const Ticket: React.FC<CanvasImageProps> = ({ src }) => {
 
   return (
     <canvas ref={canvasRef} width="700" height="300">
-      <img src={src} />
+      <img src={src} alt="a ticket of nanalike" />
     </canvas>
   );
 };

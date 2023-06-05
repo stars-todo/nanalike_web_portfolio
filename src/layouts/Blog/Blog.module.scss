@@ -188,14 +188,21 @@
   }
 
   .thumbnail {
+    overflow: hidden;
     flex-shrink: 0;
     width: rem(340);
     height: auto;
-    aspect-ratio: 34 / 22;
-    object-fit: cover;
     border-radius: rem(20);
     border: 1px solid var(--color-gray-light);
     transition: opacity 0.25s;
+
+    .thumbnail_img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 34 / 22;
+      object-fit: cover;
+      background-color: var(--color-beige-light);
+    }
 
     @include mq_l {
       width: rem(360);

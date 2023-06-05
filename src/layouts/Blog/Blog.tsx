@@ -14,7 +14,9 @@ import {
   useTransform
 } from 'framer-motion';
 import Skeleton from '@components/Skeleton/Skeleton';
-import useViewport from '@hooks/useViewport';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 const c = classNames.bind(styles);
 
 const TextBig = ({ varaints, children }: { varaints?: Variants; children: string }) => {
@@ -160,14 +162,10 @@ const PostItem = ({
   isLoading,
   className,
   url,
-  src,
   title,
   date,
   desc
 }: any) => {
-  // console.dir(data);
-  // TODO:
-
   return (
     <div className={c('post_item', isLoading, className)}>
       <a
@@ -182,11 +180,18 @@ const PostItem = ({
         {!data ? (
           <Skeleton className={c('thumbnail_mock')} width="100%" height="220" />
         ) : (
-          <img
-            className={c('thumbnail')}
+          // <img
+          //   className={c('thumbnail')}
+          //   src={getImg(data.description[0])}
+          //   alt=""
+          //   onError={() => {}}
+          // />
+          <LazyLoadImage
+            wrapperClassName={c('thumbnail')}
+            className={c('thumbnail_img')}
             src={getImg(data.description[0])}
-            alt=""
-            onError={() => {}}
+            alt={data.title[0]}
+            effect="blur"
           />
         )}
         <div className={c('text')}>
@@ -224,13 +229,16 @@ function removeTag(contents: any) {
     '프롤로그'
   ];
 
+  const target = contents.slice(0, 4500);
+
   const result = sentencesToRemove.reduce((acc, sentence) => {
     const regex = new RegExp(sentence, 'g');
     return acc.replace(regex, '');
-  }, contents);
+  }, target);
 
   const final = result
     .replace(/<[^>]*>/g, '')
+    .replace('320x100', '')
     .replace('&lt;', '<')
     .replace('&gt;', '>');
 
