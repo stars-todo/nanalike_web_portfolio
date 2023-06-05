@@ -19,7 +19,7 @@
   padding: 0 $padding_global;
   background-color: #fff;
 
-  @include mq_m {
+  @include mq_t {
     min-height: auto;
   }
 
@@ -34,12 +34,7 @@
 
   @include mq_t {
     height: auto;
-    padding-top: $padding_tablet;
-    padding-bottom: calc(vh(30) + vw(70) + rem(10));
-  }
-
-  @include mq_m {
-    padding-bottom: 0;
+    padding: calc(vh(30) + vw(100) + rem(60)) $padding_global 0;
   }
 
   &.mailHover {
@@ -48,6 +43,10 @@
       .download,
       .contents {
         opacity: 0.4 !important;
+      }
+      .hiddenText {
+        visibility: visible;
+        opacity: 1;
       }
     }
   }
@@ -67,6 +66,8 @@
 }
 
 .title_sub {
+  display: flex;
+  align-items: center;
   margin-top: rem(56);
   font-size: rem(24);
   font-weight: 400;
@@ -76,6 +77,20 @@
   @include mq_m {
     font-size: mobile(20, 24);
     line-height: 200%;
+  }
+
+  .hiddenText {
+    visibility: hidden;
+    opacity: 0;
+    color: var(--color-gray);
+    margin-left: rem(10);
+    font-size: 80%;
+    letter-spacing: 0;
+    transition: opacity 0.3s 0s, visibility 0.3s 10ms;
+
+    @include mq_m {
+      display: none;
+    }
   }
 }
 
@@ -246,24 +261,14 @@
   transform: translate3d(-50%, 0, 0);
 
   @include mq_t {
-    bottom: rem(30);
-    // position: relative;
-    // bottom: 0;
-    // left: 0;
-    // transform: none;
+    bottom: rem(40);
     margin-top: rem(120);
   }
+
+  @include mq_m {
+    bottom: rem(30);
+  }
 }
-
-// .e {
-//   z-index: -1;
-//   display: none; //TODO:
-
-//   @include mq_t {
-//     height: 70%;
-//     padding-bottom: 15%;
-//   }
-// }
 
 .like {
   z-index: -1;

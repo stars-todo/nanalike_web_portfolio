@@ -1,5 +1,11 @@
 @use './base/reset' as *;
 @use './base/common' as *;
 
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+
+// cdn 폰트셋인 경우 30/65 요청, 383KB/5.7MB 전송됨, 365KB/18.6MB 리소스
+// 자체 호스트인경우 7/41 요청, 881KB/6.2MB 전송됨, 879KB/18.5MB 리소스
+
+// 서브 폰트 플러그인 58.7KB
+// 구글 CDN 30.9

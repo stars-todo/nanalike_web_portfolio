@@ -174,14 +174,22 @@ const WorkDetail = ({ id, data, images }: any) => {
             </motion.div>
             <motion.div variants={fadeInUp(30, 0.6, 0.1)}>
               <ul className={c('skills')}>
-                {data?.skills.map((skill) => {
-                  return <li className={c('skills_item')}>{skill}</li>;
+                {data?.skills.map((skill, idx) => {
+                  return (
+                    <li className={c('skills_item')} key={`${idx}`}>
+                      {skill}
+                    </li>
+                  );
                 })}
               </ul>
             </motion.div>
             <motion.div variants={fadeInUp(30, 0.6, 0.2)}>
-              {data?.info.map((desc) => {
-                return <p className={c('desc')}>{desc}</p>;
+              {data?.info.map((desc, idx) => {
+                return (
+                  <p className={c('desc')} key={`${idx}`}>
+                    {desc}
+                  </p>
+                );
               })}
             </motion.div>
             {data?.link && (
@@ -210,9 +218,10 @@ const WorkDetail = ({ id, data, images }: any) => {
                 )}
 
                 <figcaption className={c('contents_desc')}>
-                  {data.full.map((desc) => {
+                  {data.full.map((desc, idx) => {
                     return (
                       <motion.p
+                        key={`${idx}`}
                         initial="hidden"
                         whileInView="visible"
                         variants={fadeInUp()}
@@ -228,7 +237,7 @@ const WorkDetail = ({ id, data, images }: any) => {
 
           <div className={c('flex')}>
             {images?.slice(1).map((image, index) => (
-              <div className={c('contents')}>
+              <div className={c('contents')} key={`${index}`}>
                 <motion.figure
                   initial="hidden"
                   whileInView="visible"

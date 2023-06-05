@@ -61,6 +61,11 @@ $_footer_height_m: rem(400);
 
     @include mq_t {
       width: 70%;
+      min-width: auto;
+    }
+
+    @include mq_m {
+      width: 100%;
     }
   }
 
@@ -380,12 +385,14 @@ $_footer_height_m: rem(400);
         content: '';
       }
 
-      &:hover {
-        .name {
-          transform: translateX(1vw);
-        }
-        &:after {
-          transform: translateY(0%);
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          .name {
+            transform: translateX(1vw);
+          }
+          &:after {
+            transform: translateY(0%);
+          }
         }
       }
     }

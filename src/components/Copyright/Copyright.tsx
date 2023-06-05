@@ -20,7 +20,7 @@ const Copyright = ({ className }: { className?: string }) => {
           ❤️
         </span>
       </div>
-      <div className={c('text')}>(C) 2023 nykim.net</div>
+      <div className={c('text')}>(C) {new Date().getFullYear()} nykim.net</div>
     </motion.div>
   );
 };

@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  -webkit-tap-highlight-color: rgba(213, 198, 189, 0.1);
+  -webkit-tap-highlight-color: rgba(213, 198, 189, 0.15);
 }
 
 a {
@@ -46,7 +46,7 @@ html {
 
 body {
   min-width: var(--m-min-width);
-  font-family: 'Montserrat', 'Pretendard', -apple-system, 'Apple SD Gothic Neo',
+  font-family: '#{$font_sub}', '#{$font_main}', -apple-system, 'Apple SD Gothic Neo',
     '맑은 고딕', 'Malgun Gothic', sans-serif;
   font-size: 1.6rem;
   letter-spacing: -0.02rem;

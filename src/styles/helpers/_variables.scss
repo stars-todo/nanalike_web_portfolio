@@ -34,3 +34,7 @@ $mobile: 600;
 
 $padding_global: clamp(var(--m-padding-h), 4.615vw, var(--d-padding-h));
 $padding_tablet: calc(vh(30) + vw(80) + rem(90));
+
+$font_main: 'Pretendard';
+// $font_main: '나눔 고딕';
+$font_sub: 'Montserrat';

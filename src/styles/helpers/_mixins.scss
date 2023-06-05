@@ -3,12 +3,12 @@
 @use './../helpers/variables' as *;
 
 @mixin font-main {
-  font-family: 'Pretendard', -apple-system, 'Apple SD Gothic Neo', '맑은 고딕',
+  font-family: '#{$font_main}', -apple-system, 'Apple SD Gothic Neo', '맑은 고딕',
     'Malgun Gothic', sans-serif;
 }
 
 @mixin font-sub {
-  font-family: 'Montserrat', -apple-system, 'Apple SD Gothic Neo', '맑은 고딕',
+  font-family: '#{$font_sub}', -apple-system, 'Apple SD Gothic Neo', '맑은 고딕',
     'Malgun Gothic', sans-serif;
 }
 
