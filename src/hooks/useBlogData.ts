@@ -15,7 +15,7 @@ const useBlogData = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://nykim.net/tapi/rss');
+        const response = await fetch('/rss');
         const responseData = await response.text();
         parseString(responseData, (err, result) => {
           if (err) {
