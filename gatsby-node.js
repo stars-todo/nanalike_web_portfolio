@@ -10,7 +10,8 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         '@hooks': path.resolve(__dirname, 'src/hooks'),
         '@data': path.resolve(__dirname, 'src/data'),
         '@data-types': path.resolve(__dirname, 'src/data-types'),
-        '@images': path.resolve(__dirname, 'src/images')
+        '@static': path.resolve(__dirname, 'src/static'),
+        '@util': path.resolve(__dirname, 'src/util')
       }
     },
     plugins: [

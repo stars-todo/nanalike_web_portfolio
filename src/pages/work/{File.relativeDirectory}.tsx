@@ -1,12 +1,11 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import PageLayout from '@layouts/PageLayout';
 import WorkDetail from '@layouts/WorkDetail/WorkDetail';
-import test from '@data/workboard/workboard.yaml';
-import { graphql, useStaticQuery } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { HeadFC, graphql } from 'gatsby';
+import SEO from '@components/SEO/SEO';
 
 const WorkDetailPage = ({ data, params }: any) => {
-  console.log(params);
+  console.log(data[0]);
   const url = typeof window !== 'undefined' ? window.location.pathname : '';
   useEffect(() => {
     document.documentElement.scrollTo(0, 0);
@@ -16,7 +15,7 @@ const WorkDetailPage = ({ data, params }: any) => {
     <PageLayout>
       <WorkDetail
         id={params.relativeDirectory}
-        data={data?.file?.childYaml}
+        data={data.allYaml.nodes[0]}
         images={data.images?.nodes}
       />
     </PageLayout>
@@ -27,15 +26,15 @@ export default WorkDetailPage;
 
 export const query = graphql`
   query ($relativeDirectory: String!) {
-    file(relativeDirectory: { eq: $relativeDirectory }) {
-      childYaml {
-        yamlId
-        title
-        skills
-        link
-        info
+    allYaml(filter: { yamlId: { eq: $relativeDirectory } }) {
+      nodes {
         full
         flex
+        info
+        link
+        skills
+        title
+        yamlId
       }
     }
     images: allFile(
@@ -49,20 +48,16 @@ export const query = graphql`
         relativePath
         publicURL
         childImageSharp {
-          gatsbyImageData(
-            quality: 100
-            layout: FULL_WIDTH
-            placeholder: TRACED_SVG
-            formats: [AUTO, WEBP]
-          )
+          gatsbyImageData(quality: 100, layout: FULL_WIDTH, formats: [AUTO, WEBP])
         }
       }
     }
   }
 `;
 
-export const Head = ({ data }: { data: any }) => (
-  <title>
-    나나라이크{` | ${data.file?.childYaml?.title}` || ' | 웹퍼블리셔 포트폴리오'}
-  </title>
+export const Head: HeadFC = ({ data }: { data: any }) => (
+  <SEO
+    title={`nanalike | ${data?.allYaml?.nodes[0]?.title || ' | 웹 포트폴리오'}`}
+    pathname={`work/${data?.allYaml?.nodes[0]?.yamlId}`}
+  />
 );

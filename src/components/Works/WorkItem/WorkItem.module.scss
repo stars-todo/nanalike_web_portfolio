@@ -28,6 +28,7 @@
 }
 
 .contents {
+  @include font-main;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -54,6 +55,7 @@
       font-weight: 700;
       line-height: 140%;
       word-break: keep-all;
+      letter-spacing: -0.04rem;
 
       @include mq_m {
         font-size: mobile(28, 32);

@@ -149,8 +149,7 @@ const WorkDetail = ({ id, data, images }: any) => {
     }
   }, [controls, isScrollOver]);
 
-  // const imageData = getImage(data?.photos[0]?.childImageSharp?.gatsbyImageData);
-  console.log(images);
+  console.log(data);
   return (
     <>
       <article className={c('work_detail')} ref={articleRef}>
@@ -300,7 +299,7 @@ const WorkDetail = ({ id, data, images }: any) => {
       </article>
       <footer className={c('work_footer')}>
         <motion.div initial="hidden" animate={controls} className={c('inner')}>
-          <div className={c('footer_title')}>함께 멋진 일을 할 사람을 찾고 계신가요?</div>
+          <div className={c('footer_title')}>똑똑, 함께 일할 사람을 찾고 계신가요?</div>
           <MailAddress size="small" />
           <Copyright className={c('copy')} />
         </motion.div>

@@ -1,31 +1,5 @@
 @use '/src/styles/helpers' as *;
 
-.test {
-  top: 0;
-  left: 0;
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  user-select: none;
-  outline-offset: -5px;
-  z-index: 99999;
-
-  @include mq_l {
-    outline: 5px solid rgba(255, 0, 0, 0.659);
-  }
-
-  @include mq_t {
-    outline: 5px solid rgba(0, 128, 0, 0.493);
-  }
-
-  @include mq_m {
-    outline: 5px solid rgba(0, 0, 255, 0.514);
-  }
-
-  // display: none; //TODO:
-}
-
 .header {
   z-index: var(--z-header);
   position: fixed;
@@ -124,6 +98,7 @@
 }
 
 .bottom {
+  @include font-main;
   display: flex;
   justify-content: space-between;
   padding: 1rem;

@@ -21,6 +21,7 @@
     "framer-motion": "^10.12.16",
     "gatsby": "^5.9.1",
     "gatsby-plugin-image": "^3.10.0",
+    "gatsby-plugin-manifest": "^5.10.0",
     "gatsby-plugin-sass": "^6.10.0",
     "gatsby-plugin-sharp": "^5.10.0",
     "gatsby-plugin-smoothscroll": "^1.2.0",

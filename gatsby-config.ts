@@ -2,8 +2,10 @@ import type { GatsbyConfig } from 'gatsby';
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `nanalike-web-portfolio`,
-    siteUrl: `https://www.yourdomain.tld`
+    title: `nanalike | 웹 포트폴리오`,
+    description: `UI 개발자 나나의 웹 포트폴리오. 사용하기 쉬운 UI와 기억에 남는 UX를 개발하는 일을 해요.`,
+    siteUrl: `https://nykim.net`,
+    image: `/ogImage.png`
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -46,7 +48,12 @@ const config: GatsbyConfig = {
         typeName: `Yaml`
       }
     },
-    `gatsby-plugin-smoothscroll`
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        icon: `${__dirname}/src/static/favicon.svg`
+      }
+    }
   ]
 };
 

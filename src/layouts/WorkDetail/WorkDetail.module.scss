@@ -68,10 +68,12 @@ $_footer_height_m: rem(400);
     flex-shrink: 0;
     width: rem(540);
     height: auto;
+    margin: 0 auto;
     aspect-ratio: 1 / 1;
 
     @include mq_l {
       width: 100%;
+      max-width: calc(100vw - $padding_global);
     }
   }
 

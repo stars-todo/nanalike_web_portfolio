@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Link, HeadFC, PageProps } from 'gatsby';
 import CustomLink from '@components/CustomLink/CustomLink';
 import CustomButton from '@components/CustomButton/CustomButton';
+import NanalikeLogo from '@components/Logo/NanalikeLogo';
+import NanaText from '@components/Logo/NanaText';
 
 const NotFoundPage: React.FC<PageProps> = () => {
   return (
@@ -19,6 +21,9 @@ const NotFoundPage: React.FC<PageProps> = () => {
         background: '#222'
       }}
     >
+      <div style={{ width: '30%', opacity: 0.5 }}>
+        <NanaText />
+      </div>
       <h1>
         ?! 길을 잃으신 것 같아요.
         <br />

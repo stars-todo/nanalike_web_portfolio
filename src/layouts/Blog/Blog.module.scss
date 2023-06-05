@@ -95,6 +95,7 @@
   }
 
   .desc {
+    @include font-main;
     display: inline-block;
     margin: rem(90) 0 rem(36);
     color: var(--color-gray-dark);

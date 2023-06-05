@@ -8,6 +8,7 @@ import Blog from '@layouts/Blog/Blog';
 import Contact from '@layouts/Contact/Contact';
 import ASScroll from '@ashthornton/asscroll';
 import Copyright from '@components/Copyright/Copyright';
+import SEO from '@components/SEO/SEO';
 
 const IndexPage: React.FC<PageProps> = () => {
   // const initialFunction = () => {
@@ -34,4 +35,4 @@ const IndexPage: React.FC<PageProps> = () => {
 
 export default IndexPage;
 
-export const Head: HeadFC = () => <title>나나라이크 | 웹 퍼블리셔 포트폴리오</title>;
+export const Head: HeadFC = () => <SEO />;

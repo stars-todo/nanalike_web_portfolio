@@ -167,7 +167,7 @@ const Contact = () => {
             <ArticleTitle className={c('title')}>Contact</ArticleTitle>
           </motion.div>
           <motion.div variants={fadeInUp()} className={c('title_sub')}>
-            <span>함께 할 사람을 찾고 계신가요?</span>
+            <span>똑똑, 함께 일할 사람을 찾고 계신가요?</span>
           </motion.div>
           <MailAddress className={c('mail')} setMailHover={setMailHover} />
           <motion.div variants={fadeInUp()}>

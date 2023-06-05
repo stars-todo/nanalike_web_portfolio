@@ -5,19 +5,10 @@ import * as styles from './About.module.scss';
 import CustomButton from '@components/CustomButton/CustomButton';
 import NanaText from '@components/Logo/NanaText';
 import CustomLink from '@components/CustomLink/CustomLink';
-import Alphabet from '@components/Alphabet/Alphabet';
 import ArticleTitle from '@components/ArticleTitle/ArticleTitle';
 import { StaticImage } from 'gatsby-plugin-image';
+import { fadeInUp, aboutAnimation } from '@util/animation';
 const c = classNames.bind(styles);
-
-const Backgrounds = () => {
-  return (
-    <>
-      {/* <div className={c('bg')}></div> */}
-      <Alphabet type="l" className={c('l')} />
-    </>
-  );
-};
 
 const TextBig = ({ varaints, children }: { varaints?: Variants; children: string }) => {
   const textReveal: Variants = {
@@ -118,99 +109,13 @@ const TextBig = ({ varaints, children }: { varaints?: Variants; children: string
 };
 
 const About = () => {
-  function fadeInUp(y = 30, x = 0, duration = 0.7) {
-    return {
-      hidden: {
-        opacity: 0,
-        y: y
-      },
-      visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-          ease: 'easeInOut',
-          duration: duration
-        }
-      }
-    };
-  }
-
-  const animation = {
-    trigger: {
-      hidden: {
-        opacity: 0
-      },
-      visible: {
-        opacity: 1
-        // transition: {
-        //   when: 'beforeChildren',
-        //   staggerChildren: 0.4
-        // }
-      }
-    },
-    textBig: {
-      hidden: {
-        opacity: 0
-      },
-      visible: (i: number = 1) => ({
-        opacity: 1,
-        transition: { staggerChildren: 0.025, delayChildren: i * 0 }
-      })
-    },
-    desc: {
-      hidden: {
-        opacity: 0
-      },
-      visible: {
-        opacity: 1,
-        transition: {
-          delay: 0.2,
-          when: 'beforeChildren',
-          staggerChildren: 0.12
-        }
-      }
-    },
-    link: {
-      hidden: {
-        opacity: 0,
-        x: -30
-      },
-      visible: {
-        opacity: 1,
-        x: 0,
-        transition: {
-          ease: 'easeInOut',
-          duration: 0.5,
-          delay: 0.8
-        }
-      }
-    }
-  };
-
-  const aboutRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: aboutRef,
-    offset: ['0', '1']
-  });
-  const alphabetOpacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
-
   return (
-    <article className={c('about')} ref={aboutRef}>
+    <article className={c('about')}>
       <div className={c('inner')}>
         <motion.div className={c('visual')} initial="hidden" whileInView="visible">
           <div className={c('profile')}>
-            {/* <motion.img
-            className={c('photo')}
-            variants={fadeInUp()}
-            src="https://source.unsplash.com/random/?europe/460/440"
-            alt="프로필 사진"
-          /> */}
             <motion.div variants={fadeInUp()}>
-              <StaticImage
-                className={c('photo')}
-                alt="프로필 사진"
-                src="../../images/profile_temp.jpg"
-              />
+              <StaticImage className={c('photo')} alt="프로필 사진" src="./profile.jpg" />
             </motion.div>
           </div>
           <TextBig>I do what i like</TextBig>
@@ -220,14 +125,15 @@ const About = () => {
             initial="hidden"
             whileInView="visible"
           >
-            {/* <CustomButton \ */}
+            {/* TODO: 이력서 다운로드 버튼 추가 */}
+            {/* <CustomButton icon="download">이력서 다운로드</CustomButton> */}
           </motion.div>
         </motion.div>
         <motion.div
           className={c('text')}
           initial="hidden"
           whileInView="visible"
-          variants={animation.desc}
+          variants={aboutAnimation.desc}
         >
           <ArticleTitle className={c('title')}>
             About
@@ -250,8 +156,11 @@ const About = () => {
               다양한 직군과 함께 멋지고 즐거운 UX를 만드는 데 관심이 많습니다.
             </motion.p>
           </div>
-          <motion.div variants={animation.link}>
-            <CustomLink className={c('link')} href="https://nykim.net/about">
+          <motion.div variants={aboutAnimation.link}>
+            <CustomLink
+              className={c('link')}
+              href="https://nanalike.notion.site/23d512605b2d4e3caccabf2c5d108347?pvs=4"
+            >
               자기소개 더보기
             </CustomLink>
           </motion.div>

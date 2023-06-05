@@ -7,7 +7,6 @@ const c = classNames.bind(styles);
 const Header = () => {
   return (
     <header className={c('header')}>
-      <div className={c('test')}></div>
       <div className={c('inner')}>
         <div className={c('line', 'bold')}></div>
         <div className={c('top')}>
@@ -23,6 +22,7 @@ const Header = () => {
         <div className={c('line')}></div>
         <div className={c('bottom')}>
           <span>나나: 좋아해서 더 잘하는 UI 개발자</span>
+          {/* TODO: 언어 추가 */}
           {/* <LangSelect className={c('langs')} /> */}
         </div>
       </div>

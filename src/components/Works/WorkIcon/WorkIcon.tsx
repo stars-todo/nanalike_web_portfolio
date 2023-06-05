@@ -3,12 +3,12 @@ import classNames from 'classnames/bind';
 import * as styles from './WorkIcon.module.scss';
 import { workIcons } from './icons';
 import { worksList } from '../WorkItem/WorkItem';
-import icon_workboard from '@images/icon_workboard.png';
-import icon_email from '@images/icon_email.png';
-import icon_interpark from '@images/icon_interpark.png';
-import icon_dooin from '@images/icon_dooin.png';
-import icon_cosmos from '@images/icon_cosmos.png';
-import icon_stars from '@images/icon_stars.png';
+import icon_workboard from '@static/icon_workboard.png';
+import icon_email from '@static/icon_email.png';
+import icon_interpark from '@static/icon_interpark.png';
+import icon_dooin from '@static/icon_dooin.png';
+import icon_cosmos from '@static/icon_cosmos.png';
+import icon_stars from '@static/icon_stars.png';
 const c = classNames.bind(styles);
 
 interface WorkIconProps {
@@ -17,7 +17,7 @@ interface WorkIconProps {
   isOngoing?: boolean;
 }
 
-const Image = ({ id }) => {
+const Image = ({ id }: { id: worksList }) => {
   let image;
 
   switch (id) {
