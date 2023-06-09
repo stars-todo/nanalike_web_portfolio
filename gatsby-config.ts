@@ -1,5 +1,7 @@
 import type { GatsbyConfig } from 'gatsby';
 
+require("dotenv").config();
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `nanalike | 웹 포트폴리오`,

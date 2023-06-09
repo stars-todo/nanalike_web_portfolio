@@ -1,2 +1,9 @@
-**/node_modules
-**/README.md
+.cache/
+.git*
+.aws
+.github*
+.dockerignore
+node_modules/
+README.md
+public/
+src/gatsby-types.d.ts

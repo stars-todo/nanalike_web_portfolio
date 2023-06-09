@@ -9,17 +9,13 @@ RUN apk add --update --no-cache python3 build-base && ln -sf python3 /usr/bin/py
 RUN python3 -m ensurepip
 RUN pip3 install --no-cache --upgrade pip setuptools
 
-# Set the working directory inside the container
+COPY . /natchan-app/
+
+COPY package*.json /tmp/
+RUN cd /tmp && npm install
+RUN rm -rf /natchan-app/node_modules; cp -a /tmp/node_modules /natchan-app/
+
 WORKDIR /natchan-app
-
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
-
-# Install project dependencies
-RUN npm install
-
-# Copy the entire Gatsby project to the working directory
-COPY . .
 
 # Build the Gatsby project
 RUN npm run build
