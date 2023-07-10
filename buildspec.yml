@@ -13,7 +13,7 @@ phases:
       - chmod 0600 ~/.ssh/id_rsa
       # Login Docker Hub
       - echo Logging in to Docker Hub...
-      - echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USER --password-stdin
+      - echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
       # Login ECR
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
   build:
