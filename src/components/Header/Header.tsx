@@ -74,7 +74,7 @@ const Header = () => {
           className={c('bottom')}
           // variants={animation.headerText}
         >
-          <span>나나: 좋아해서 더 잘하는 UI 개발자</span>
+          <span>나나: 좋아해서 더 잘하는 웹 퍼블리셔</span>
           {/* TODO: 언어 추가 */}
           {/* <LangSelect className={c('langs')} /> */}
         </motion.div>

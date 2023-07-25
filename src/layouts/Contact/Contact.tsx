@@ -184,15 +184,15 @@ const Contact = () => {
         <motion.div className={c('contents')} variants={animation.contents}>
           <motion.div className={c('desc')} variants={fadeInUp(40)}>
             <p>
-              역량과 경험을 갖춘 UI 개발자를 찾고 계신가요? 합류 및 협업 제안이 있으시다면
-              언제든지 연락해 주세요! 함께 할 멋진 일에 대해 메일을 보내주시면 1~2일 내로
-              답장을 드릴게요.
+              역량과 경험을 갖춘 웹 퍼블리셔를 찾고 계신가요? 합류 및 협업 제안이
+              있으시다면 언제든지 연락해 주세요! 함께 할 멋진 일에 대해 메일을 보내주시면
+              1~2일 내로 답장을 드릴게요.
             </p>
           </motion.div>
           <motion.div className={c('desc')} variants={fadeInUp(40)}>
             <p>
-              또는 저와 나누고 싶은 얘기가 있으신가요? 웹 포트폴리오나 UI 개발과 관련이
-              없는 내용이여도 좋아요. 궁금한 내용이 있다면 편하게 말씀해 주세요 :)
+              또는 저와 나누고 싶은 얘기가 있으신가요? 포트폴리오나 개발과 관련이 없는
+              내용이여도 좋아요. 궁금한 내용이 있다면 편하게 말씀해 주세요 :)
             </p>
             <motion.div className={c('links')} variants={animation.links}>
               <motion.div variants={animation.link}>
