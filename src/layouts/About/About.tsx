@@ -141,7 +141,7 @@ const About = () => {
           </ArticleTitle>
           <div className={c('desc')}>
             <motion.p variants={fadeInUp()}>
-              안녕하세요! UI 개발자 김나영입니다.
+              안녕하세요! 웹 퍼블리셔 김나영입니다.
               <span className={c('aka')}>a.k.a, Nana</span>&nbsp;
               <br className={c('br_keep')} />
               좋아하면 더 잘한다는 마음으로 UI 개발 일을 하고 있습니다.

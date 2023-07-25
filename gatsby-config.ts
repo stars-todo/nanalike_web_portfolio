@@ -1,11 +1,11 @@
 import type { GatsbyConfig } from 'gatsby';
 
-require("dotenv").config();
+require('dotenv').config();
 
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `nanalike | 웹 포트폴리오`,
-    description: `UI 개발자 나나의 웹 포트폴리오. 사용하기 쉬운 UI와 기억에 남는 UX를 개발하는 일을 해요.`,
+    description: `웹 퍼블리셔 나나의 웹 포트폴리오. 사용하기 쉬운 UI와 기억에 남는 UX를 개발하는 일을 해요.`,
     siteUrl: `https://nykim.net`,
     image: `/ogImage.png`
   },
