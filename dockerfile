@@ -1,7 +1,7 @@
 # ====
 # Step1: MultiStage build-stage
 # Use the node:18-alpine3.18 as the base image
-FROM node:18.16.0-alpine3.17 as build-stage
+FROM node:18.17.1-alpine3.18 as build-stage
 
 # Install python/pip
 ENV PYTHONUNBUFFERED=1
@@ -24,7 +24,7 @@ RUN npm run build
 
 # ====
 # Step2: MultiStage actual serving image
-FROM nginx:1.25.0-alpine3.17-slim
+FROM nginx:1.25.2-alpine3.18-slim
 
 # Remove the default Nginx configuration file
 RUN rm /etc/nginx/conf.d/default.conf
